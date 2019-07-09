@@ -5,9 +5,9 @@ VisualStudioVersion = 15.0.28307.572
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoticeWeb", "NoticeWeb\NoticeWeb.csproj", "{385C1292-031E-4322-9D1F-016FB4865F6A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notice.DAL", "..\NoticeAPI\Notice.DAL\Notice.DAL.csproj", "{28205B8A-4C35-4566-8EF6-EDDE7E68F42D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notice.DAL", "..\ENoticeAPICode\Notice.DAL\Notice.DAL.csproj", "{28205B8A-4C35-4566-8EF6-EDDE7E68F42D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notice.Models", "..\NoticeAPI\Notice.Models\Notice.Models.csproj", "{F9254F83-193E-412D-BFFE-9982DFDEECDE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notice.Models", "..\ENoticeAPICode\Notice.Models\Notice.Models.csproj", "{F9254F83-193E-412D-BFFE-9982DFDEECDE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

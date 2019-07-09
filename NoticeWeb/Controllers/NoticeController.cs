@@ -149,7 +149,7 @@ namespace NoticeWeb.Controllers
             }
         }
 
-        // GET: Notice/Edit/5
+        // GET: Category/Edit/5
         public ActionResult EditCategory(Categories id)
         {
           
@@ -158,7 +158,28 @@ namespace NoticeWeb.Controllers
 
         // POST: Notice/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult EditCategory(Categories id, FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add update logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // GET: Notice/Edit/5
+        public ActionResult EditNotice(aNotice id)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult EditNotice(aNotice id, FormCollection collection)
         {
             try
             {
