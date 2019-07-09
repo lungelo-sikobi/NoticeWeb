@@ -120,8 +120,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\ENoticeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NoticeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -163,11 +163,15 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Notice\Index.cshtml" />
+    <Content Include="Views\Notice\AddingNotice.cshtml" />
+    <Content Include="Views\Notice\ViewNotice.cshtml" />
+    <Content Include="Views\Notice\ViewCategory.cshtml" />
+    <Content Include="Views\Notice\EditCategory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\ENotice\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -181,6 +185,16 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\NoticeAPI\Notice.DAL\Notice.DAL.csproj">
+      <Project>{28205b8a-4c35-4566-8ef6-edde7e68f42d}</Project>
+      <Name>Notice.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\NoticeAPI\Notice.Models\Notice.Models.csproj">
+      <Project>{f9254f83-193e-412d-bffe-9982dfdeecde}</Project>
+      <Name>Notice.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
