@@ -1,10 +1,10 @@
-﻿@model Notice.Models.Categories
+﻿@model Notice.Models.aNotice
 
 @{
-    ViewBag.Title = "EditCategory";
+    ViewBag.Title = "EditNotice";
 }
 
-<h2>EditCategory</h2>
+<h2>EditNotice</h2>
 
 
 @using (Html.BeginForm())
@@ -12,13 +12,12 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Categories</h4>
+        <h4>aNotice</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-
-                <p>Edit Catagory</p>
+                <p>Edit Notice</p>
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
@@ -26,7 +25,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "ViewCategory")
+    @Html.ActionLink("Back to List", "Index")
 </div>
 
 @section Scripts {

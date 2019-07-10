@@ -7,7 +7,7 @@
 <h2>ViewNotice</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "AddingNotice")
 </p>
 <table class="table">
     <tr>
@@ -34,9 +34,9 @@
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.NoticeID}) |
-            @Html.ActionLink("Details", "Details", new { id = item.NoticeID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.NoticeID })
+            @Html.ActionLink("Edit", "EditNotice", new { id=item.NoticeID}) |
+            @Html.ActionLink("Details", "NoticeDetails", new { id = item.NoticeID }) |
+            @Html.ActionLink("Delete", "DeleteNotice", new { id = item.NoticeID })
         </td>
     </tr>
 }
