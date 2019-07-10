@@ -168,8 +168,6 @@
     <Content Include="Views\Notice\ViewNotice.cshtml" />
     <Content Include="Views\Notice\ViewCategory.cshtml" />
     <Content Include="Views\Notice\EditCategory.cshtml" />
-    <Content Include="Views\Notice\EditNotice.cshtml" />
-    <Content Include="Views\Notice\NoticeDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -189,11 +187,11 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\NoticeAPI\Notice.DAL\Notice.DAL.csproj">
+    <ProjectReference Include="..\..\ENoticeAPICode\Notice.DAL\Notice.DAL.csproj">
       <Project>{28205b8a-4c35-4566-8ef6-edde7e68f42d}</Project>
       <Name>Notice.DAL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\NoticeAPI\Notice.Models\Notice.Models.csproj">
+    <ProjectReference Include="..\..\ENoticeAPICode\Notice.Models\Notice.Models.csproj">
       <Project>{f9254f83-193e-412d-bffe-9982dfdeecde}</Project>
       <Name>Notice.Models</Name>
     </ProjectReference>
