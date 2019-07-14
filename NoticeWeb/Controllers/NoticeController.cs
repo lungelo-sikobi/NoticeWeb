@@ -48,18 +48,13 @@ namespace NoticeWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddingCategory()
+        public ActionResult AddCategory(Categories cat)
         {
-            try
-            {
+            
                 // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
+                dt.InsertCategory(cat);
                 return View();
-            }
+           
         }
         [HttpPost]
         public ActionResult AddingAdmin(FormCollection collection)

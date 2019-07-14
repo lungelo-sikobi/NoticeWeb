@@ -1,0 +1,68 @@
+﻿@model Notice.Models.Categories
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddCategory</title>
+</head>
+<body>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+    @*@using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h4>Categories</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }*@
+
+    <div class="form-row mb-4">
+        <div class="col">
+        </div>
+        <div class="col">
+           
+            <input type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="Category ID">
+        </div>
+        <div class="col">
+        </div>
+    </div>
+    <div class="form-row mb-4">
+        <div class="col">
+        </div>
+        <div class="col">
+            <input type="text" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="Category Name">
+        </div>
+        <div class="col">
+        </div>
+    </div>
+    <div class="form-row mb-4">
+        <div class="col">
+        </div>
+        <div class="col">
+            <textarea type="text" id="defaultRegisterFormEmail" class="form-control mb-4" width="200px" placeholder="Category Description"></textarea>
+        </div>
+        <div class="col">
+        </div>
+    </div>
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</body>
+</html>
