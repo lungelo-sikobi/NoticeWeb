@@ -40,18 +40,11 @@ namespace NoticeWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddingNotice(FormCollection collection)
+        public ActionResult AddingNotice(aNotice collection)
         {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
+           
                 return View();
-            }
+
         }
 
         [HttpPost]
@@ -84,7 +77,7 @@ namespace NoticeWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult NoticeEdit(int id, FormCollection collection)
+        public ActionResult EditNotice(int id, FormCollection collection)
         {
             try
             {
@@ -148,8 +141,16 @@ namespace NoticeWeb.Controllers
                 return View();
             }
         }
+        public ActionResult EditNotice(aNotice id)
+        {
+            return View();
+        }
+        public ActionResult NoticeDetails(aNotice id)
+        {
+            return View();
+        }
 
-        // GET: Category/Edit/5
+        // GET: Notice/Edit/5
         public ActionResult EditCategory(Categories id)
         {
           
@@ -173,25 +174,8 @@ namespace NoticeWeb.Controllers
         }
 
         // GET: Notice/Edit/5
-        public ActionResult EditNotice(aNotice id)
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult EditNotice(aNotice id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+      
+       
 
         // GET: Notice/Delete/5
         public ActionResult Delete(int id)
