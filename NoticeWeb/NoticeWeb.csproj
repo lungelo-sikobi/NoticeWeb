@@ -120,8 +120,12 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NoticeController.cs" />
+    <Compile Include="Controllers\NoticesController.cs" />
+    <Compile Include="Controllers\TryController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -169,6 +173,17 @@
     <Content Include="Views\Notice\ViewCategory.cshtml" />
     <Content Include="Views\Notice\EditCategory.cshtml" />
     <Content Include="Views\Notice\AddCategory.cshtml" />
+    <Content Include="Views\Notice\Create.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Create.cshtml" />
+    <Content Include="Views\Admin\Edit.cshtml" />
+    <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\Category\Create.cshtml" />
+    <Content Include="Views\Category\Edit.cshtml" />
+    <Content Include="Views\Notices\Index.cshtml" />
+    <Content Include="Views\Notices\Details.cshtml" />
+    <Content Include="Views\Notices\Create.cshtml" />
+    <Content Include="Views\Try\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -188,11 +203,11 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\ENoticeAPICode\Notice.DAL\Notice.DAL.csproj">
+    <ProjectReference Include="..\..\..\NoticeAPI\Notice.DAL\Notice.DAL.csproj">
       <Project>{28205b8a-4c35-4566-8ef6-edde7e68f42d}</Project>
       <Name>Notice.DAL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\ENoticeAPICode\Notice.Models\Notice.Models.csproj">
+    <ProjectReference Include="..\..\..\NoticeAPI\Notice.Models\Notice.Models.csproj">
       <Project>{f9254f83-193e-412d-bffe-9982dfdeecde}</Project>
       <Name>Notice.Models</Name>
     </ProjectReference>

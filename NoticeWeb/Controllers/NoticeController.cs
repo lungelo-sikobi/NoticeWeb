@@ -42,8 +42,16 @@ namespace NoticeWeb.Controllers
         [HttpPost]
         public ActionResult AddingNotice(aNotice collection)
         {
-           
+         
                 return View();
+
+        }
+    
+
+        public ActionResult AddCategory()
+        {
+
+         return View();
 
         }
 
@@ -51,10 +59,9 @@ namespace NoticeWeb.Controllers
         public ActionResult AddCategory(Categories cat)
         {
             
-                // TODO: Add insert logic here
-                dt.InsertCategory(cat);
-                return View();
-           
+               
+            dt.InsertCategory(cat);
+            return RedirectToAction("Index");
         }
         [HttpPost]
         public ActionResult AddingAdmin(FormCollection collection)
@@ -62,8 +69,8 @@ namespace NoticeWeb.Controllers
             try
             {
                 // TODO: Add insert logic here
-
                 return RedirectToAction("Index");
+
             }
             catch
             {
@@ -123,7 +130,7 @@ namespace NoticeWeb.Controllers
 
         // POST: Notice/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Categories collection)
         {
             try
             {
