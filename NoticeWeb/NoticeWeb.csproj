@@ -138,6 +138,7 @@
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\FlashScreenController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NoticeController.cs" />
     <Compile Include="Controllers\NoticesController.cs" />
@@ -156,6 +157,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\mut.jpg" />
+    <Content Include="images\new.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -200,6 +203,7 @@
     <Content Include="Views\Notices\Details.cshtml" />
     <Content Include="Views\Notices\Create.cshtml" />
     <Content Include="Views\Try\Index.cshtml" />
+    <Content Include="Views\FlashScreen\Flashing.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
