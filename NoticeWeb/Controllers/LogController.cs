@@ -1,5 +1,4 @@
-﻿using Notice.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,39 +6,27 @@ using System.Web.Mvc;
 
 namespace NoticeWeb.Controllers
 {
-    public class HomeController : Controller
+    public class LogController : Controller
     {
+        // GET: Log
         public ActionResult Index()
         {
             return View();
         }
-        [HttpPost]
-        public ActionResult Index(Admin collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-                ViewBag.SuccessMessage =collection.Password;
-                return View();
-            }
-            catch
-            {
-                return View();
-            }
-        }
-        // GET: Home/Details/5
+
+        // GET: Log/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Home/Create
+        // GET: Log/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Home/Create
+        // POST: Log/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -55,13 +42,13 @@ namespace NoticeWeb.Controllers
             }
         }
 
-        // GET: Home/Edit/5
+        // GET: Log/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Home/Edit/5
+        // POST: Log/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -77,13 +64,13 @@ namespace NoticeWeb.Controllers
             }
         }
 
-        // GET: Home/Delete/5
+        // GET: Log/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Home/Delete/5
+        // POST: Log/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
