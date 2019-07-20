@@ -1,31 +1,119 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@model Notice.Models.Admin
+
+@{
+    Layout = null;
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<!DOCTYPE html>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style>
+       
+    </style>
+</head>
+<body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:#470606;color:white;">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <span>
+                    <img src="~/images/mut.jpg" style="height:40px;width:40px;vertical-align:middle;" class="pull-left">
+                    @Html.ActionLink("MUT ENotice", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </span>     
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                </ul>
+                <ul class="nav navbar-nav pull-right">
+                    <li><a href="#" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+    <div class="container body-content">
+
+        @ViewBag.SuccessMessage
+
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:maroon;color:white">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h5 class="modal-title text-center">Login</h5>
+                </div>
+                <div class="modal-body" style="background-image:url(../../images/new.jpg);background-size:contain;color:white;">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                       <div class="row">
+                        <div class="col-lg-3"></div>
+                        <div class="col-lg-9">
+                            <div class="form-horizontal">
+
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <br />
+                                <br />
+                                <div class="form-group">
+                                    <label class="col-md-10">Username:</label>
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.AdminID, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <br />
+
+                                <div class="form-group">
+                                    <label class="col-md-10">Password:</label>
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-10">
+
+                                    </div>
+
+                                </div>
+                                <br /><br />
+                            </div>
+                        </div>
+                    </div>
+
+                
+                  <div class="modal-footer" style="background-color:maroon">
+                    <div class="row">
+                        <div class="col-lg-2"> </div>
+                        <input type="submit" value="Login" class="btn btn-primary col-lg-4"/>
+                        <button type="button" class="btn btn-primary col-lg-4" data-dismiss="modal">Close</button>
+                        <div class="col-lg-2"> </div>
+                    </div> 
+                   
+                </div>
+                   }
+                
+            </div>
+
+        </div>
     </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
 </div>
+</body>
+</html>

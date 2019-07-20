@@ -140,9 +140,8 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\FlashScreenController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\NoticeController.cs" />
+    <Compile Include="Controllers\LogController.cs" />
     <Compile Include="Controllers\NoticesController.cs" />
-    <Compile Include="Controllers\TryController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -186,13 +185,6 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Notice\Index.cshtml" />
-    <Content Include="Views\Notice\AddingNotice.cshtml" />
-    <Content Include="Views\Notice\ViewNotice.cshtml" />
-    <Content Include="Views\Notice\ViewCategory.cshtml" />
-    <Content Include="Views\Notice\EditCategory.cshtml" />
-    <Content Include="Views\Notice\AddCategory.cshtml" />
-    <Content Include="Views\Notice\Create.cshtml" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\Create.cshtml" />
     <Content Include="Views\Admin\Edit.cshtml" />
@@ -202,8 +194,10 @@
     <Content Include="Views\Notices\Index.cshtml" />
     <Content Include="Views\Notices\Details.cshtml" />
     <Content Include="Views\Notices\Create.cshtml" />
-    <Content Include="Views\Try\Index.cshtml" />
     <Content Include="Views\FlashScreen\Flashing.cshtml" />
+    <Content Include="Views\Admin\Details.cshtml" />
+    <Content Include="Views\Notices\Edit.cshtml" />
+    <Content Include="Views\Log\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
