@@ -41,81 +41,85 @@
 
     <div class="container">
         <h2>Flashing Screen of Notices</h2>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                   Flash Screen
-            </button>
-   
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+            Flash Screen
+        </button>
+
         <!-- The Modal -->
-            <div class="modal" id="myModal">
-                <div class="modal-dialog modal-xl">
-                    <div class="modal-content">
+        <div class="modal" id="myModal">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
 
-                        <!-- Modal Header -->
-                        <div class="modal-header" style="text-align: center">
-                            <h4 class="modal-title" style="text-align: center" style="font-weight: bold">INFORMATION AND COMMUNICATION TECHNOLOGY</h4>
-                        </div>
-
-                        <!-- Modal body -->
-                        <div class="modal-body">
-
-                            <div>
-                                <div id="myCarousel" align="center" class="carousel slide" data-ride="carousel" data-pause="hover">
-                                    <ol class="carousel-indicators">
-                                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-                                        <li data-target="#myCarousel" data-slide-to="1"></li>
-                                    </ol>
-                                    <div class="carousel-inner" role="listbox">
-                                        <!-- Indicators -->
-                                        <asp:Repeater ID="rptCarousel" runat="server">
-                                            <ItemTemplate>
-                                                <!-- Wrapper for slides -->
-                                                <div class="item">
-                                                    <div class="carousel-content">
-                                                        <div style="margin: 0 auto">
-                                                            <h3>
-                                                                <asp:Label Text='<%# Eval("Title") %>' runat="server" />
-                                                            </h3>
-                                                            <p>
-                                                                <asp:Label ID="Label1" Text='<%# Eval("Description") %>' runat="server" />
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </ItemTemplate>
-                                        </asp:Repeater>
-                                    </div>
-                                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span><span class="sr-only">
-                                            Previous
-                                        </span>
-                                    </a><a class="right carousel-control" href="#myCarousel" role="button"
-                                                               data-slide="next">
-                                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true">
-                                        </span><span class="sr-only">Next</span>
-                                    </a>
-
-                                </div>
-
-
-                            </div>
-                        </div>
+                    <!-- Modal Header -->
+                    <div class="modal-header" style="text-align: center">
+                        <h4 class="modal-title" style="text-align: center" style="font-weight: bold">INFORMATION AND COMMUNICATION TECHNOLOGY</h4>
                     </div>
 
-                 </div>
+                    <!-- Modal body -->
+                    <div class="modal-body">
+
+                        <div>
+                            <div id="myCarousel" align="center" class="carousel slide" data-ride="carousel" data-pause="hover">
+                                <ol class="carousel-indicators">
+                                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                                </ol>
+                                <div class="carousel-inner" role="listbox">
+                                    <!-- Indicators -->
+                                    <asp:Repeater ID="rptCarousel" runat="server">
+                                        <ItemTemplate>
+                                            <!-- Wrapper for slides -->
+                                            <div class="item">
+                                                <div class="carousel-content">
+                                                    <div style="margin: 0 auto">
+                                                        <h3>
+                                                            <asp:Label Text='<%# Eval("Title") %>' runat="server" />
+                                                        </h3>
+                                                        <p>
+                                                            <asp:Label ID="Label1" Text='<%# Eval("Description") %>' runat="server" />
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
+                                </div>
+                                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span><span class="sr-only">
+                                        Previous
+                                    </span>
+                                </a><a class="right carousel-control" href="#myCarousel" role="button"
+                                                           data-slide="next">
+                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true">
+                                    </span><span class="sr-only">Next</span>
+                                </a>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
             </div>
+        </div>
 
 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
-                <script type="text/javascript">
-                    $(document).ready(function () {
-                        $('.carousel').carousel({
-                            interval: 1000
-                        });
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('.carousel').carousel({
+                    interval: 1000
+                });
 
-                        $('.item')[0].className = "item active";
-                    });
-                </script>
+                $('.item')[0].className = "item active";
+            });
+        </script>
     </div>
 </body>
 </html>
