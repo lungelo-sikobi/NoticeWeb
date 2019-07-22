@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 
 namespace NoticeWeb.Controllers
-{
+{  
     public class TryController : Controller
     {
         // GET: Try
@@ -16,7 +16,7 @@ namespace NoticeWeb.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Index(Categories d)
+        public ActionResult Index(Categories d) 
         {
             DataAcess dt = new DataAcess();
             dt.InsertCategory(d);

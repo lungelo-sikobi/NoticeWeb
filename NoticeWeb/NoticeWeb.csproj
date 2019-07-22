@@ -120,12 +120,18 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AccountAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\NewsAdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductAdminController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NoticeController.cs" />
     <Compile Include="Controllers\NoticesController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\TryController.cs" />
+    <Compile Include="Filter\BasicAuthFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -142,6 +148,12 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\AccountAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\NewsAdmin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductAdmin\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -184,9 +196,11 @@
     <Content Include="Views\Notices\Details.cshtml" />
     <Content Include="Views\Notices\Create.cshtml" />
     <Content Include="Views\Try\Index.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -201,16 +215,6 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\NoticeAPI\Notice.DAL\Notice.DAL.csproj">
-      <Project>{28205b8a-4c35-4566-8ef6-edde7e68f42d}</Project>
-      <Name>Notice.DAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\NoticeAPI\Notice.Models\Notice.Models.csproj">
-      <Project>{f9254f83-193e-412d-bffe-9982dfdeecde}</Project>
-      <Name>Notice.Models</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
