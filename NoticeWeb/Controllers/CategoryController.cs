@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using System.Net.Http.Headers;
 
 namespace NoticeWeb.Controllers
 {
@@ -51,6 +52,65 @@ namespace NoticeWeb.Controllers
             }
             return View(catInfo);
         }
+
+
+        //Insert Category
+        [HttpPost]
+        [ActionName("Create")]
+        public async Task<ActionResult> CreateCategory()
+        {
+            if (ModelState.IsValid)
+            {
+                using (var client = new HttpClient())
+                {
+                    // Assuming the API is in the same web application. 
+                    client.BaseAddress = new Uri(url);
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    Categories catObj = new Categories();
+                    UpdateModel(catObj);
+                    HttpResponseMessage response = await client.PostAsJsonAsync("api/Values/InsertCategory", catObj);
+
+                    if (response.IsSuccessStatusCode == true)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+            }
+            return View();
+
+        }
+
+        //Update Category
+        [HttpPost]
+        [ActionName("Edit")]
+        public async Task<ActionResult> EditCategory()
+        {
+            if (ModelState.IsValid)
+            {
+                using (var client = new HttpClient())
+                {
+                    
+                    client.BaseAddress = new Uri(url);
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    Categories CategoryObj = new Categories();
+                    UpdateModel(CategoryObj);
+                    HttpResponseMessage response = await client.PutAsJsonAsync("api/Values/UpdateCategory", CategoryObj);
+
+                    if (response.IsSuccessStatusCode == true)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+            }
+            return View();
+
+        }
+
+
+
+
 
         //Details
         public async Task<ActionResult> DetailsCategory(int id)
