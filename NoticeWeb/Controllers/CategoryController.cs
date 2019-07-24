@@ -27,7 +27,7 @@ namespace NoticeWeb.Controllers
         //Get Category
         private HttpClient client = new HttpClient();
 
-        string url = "";
+        string url = "http://localhost:8009/";
 
         public async Task<ActionResult> IndexC()
         {
