@@ -167,11 +167,7 @@ namespace NoticeWeb.Controllers
             }
         }
 
-        // GET: Notices/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+        
 
         // POST: Notices/Delete/5
         [HttpPost]
