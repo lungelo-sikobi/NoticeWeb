@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Notice.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,9 +10,11 @@ namespace NoticeWeb.Controllers
     public class AdminController : Controller
     {
         // GET: Admin
+        DataAcess data = new DataAcess();
         public ActionResult Index()
         {
-            return View();
+            var list = data.GetAdmins();
+            return View(list);
         }
 
         // GET: Admin/Details/5

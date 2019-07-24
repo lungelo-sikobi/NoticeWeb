@@ -1,5 +1,4 @@
-﻿using Notice.DAL;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,29 +6,27 @@ using System.Web.Mvc;
 
 namespace NoticeWeb.Controllers
 {
-    public class NoticesController : Controller
+    public class PasswordController : Controller
     {
-        // GET: Notices
-        DataAcess data = new DataAcess();
+        // GET: Password
         public ActionResult Index()
         {
-            var list = data.GetNoticesData();
-            return View(list);
+            return View();
         }
 
-        // GET: Notices/Details/5
+        // GET: Password/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Notices/Create
+        // GET: Password/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Notices/Create
+        // POST: Password/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -45,13 +42,13 @@ namespace NoticeWeb.Controllers
             }
         }
 
-        // GET: Notices/Edit/5
+        // GET: Password/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Notices/Edit/5
+        // POST: Password/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -67,13 +64,13 @@ namespace NoticeWeb.Controllers
             }
         }
 
-        // GET: Notices/Delete/5
+        // GET: Password/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Notices/Delete/5
+        // POST: Password/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
