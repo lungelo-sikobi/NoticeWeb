@@ -14,22 +14,14 @@ namespace NoticeWeb.Controllers
 {
     public class CategoryController : Controller
     {
-        // GET: Category
-        DataAcess dt = new DataAcess();
-        public ActionResult Index()
-        {
-            var list = dt.GetCategories();
-            return View(list);
-        }
-
-
+     
         //Code for the API
         //Get Category
         private HttpClient client = new HttpClient();
 
         string url = "http://localhost:8009/";
 
-        public async Task<ActionResult> IndexC()
+        public async Task<ActionResult> Index()
         {
             List<Categories> catInfo = new List<Categories>();
 
@@ -57,7 +49,7 @@ namespace NoticeWeb.Controllers
         //Insert Category
         [HttpPost]
         [ActionName("Create")]
-        public async Task<ActionResult> CreateCategory()
+        public async Task<ActionResult> Create()
         {
             if (ModelState.IsValid)
             {
@@ -84,7 +76,7 @@ namespace NoticeWeb.Controllers
         //Update Category
         [HttpPost]
         [ActionName("Edit")]
-        public async Task<ActionResult> EditCategory()
+        public async Task<ActionResult> Edit()
         {
             if (ModelState.IsValid)
             {
@@ -113,7 +105,7 @@ namespace NoticeWeb.Controllers
 
 
         //Details
-        public async Task<ActionResult> DetailsCategory(int id)
+        public async Task<ActionResult> DCetails(int id)
         {
             return View();
         }
@@ -129,29 +121,13 @@ namespace NoticeWeb.Controllers
 
         // GET: Category/Create
 
-        public ActionResult Create()
-        {
-            return View();
+        //public ActionResult Create()
+        //{
+        //    return View();
            
-        }
+        //}
 
-        // POST: Category/Create
-        [HttpPost]
-        public ActionResult Create(Categories obj)
-        {
-            try
-            {
-                DataAcess dt = new DataAcess();
-                dt.InsertCategory(obj);
-                return RedirectToAction("Index");
-              
-                
-            }
-            catch
-            {
-                return View();
-            }
-        }
+       
 
         // GET: Category/Edit/5
         public ActionResult Edit(int id)
