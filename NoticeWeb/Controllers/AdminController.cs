@@ -18,7 +18,7 @@ namespace NoticeWeb.Controllers
        
         private HttpClient client = new HttpClient();
 
-        string url = "http://localhost:8009/";
+        string url = "http://10.0.1.229:8009/";
 
         public async Task<ActionResult> Index()
         {
@@ -29,7 +29,7 @@ namespace NoticeWeb.Controllers
                 client.BaseAddress = new Uri(url);
                 client.DefaultRequestHeaders.Clear();
                 //Define request data format
-                HttpResponseMessage Res = await client.GetAsync("api/Values/GetAdmins");
+                HttpResponseMessage Res = await client.GetAsync("api/Values/GetAdmin");
 
                 //Checking the responce if is successful
                 if (Res.IsSuccessStatusCode)
