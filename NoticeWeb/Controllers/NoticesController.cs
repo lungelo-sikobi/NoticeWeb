@@ -17,7 +17,7 @@ namespace NoticeWeb.Controllers
       
         private HttpClient client = new HttpClient();
 
-        string url = "http://localhost:8009/";
+        string url = "http://10.0.1.229:8009/";
 
 
         // GET: Notices
@@ -30,7 +30,7 @@ namespace NoticeWeb.Controllers
                 client.BaseAddress = new Uri(url);
                 client.DefaultRequestHeaders.Clear();
                 //Define request data format
-                HttpResponseMessage Res = await client.GetAsync("api/Values/GetNoticesData");
+                HttpResponseMessage Res = await client.GetAsync("api/Values/GetNoticeData");
 
                 //Checking the responce if is successful
                 if (Res.IsSuccessStatusCode)
@@ -118,8 +118,6 @@ namespace NoticeWeb.Controllers
             }
             return RedirectToAction("Index");
         }
-
-
 
         // GET: Notices/Details/5
         public ActionResult Details(int id)

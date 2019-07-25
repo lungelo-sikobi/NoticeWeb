@@ -19,7 +19,7 @@ namespace NoticeWeb.Controllers
         //Get Category
         private HttpClient client = new HttpClient();
 
-        string url = "http://localhost:8009/";
+        string url = "http://10.0.1.229:8009/";
 
         public async Task<ActionResult> Index()
         {
@@ -30,7 +30,7 @@ namespace NoticeWeb.Controllers
                 client.BaseAddress = new Uri(url);
                 client.DefaultRequestHeaders.Clear();
                 //Define request data format
-                HttpResponseMessage Res = await client.GetAsync("api/Values/GetCategories");
+                HttpResponseMessage Res = await client.GetAsync("api/Values/GetCatagory");
 
                 //Checking the responce if is successful
                 if(Res.IsSuccessStatusCode)
@@ -61,7 +61,7 @@ namespace NoticeWeb.Controllers
                     client.DefaultRequestHeaders.Accept.Clear();
                     Categories catObj = new Categories();
                     UpdateModel(catObj);
-                    HttpResponseMessage response = await client.PostAsJsonAsync("api/Values/InsertCategory", catObj);
+                    HttpResponseMessage response = await client.PostAsJsonAsync("api/Values/InsertCatagory", catObj);
 
                     if (response.IsSuccessStatusCode == true)
                     {
