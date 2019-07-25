@@ -1,4 +1,4 @@
-﻿using Notice.DAL;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +10,11 @@ namespace NoticeWeb.Controllers
     public class FlashScreenController : Controller
     {
         // GET: FlashScreen
-        DataAcess dt = new DataAcess();
+        //DataAcess dt = new DataAcess();
         public ActionResult Flashing()
         {
-            var flash = dt.GetNoticeTitle();
-            return View(flash);
+           // var flash = dt.GetNoticeTitle();
+            return View();
         }
 
         // GET: FlashScreen/Details/5

@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Notice.DAL;
 using Notice.Models;
 using System;
 using System.Collections.Generic;
