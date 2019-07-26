@@ -13,7 +13,7 @@ namespace NoticeWeb.Controllers
 {
     public class FlashScreenController : Controller
     {
-       
+
         // GET: FlashScreen
         DataAcess dt = new DataAcess();
         public ActionResult Flashing()
@@ -23,33 +23,33 @@ namespace NoticeWeb.Controllers
         }
 
 
-        private HttpClient client = new HttpClient();
+        //private HttpClient client = new HttpClient();
 
-        string url = "http://10.0.1.229:8009/";
+        //string url = "http://10.0.1.229:8009/";
 
-        public async Task<ActionResult> Index()
-        {
-            List<aNotice> NInfo = new List<aNotice>();
+        //public async Task<ActionResult> Flashing()
+        //{
+        //    List<aNotice> NInfo = new List<aNotice>();
 
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri(url);
-                client.DefaultRequestHeaders.Clear();
-                //Define request data format
-                HttpResponseMessage Res = await client.GetAsync("api/Values/GetNoticeData");
+        //    using (var client = new HttpClient())
+        //    {
+        //        client.BaseAddress = new Uri(url);
+        //        client.DefaultRequestHeaders.Clear();
+        //        //Define request data format
+        //        HttpResponseMessage Res = await client.GetAsync("api/Values/GetNoticeData");
 
-                //Checking the responce if is successful
-                if (Res.IsSuccessStatusCode)
-                {
-                    var FlashResponce = Res.Content.ReadAsStringAsync().Result;
+        //        //Checking the responce if is successful
+        //        if (Res.IsSuccessStatusCode)
+        //        {
+        //            var FlashResponce = Res.Content.ReadAsStringAsync().Result;
 
-                    //Deserilizing the responce
-                    NInfo = JsonConvert.DeserializeObject<List<aNotice>>(FlashResponce);
+        //            //Deserilizing the responce
+        //            NInfo = JsonConvert.DeserializeObject<List<aNotice>>(FlashResponce);
 
-                }
-            }
-            return View(NInfo);
-        }
+        //        }
+        //    }
+        //    return View(NInfo);
+        //}
 
 
 
