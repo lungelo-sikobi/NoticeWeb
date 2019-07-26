@@ -59,7 +59,7 @@ namespace NoticeWeb.Controllers
                     client.BaseAddress = new Uri(url);
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                     client.DefaultRequestHeaders.Accept.Clear();
-                    Categories catObj = new Categories();
+                     = new Categories();
                     UpdateModel(catObj);
                     HttpResponseMessage response = await client.PostAsJsonAsync("api/Values/InsertCatagory", catObj);
 
@@ -105,7 +105,7 @@ namespace NoticeWeb.Controllers
 
 
         //Details
-        public async Task<ActionResult> DCetails(int id)
+        public  ActionResult Create()
         {
             return View();
         }
