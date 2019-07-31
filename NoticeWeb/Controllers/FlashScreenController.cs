@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using Notice.DAL;
+
 using Notice.Models;
 using System;
 using System.Collections.Generic;
@@ -15,11 +15,11 @@ namespace NoticeWeb.Controllers
     {
 
         // GET: FlashScreen
-        DataAcess dt = new DataAcess();
+        //DataAcess dt = new DataAcess();
         public ActionResult Flashing()
         {
-            var flash = dt.GetNoticeTitle();
-            return View(flash);
+          // var flash = dt.GetNoticeTitle();
+            return View();
         }
 
 

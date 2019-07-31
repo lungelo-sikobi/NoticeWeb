@@ -9,17 +9,19 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
+using Notice.DAL;
 
 namespace NoticeWeb.Controllers
 {
     public class CategoryController : Controller
     {
-     
+
         //Code for the API
         //Get Category
+        DataAcess obj = new DataAcess();
         private HttpClient client = new HttpClient();
 
-        string url = "http://10.0.1.229:8009/";
+        string url = "http://localhost:8009/";
 
         public async Task<ActionResult> Index()
         {
@@ -49,7 +51,7 @@ namespace NoticeWeb.Controllers
         //Insert Category
         [HttpPost]
         [ActionName("Create")]
-        public async Task<ActionResult> Create()
+        public async Task<ActionResult> Create(Categories catObj)
         {
             if (ModelState.IsValid)
             {
@@ -59,7 +61,7 @@ namespace NoticeWeb.Controllers
                     client.BaseAddress = new Uri(url);
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                     client.DefaultRequestHeaders.Accept.Clear();
-                     = new Categories();
+                    
                     UpdateModel(catObj);
                     HttpResponseMessage response = await client.PostAsJsonAsync("api/Values/InsertCatagory", catObj);
 
@@ -132,7 +134,8 @@ namespace NoticeWeb.Controllers
         // GET: Category/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Categories categories = obj.GetCategories().Single(data => data.ID == id);
+            return View(categories);
         }
 
         // POST: Category/Edit/5

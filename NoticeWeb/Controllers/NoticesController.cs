@@ -16,7 +16,7 @@ namespace NoticeWeb.Controllers
       
         private HttpClient client = new HttpClient();
 
-        string url = "http://10.0.1.229:8009/";
+        string url = "http://localhost:8009/";
 
 
         // GET: Notices
@@ -47,7 +47,7 @@ namespace NoticeWeb.Controllers
         //Insert Notice
         [HttpPost]
         [ActionName("Create")]
-        public async Task<ActionResult> Create()
+        public async Task<ActionResult> Create(aNotice NotObj)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +57,7 @@ namespace NoticeWeb.Controllers
                     client.BaseAddress = new Uri(url);
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                     client.DefaultRequestHeaders.Accept.Clear();
-                    aNotice NotObj = new aNotice();
+                    //= new aNotice();
                     UpdateModel(NotObj);
                     HttpResponseMessage response = await client.PostAsJsonAsync("api/Values/InsertNotice", NotObj);
 
@@ -124,7 +124,11 @@ namespace NoticeWeb.Controllers
             return View();
         }
 
-      
+        public ActionResult Create()
+        {
+            return View();
+        }
+
 
         // POST: Notices/Create
         [HttpPost]

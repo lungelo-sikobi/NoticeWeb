@@ -220,6 +220,10 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\ENoticeAPICode\Notice.DAL\Notice.DAL.csproj">
+      <Project>{28205b8a-4c35-4566-8ef6-edde7e68f42d}</Project>
+      <Name>Notice.DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\ENoticeAPICode\Notice.Models\Notice.Models.csproj">
       <Project>{f9254f83-193e-412d-bffe-9982dfdeecde}</Project>
       <Name>Notice.Models</Name>
