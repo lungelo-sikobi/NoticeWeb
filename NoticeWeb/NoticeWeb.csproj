@@ -122,8 +122,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AccountAdminController.cs" />
-    <Compile Include="Areas\Admin\Controllers\NewsAdminController.cs" />
-    <Compile Include="Areas\Admin\Controllers\ProductAdminController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -151,8 +149,6 @@
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\AccountAdmin\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\NewsAdmin\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\ProductAdmin\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
