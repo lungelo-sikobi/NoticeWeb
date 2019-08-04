@@ -1,6 +1,12 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+
+using Notice.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -9,10 +15,69 @@ namespace NoticeWeb.Controllers
     public class AdminController : Controller
     {
         // GET: Admin
-        public ActionResult Index()
+       
+        private HttpClient client = new HttpClient();
+
+        string url = "http://10.0.1.229:8009/";
+
+        public async Task<ActionResult> Index()
         {
-            return View();
+            List<Admin> AdminInfo = new List<Admin>();
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(url);
+                client.DefaultRequestHeaders.Clear();
+                //Define request data format
+                HttpResponseMessage Res = await client.GetAsync("api/Values/GetAdmin");
+
+                //Checking the responce if is successful
+                if (Res.IsSuccessStatusCode)
+                {
+                    var AdmninResponce = Res.Content.ReadAsStringAsync().Result;
+
+                    //Deserilizing the responce
+                    AdminInfo = JsonConvert.DeserializeObject<List<Admin>>(AdmninResponce);
+
+                }
+            }
+            return View(AdminInfo);
         }
+
+
+        //Insert Admin
+       
+
+
+        //Update Admin
+        [HttpPost]
+        [ActionName("Edit")]
+        public async Task<ActionResult> Edit()
+        {
+            if (ModelState.IsValid)
+            {
+                using (var client = new HttpClient())
+                {
+
+                    client.BaseAddress = new Uri(url);
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    Admin AdminsObj = new Admin();
+                    UpdateModel(AdminsObj);
+                    HttpResponseMessage response = await client.PutAsJsonAsync("api/Values/UpdateAdmin", AdminsObj);
+
+                    if (response.IsSuccessStatusCode == true)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+            }
+            return View();
+
+        }
+
+
+
 
         // GET: Admin/Details/5
         public ActionResult Details(int id)
@@ -20,26 +85,36 @@ namespace NoticeWeb.Controllers
             return View();
         }
 
-        // GET: Admin/Create
+        
         public ActionResult Create()
         {
-            return View();
+          return View();
         }
+
+
 
         // POST: Admin/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public async Task<ActionResult> Create(Admin AdminObj)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
+                using (var client = new HttpClient())
+                {
+                    // Assuming the API is in the same web application. 
+                    client.BaseAddress = new Uri(url);
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    UpdateModel(AdminObj);
+                    HttpResponseMessage response = await client.PostAsJsonAsync("api/Values/InsertAdmin", AdminObj);
 
-                return RedirectToAction("Index");
+                    if (response.IsSuccessStatusCode == true)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
             }
-            catch
-            {
-                return View();
-            }
+            return View();
         }
 
         // GET: Admin/Edit/5

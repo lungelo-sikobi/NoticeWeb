@@ -1,4 +1,4 @@
-﻿using Notice.DAL;
+﻿
 using Notice.Models;
 using System;
 using System.Collections.Generic;
@@ -7,18 +7,140 @@ using System.Web;
 using System.Web.Mvc;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using System.Net.Http.Headers;
+using Notice.DAL;
 
 namespace NoticeWeb.Controllers
 {
     public class CategoryController : Controller
     {
-        // GET: Category
-        DataAcess dt = new DataAcess();
+        
+        //Create Category
+        DataAcess obj = new DataAcess();
+
+        [HttpGet]
         public ActionResult Index()
         {
-            var list = dt.GetCategories();
-            return View(list);
+            var cat = obj.GetCategories();
+            return View();
         }
+
+        [HttpPost]
+        public ActionResult Create(Categories cat)
+        {
+            var cr = obj.InsertCategory(cat);
+            return View();
+        }
+
+
+        // GET: Category/Edit/5
+        public ActionResult Edit(int id)
+        {
+            Categories categories = obj.GetCategories().Single(data => data.ID == id);
+            return View(categories);
+        }
+
+
+
+
+        //private HttpClient client = new HttpClient();
+
+        //string url = "http://localhost:8009/";
+
+        //public async Task<ActionResult> Index()
+        //{
+        //    List<Categories> catInfo = new List<Categories>();
+
+        //    using (var client = new HttpClient())
+        //    {
+        //        client.BaseAddress = new Uri(url);
+        //        client.DefaultRequestHeaders.Clear();
+        //        //Define request data format
+        //        HttpResponseMessage Res = await client.GetAsync("api/Values/GetCatagory");
+
+        //        //Checking the responce if is successful
+        //        if (Res.IsSuccessStatusCode)
+        //        {
+        //            var CategoryResponce = Res.Content.ReadAsStringAsync().Result;
+
+        //            //Deserilizing the responce
+        //            catInfo = JsonConvert.DeserializeObject<List<Categories>>(CategoryResponce);
+
+        //        }
+        //    }
+        //    return View(catInfo);
+        //}
+
+
+        //Insert Category
+        //[HttpPost]
+        //[ActionName("Create")]
+        //public async Task<ActionResult> Create(Categories catObj)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        using (var client = new HttpClient())
+        //        {
+        //            // Assuming the API is in the same web application. 
+        //            client.BaseAddress = new Uri(url);
+        //            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        //            client.DefaultRequestHeaders.Accept.Clear();
+
+        //            UpdateModel(catObj);
+        //            HttpResponseMessage response = await client.PostAsJsonAsync("api/Values/InsertCatagory", catObj);
+
+        //            if (response.IsSuccessStatusCode == true)
+        //            {
+        //                return RedirectToAction("Index");
+        //            }
+        //        }
+        //    }
+        //    return View();
+
+        //}
+
+        //Update Category
+
+
+
+        //[ActionName("Edit")]
+        //public async Task<ActionResult> Edit()
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        using (var client = new HttpClient())
+        //        {
+
+        //            client.BaseAddress = new Uri(url);
+        //            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        //            client.DefaultRequestHeaders.Accept.Clear();
+        //            Categories CategoryObj = new Categories();
+        //            UpdateModel(CategoryObj);
+        //            HttpResponseMessage response = await client.PutAsJsonAsync("api/Values/UpdateCategory", CategoryObj);
+
+        //            if (response.IsSuccessStatusCode == true)
+        //            {
+        //                return RedirectToAction("Index");
+        //            }
+        //        }
+        //    }
+        //    return View();
+
+        //}
+
+
+
+
+
+        //Details
+        public  ActionResult Create()
+        {
+            return View();
+        }
+
+
+
 
         // GET: Category/Details/5
         public ActionResult Details(int id)
@@ -28,35 +150,15 @@ namespace NoticeWeb.Controllers
 
         // GET: Category/Create
 
-        public ActionResult Create()
-        {
-            return View();
+        //public ActionResult Create()
+        //{
+        //    return View();
            
-        }
+        //}
 
-        // POST: Category/Create
-        [HttpPost]
-        public ActionResult Create(Categories obj)
-        {
-            try
-            {
-                DataAcess dt = new DataAcess();
-                dt.InsertCategory(obj);
-                return RedirectToAction("Index");
-              
-                
-            }
-            catch
-            {
-                return View();
-            }
-        }
+       
 
-        // GET: Category/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
+       
 
         // POST: Category/Edit/5
         [HttpPost]

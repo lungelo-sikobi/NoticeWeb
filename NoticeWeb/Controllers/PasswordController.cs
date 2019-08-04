@@ -1,5 +1,4 @@
-﻿using Notice.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,39 +6,27 @@ using System.Web.Mvc;
 
 namespace NoticeWeb.Controllers
 {
-    public class HomeController : Controller
+    public class PasswordController : Controller
     {
+        // GET: Password
         public ActionResult Index()
         {
             return View();
         }
-        [HttpPost]
-        public ActionResult Index(Admin collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-                ViewBag.SuccessMessage =collection.Password;
-                return View();
-            }
-            catch
-            {
-                return View();
-            }
-        }
-        // GET: Home/Details/5
+
+        // GET: Password/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: Home/Create
+        // GET: Password/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Home/Create
+        // POST: Password/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -55,13 +42,13 @@ namespace NoticeWeb.Controllers
             }
         }
 
-        // GET: Home/Edit/5
+        // GET: Password/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Home/Edit/5
+        // POST: Password/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -77,13 +64,13 @@ namespace NoticeWeb.Controllers
             }
         }
 
-        // GET: Home/Delete/5
+        // GET: Password/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Home/Delete/5
+        // POST: Password/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

@@ -4,24 +4,90 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h4 class="well text-center" style="background:#861010;color:whitesmoke;"><b>All Notices</b></h4>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Add Notice", "Create")
 </p>
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NoticeID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateAndTime_p)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateAndTime_Expire)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateAndTime_Show)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AdminID)
+        </th>
+        <t @Html.DisplayNameFor(model => model.CatName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HasImage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Picture)
+        </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NoticeID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateAndTime_p)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateAndTime_Expire)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateAndTime_Show)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdminID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CatName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HasImage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Picture)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.NoticeID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.NoticeID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.NoticeID })
+            </td>
+        </tr>
+    }
 
 </table>
