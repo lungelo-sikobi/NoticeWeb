@@ -15,10 +15,16 @@ namespace NoticeWeb.Controllers
 {
     public class CategoryController : Controller
     {
-
-        //Code for the API
-        //Get Category
+        
+        //Create Category
         DataAcess obj = new DataAcess();
+
+        [HttpGet]
+        public ActionResult Index()
+        {
+            var cat = obj.GetCategories();
+            return View();
+        }
 
         [HttpPost]
         public ActionResult Create(Categories cat)
@@ -34,6 +40,10 @@ namespace NoticeWeb.Controllers
             Categories categories = obj.GetCategories().Single(data => data.ID == id);
             return View(categories);
         }
+
+
+
+
         //private HttpClient client = new HttpClient();
 
         //string url = "http://localhost:8009/";
@@ -50,7 +60,7 @@ namespace NoticeWeb.Controllers
         //        HttpResponseMessage Res = await client.GetAsync("api/Values/GetCatagory");
 
         //        //Checking the responce if is successful
-        //        if(Res.IsSuccessStatusCode)
+        //        if (Res.IsSuccessStatusCode)
         //        {
         //            var CategoryResponce = Res.Content.ReadAsStringAsync().Result;
 
