@@ -27,7 +27,7 @@ namespace NoticeWeb.Controllers
         [HttpPost]
         public ActionResult Create(aNotice not)
         {
-            var cr = dt.InsertNotice(not);
+            dt.InsertNotice(not);
             return View();
         }
 
