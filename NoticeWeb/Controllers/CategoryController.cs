@@ -91,33 +91,33 @@ namespace NoticeWeb.Controllers
         //}
 
         //Update Category
-       
 
 
-        [ActionName("Edit")]
-        public async Task<ActionResult> Edit()
-        {
-            if (ModelState.IsValid)
-            {
-                using (var client = new HttpClient())
-                {
 
-                    client.BaseAddress = new Uri(url);
-                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                    client.DefaultRequestHeaders.Accept.Clear();
-                    Categories CategoryObj = new Categories();
-                    UpdateModel(CategoryObj);
-                    HttpResponseMessage response = await client.PutAsJsonAsync("api/Values/UpdateCategory", CategoryObj);
+        //[ActionName("Edit")]
+        //public async Task<ActionResult> Edit()
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        using (var client = new HttpClient())
+        //        {
 
-                    if (response.IsSuccessStatusCode == true)
-                    {
-                        return RedirectToAction("Index");
-                    }
-                }
-            }
-            return View();
+        //            client.BaseAddress = new Uri(url);
+        //            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+        //            client.DefaultRequestHeaders.Accept.Clear();
+        //            Categories CategoryObj = new Categories();
+        //            UpdateModel(CategoryObj);
+        //            HttpResponseMessage response = await client.PutAsJsonAsync("api/Values/UpdateCategory", CategoryObj);
 
-        }
+        //            if (response.IsSuccessStatusCode == true)
+        //            {
+        //                return RedirectToAction("Index");
+        //            }
+        //        }
+        //    }
+        //    return View();
+
+        //}
 
 
 
