@@ -159,6 +159,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="images\mut.jpg" />
     <Content Include="images\new.jpg" />
+    <Content Include="images\TLDC.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />

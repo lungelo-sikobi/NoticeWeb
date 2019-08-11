@@ -23,7 +23,7 @@ namespace NoticeWeb.Controllers
         public ActionResult Index()
         {
             var cat = obj.GetCategories();
-            return View();
+            return View(cat);
         }
 
         [HttpPost]
