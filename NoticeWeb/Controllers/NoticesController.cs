@@ -20,7 +20,7 @@ namespace NoticeWeb.Controllers
         public ActionResult Index()
         {
             var notList = dt.GetNoticesData();
-            return View();
+            return View(notList);
         }
 
         //Create Notice
