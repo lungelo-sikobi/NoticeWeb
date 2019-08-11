@@ -45,7 +45,55 @@
     </div>
     <div class="container body-content">
 
-        @ViewBag.SuccessMessage
+        @foreach (var item in ViewBag.Data)
+        {
+            <span> @item.Title </span>
+        }
+
+        <table class="table">
+            <tr>
+
+
+
+                <th>
+                   Title
+                </th>
+                <th>
+                 Description
+                </th>
+                <th>
+                 Category
+                </th>
+                <th>
+                  Date Posted
+                </th>
+               
+            </tr>
+
+            @foreach (var item in ViewBag.Data)
+            {
+            <tr>
+                <td>
+                    @item.Title
+                </td>
+                <td> @item.Description </td>
+                <td>
+                    @item.CatName
+                <td>
+                    @item.DateAndTime_p
+                </td>
+                
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.NoticeID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.NoticeID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.NoticeID })
+                </td>
+            </tr>
+            }
+
+        </table>
+
+
 
     </div>
     <div id="myModal" class="modal fade" role="dialog">

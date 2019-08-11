@@ -1,4 +1,5 @@
-﻿using Notice.Models;
+﻿using Notice.DAL;
+using Notice.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,11 @@ namespace NoticeWeb.Controllers
 {
     public class HomeController : Controller
     {
+        DataAcess dt = new DataAcess();
         public ActionResult Index()
         {
+            var notList = dt.GetNoticesData();
+            ViewBag.Data = notList;
             return View();
         }
         [HttpPost]
@@ -27,6 +31,7 @@ namespace NoticeWeb.Controllers
                 return View();
             }
         }
+       
         // GET: Home/Details/5
         public ActionResult Details(int id)
         {
