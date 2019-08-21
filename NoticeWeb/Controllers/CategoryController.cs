@@ -17,19 +17,19 @@ namespace NoticeWeb.Controllers
     {
         
         //Create Category
-        DataAcess obj = new DataAcess();
+        DataAcess dt = new DataAcess();
 
         [HttpGet]
         public ActionResult Index()
         {
-            var cat = obj.GetCategories();
+            var cat = dt.GetCategories();
             return View(cat);
         }
 
         [HttpPost]
         public ActionResult Create(Categories cat)
         {
-            var cr = obj.InsertCategory(cat);
+            var cr = dt.InsertCategory(cat);
             return View();
         }
 
@@ -37,11 +37,19 @@ namespace NoticeWeb.Controllers
         // GET: Category/Edit/5
         public ActionResult Edit(int id)
         {
-            Categories categories = obj.GetCategories().Single(data => data.ID == id);
-            return View(categories);
+            var category = dt.GetCategories().Single(data => data.ID == id);
+            return View(category);
         }
 
-
+        // POST: Category/Edit/5
+        [HttpPost]
+        public ActionResult Edit(Categories catg)
+        {
+                // TODO: Add update logic here
+                var ct = dt.UpdateCategory(catg);
+                return RedirectToAction("Index");
+          
+        }
 
 
         //private HttpClient client = new HttpClient();
@@ -160,22 +168,7 @@ namespace NoticeWeb.Controllers
 
        
 
-        // POST: Category/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
+       
         // GET: Category/Delete/5
         public ActionResult Delete(int id)
         {

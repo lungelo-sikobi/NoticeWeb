@@ -31,11 +31,22 @@ namespace NoticeWeb.Controllers
             return View();
         }
 
-        //Edit Notice
+
+        // GET: Notice/Edit/5
         public ActionResult Edit(int id)
         {
-            aNotice notice = dt.GetNoticesData().Single(data => data.NoticeID == id);
+            var notice = dt.GetNoticesData().Single(data => data.NoticeID == id);
             return View(notice);
+        }
+
+        // POST: Notice/Edit/5
+        [HttpPost]
+        public ActionResult Edit(aNotice not)
+        {
+            // TODO: Add update logic here
+            var notic = dt.UpdateNotice(not);
+            return RedirectToAction("Index");
+
         }
 
         //Delete Notice
@@ -176,21 +187,21 @@ namespace NoticeWeb.Controllers
         //    return View();
         //}
 
-        // POST: Notices/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
+        //// POST: Notices/Edit/5
+        //[HttpPost]
+        //public ActionResult Edit(int id, FormCollection collection)
+        //{
+        //    try
+        //    {
+        //        // TODO: Add update logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        //        return RedirectToAction("Index");
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
 
         
 

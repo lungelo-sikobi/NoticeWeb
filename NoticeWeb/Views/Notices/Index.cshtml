@@ -9,13 +9,13 @@
 <p>
     @Html.ActionLink("Add Notice", "Create")
 </p>
-<table class="table">
+<table class="table table-hover table-bordered table-striped">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.NoticeID)
         </th>
         <th>
-          <b>Date Posted</b>
+            <b>Date Posted</b>
         </th>
         <th>
             @Html.DisplayNameFor(model => model.DateAndTime_Expire)
@@ -36,7 +36,7 @@
             @Html.DisplayNameFor(model => model.AdminID)
         </th>
         <th>
-          @Html.DisplayNameFor(model => model.CatName)
+            @Html.DisplayNameFor(model => model.CatName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.HasImage)
@@ -92,3 +92,7 @@
     }
 
 </table>
+
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

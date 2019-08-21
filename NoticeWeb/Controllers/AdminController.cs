@@ -31,27 +31,21 @@ namespace NoticeWeb.Controllers
             return View();
         }
 
-        // GET: Admin/Edit/5
+        // GET: Notice/Edit/5
         public ActionResult Edit(int id)
         {
-            Admin admin = dt.GetAdmins().Single(data => data.AdminID == id);
+            var admin = dt.GetAdmins().Single(data => data.AdminID == id);
             return View(admin);
         }
 
-        // POST: Admin/Edit/5
+        // POST: Notice/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Admin add)
         {
-            try
-            {
-                // TODO: Add update logic here
+            // TODO: Add update logic here
+            var adm = dt.UpdateAdmin(add);
+            return RedirectToAction("Index");
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
         }
 
         //private HttpClient client = new HttpClient();
@@ -156,10 +150,27 @@ namespace NoticeWeb.Controllers
         //}
 
         // GET: Admin/Edit/5
-       
+        public ActionResult Edit(int id)
+        {
+            return View();
+        }
 
         // POST: Admin/Edit/5
-        
+        [HttpPost]
+        public ActionResult Edit(int id, FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add update logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
         // GET: Admin/Delete/5
         public ActionResult Delete(int id)
         {

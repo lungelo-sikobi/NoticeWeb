@@ -14,7 +14,64 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <style>
-       
+        
+        .table-scroll {
+            position: relative;
+            max-width: 1024px;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .table-wrap {
+            width: 100%;
+            overflow: auto;
+        }
+
+        .table-scroll table {
+            width: 100%;
+            margin: auto;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .table-scroll th, .table-scroll td {
+            padding: 5px 10px;
+            background: #fff;
+            white-space: nowrap;
+            vertical-align: top;
+        }
+
+        .table-scroll thead, .table-scroll tfoot {
+            background: #f9f9f9;
+        }
+
+        .clone {
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+            .clone th, .clone td {
+                visibility: hidden
+            }
+
+            .clone td, .clone th {
+                border-color: transparent
+            }
+
+            .clone tbody td:first-child {
+                visibility: visible;
+                color: black;
+            }
+
+            .clone .fixed-side {
+                visibility: visible;
+            }
+
+            .clone thead, .clone tfoot {
+                background: transparent;
+            }
     </style>
 </head>
 <body>
@@ -30,7 +87,7 @@
                 <span>
                     <img src="~/images/mut.jpg" style="height:40px;width:40px;vertical-align:middle;" class="pull-left">
                     @Html.ActionLink("MUT ENotice", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                </span>     
+                </span>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -46,118 +103,125 @@
 
     <div class="container body-content">
 
-     <div class="table-responsive">
+        @foreach (var item in ViewBag.Data)
+        {
+            <span> @item.Title </span>
+        }
+
         <table class="table">
             <tr>
 
+        
+            <div class="table-wrap">
+                <table class="table table-hover table-bordered">
+                    <tr>
 
-
                 <th>
-                    Title
+                   Title
                 </th>
                 <th>
-                    Description
+                 Description
                 </th>
                 <th>
-                    Category
+                 Category
                 </th>
                 <th>
-                    Date Posted
+                  Date Posted
                 </th>
-
+               
             </tr>
 
             @foreach (var item in ViewBag.Data)
             {
-                <tr>
-                    <td>
-                        @item.Title
-                    </td>
-                    <td> @item.Description </td>
-                    <td>
-                        @item.CatName
-                    <td>
-                        @item.DateAndTime_p
-                    </td>
-
-                    <td>
-                        @Html.ActionLink("Details", "Details", new { id = item.NoticeID })
-
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    @item.Title
+                </td>
+                <td> @item.Description </td>
+                <td>
+                    @item.CatName
+                <td>
+                    @item.DateAndTime_p
+                </td>
+                
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.NoticeID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.NoticeID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.NoticeID })
+                </td>
+            </tr>
             }
 
-        </table>
-
-
-
-    </div>
-    <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header" style="background-color:maroon;color:white">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h5 class="modal-title text-center">Login</h5>
-                </div>
-                <div class="modal-body" style="background-image:url(../../images/new.jpg);background-size:contain;color:white;">
-                    @using (Html.BeginForm())
-                    {
-                        @Html.AntiForgeryToken()
-                       <div class="row">
-                        <div class="col-lg-3"></div>
-                        <div class="col-lg-9">
-                            <div class="form-horizontal">
-
-                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                <br />
-                                <br />
-                                <div class="form-group">
-                                    <label class="col-md-10">Username:</label>
-                                    <div class="col-md-10">
-                                        @Html.EditorFor(model => model.AdminID, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-                                <br />
-
-                                <div class="form-group">
-                                    <label class="col-md-10">Password:</label>
-                                    <div class="col-md-10">
-                                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                                        @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="col-md-10">
-
-                                    </div>
-
-                                </div>
-                                <br /><br />
-                            </div>
-                        </div>
-                    </div>
-
-                
-                  <div class="modal-footer" style="background-color:maroon">
-                    <div class="row">
-                        <div class="col-lg-2"> </div>
-                        <input type="submit" value="Login" class="btn btn-primary col-lg-4"/>
-                        <button type="button" class="btn btn-primary col-lg-4" data-dismiss="modal">Close</button>
-                        <div class="col-lg-2"> </div>
-                    </div> 
-                   
-                </div>
-                   }
-                
+                </table>
             </div>
+
+
+        
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color:maroon;color:white">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h5 class="modal-title text-center">Login</h5>
+                    </div>
+                    <div class="modal-body" style="background-image:url(../../images/new.jpg);background-size:contain;color:white;">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="row">
+                                <div class="col-lg-3"></div>
+                                <div class="col-lg-9">
+                                    <div class="form-horizontal">
+
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        <br />
+                                        <br />
+                                        <div class="form-group">
+                                            <label class="col-md-10">Username:</label>
+                                            <div class="col-md-10">
+                                                @Html.EditorFor(model => model.AdminID, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <br />
+
+                                        <div class="form-group">
+                                            <label class="col-md-10">Password:</label>
+                                            <div class="col-md-10">
+                                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-md-10">
+
+                                            </div>
+
+                                        </div>
+                                        <br /><br />
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="modal-footer" style="background-color:maroon">
+                                <div class="row">
+                                    <div class="col-lg-2"> </div>
+                                    <input type="submit" value="Login" class="btn btn-primary col-lg-4" />
+                                    <button type="button" class="btn btn-primary col-lg-4" data-dismiss="modal">Close</button>
+                                    <div class="col-lg-2"> </div>
+                                </div>
+
+                            </div>
+                        }
+
+                    </div>
 
         </div>
     </div>
- </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
 </div>
