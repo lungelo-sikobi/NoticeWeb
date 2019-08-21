@@ -150,10 +150,10 @@ namespace NoticeWeb.Controllers
         //}
 
         // GET: Admin/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
+        //public ActionResult Edit(int id)
+        //{
+        //    return View();
+        //}
 
         // POST: Admin/Edit/5
         [HttpPost]
