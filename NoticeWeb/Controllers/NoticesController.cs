@@ -44,7 +44,7 @@ namespace NoticeWeb.Controllers
         public ActionResult Edit(aNotice not)
         {
             // TODO: Add update logic here
-            var notic = dt.UpdateNotice(not);
+            dt.UpdateNotice(not);
             return RedirectToAction("Index");
 
         }

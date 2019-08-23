@@ -27,7 +27,7 @@ namespace NoticeWeb.Controllers
         [HttpPost]
         public ActionResult Create(Admin ad)
         {
-            var cr = dt.InsertAdmin(ad);
+            dt.InsertAdmin(ad);
             return View();
         }
 
@@ -43,7 +43,7 @@ namespace NoticeWeb.Controllers
         public ActionResult Edit(Admin add)
         {
             // TODO: Add update logic here
-            var adm = dt.UpdateAdmin(add);
+            dt.UpdateAdmin(add);
             return RedirectToAction("Index");
 
         }

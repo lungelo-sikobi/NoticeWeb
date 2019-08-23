@@ -29,7 +29,7 @@ namespace NoticeWeb.Controllers
         [HttpPost]
         public ActionResult Create(Categories cat)
         {
-            var cr = dt.InsertCategory(cat);
+            dt.InsertCategory(cat);
             return View();
         }
 
@@ -46,7 +46,7 @@ namespace NoticeWeb.Controllers
         public ActionResult Edit(Categories catg)
         {
                 // TODO: Add update logic here
-                var ct = dt.UpdateCategory(catg);
+                dt.UpdateCategory(catg);
                 return RedirectToAction("Index");
           
         }
