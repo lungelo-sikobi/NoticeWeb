@@ -49,6 +49,35 @@ namespace NoticeWeb.Controllers
 
         }
 
+        // GET: Admin/Details/5
+        public ActionResult Details(int id)
+        {
+            var detail = dt.GetAdmins().Single(data => data.AdminID == id);
+            if (detail == null)
+            {
+                return HttpNotFound();
+            }
+            return View(detail);
+        }
+
+
+        // GET: Category/Delete/5
+        public ActionResult Delete(int id)
+        {
+            var admin = dt.GetAdmins().Single(data => data.AdminID == id);
+            return View(admin);
+        }
+
+        // POST: Category/Delete/5
+        [HttpPost]
+        public ActionResult Delete(Admin add)
+        {
+            // TODO: Add update logic here
+            dt.DeleteAdmin(add);
+            return RedirectToAction("Index");
+        }
+
+
         //private HttpClient client = new HttpClient();
 
         //string url = "http://10.0.1.229:8009/";
@@ -112,17 +141,7 @@ namespace NoticeWeb.Controllers
 
 
 
-        // GET: Admin/Details/5
-        public ActionResult Details(int id)
-        {
-            var detail = dt.GetAdmins().Single(data => data.AdminID == id);
-            if (detail == null)
-            {
-                return HttpNotFound();
-            }
-            return View(detail);
-        }
-
+        
         
         public ActionResult Create()
         {
@@ -177,26 +196,6 @@ namespace NoticeWeb.Controllers
             }
         }
 
-        // GET: Admin/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Admin/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+       
     }
 }

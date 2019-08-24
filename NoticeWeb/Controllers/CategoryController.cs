@@ -69,23 +69,17 @@ namespace NoticeWeb.Controllers
         // GET: Category/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var category = dt.GetCategories().Single(data => data.ID == id);
+            return View(category);
         }
 
         // POST: Category/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(Categories ct)
         {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            // TODO: Add update logic here
+            dt.DeleteCategory(ct);
+            return RedirectToAction("Index");
         }
 
 

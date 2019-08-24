@@ -68,7 +68,23 @@ namespace NoticeWeb.Controllers
             }
             return View(detail);
         }
+
         //Delete Notice
+        // GET: Category/Delete/5
+        public ActionResult Delete(int id)
+        {
+            var notice = dt.GetNoticesData().Single(data => data.NoticeID == id);
+            return View(notice);
+        }
+
+        // POST: Category/Delete/5
+        [HttpPost]
+        public ActionResult Delete(aNotice not)
+        {
+            // TODO: Add update logic here
+            dt.DeleteNotice(not);
+            return RedirectToAction("Index");
+        }
 
 
         //private HttpClient client = new HttpClient();
@@ -220,20 +236,5 @@ namespace NoticeWeb.Controllers
 
         
 
-        // POST: Notices/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }
