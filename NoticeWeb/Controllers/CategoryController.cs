@@ -30,7 +30,17 @@ namespace NoticeWeb.Controllers
         [HttpPost]
         public ActionResult Create(Categories cat)
         {
-            dt.InsertCategory(cat);
+            //Ask before you delete or change
+            int i=dt.InsertCategory(cat);
+            if (i == 1)
+            {
+                ViewBag.Message = "New Category Inserted";
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+        public ActionResult Create()
+        {
             return View();
         }
 
@@ -175,11 +185,7 @@ namespace NoticeWeb.Controllers
 
 
         //Details
-        public  ActionResult Create()
-        {
-            return View();
-        }
-
+        
 
 
 

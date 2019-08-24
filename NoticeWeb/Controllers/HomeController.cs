@@ -36,6 +36,7 @@ namespace NoticeWeb.Controllers
                 if (userLoggedIn != null)
                 {
                     Session["AdminID"] = userLoggedIn.AdminID;
+                    Session["user"] = userLoggedIn.Name + " " + userLoggedIn.Surname;
                     return RedirectToAction("Index", "Notices");
                 }
                 TempData["msg"] = "<script>alert('Nice try!!! Only Admins are allowed to log in');</script>";

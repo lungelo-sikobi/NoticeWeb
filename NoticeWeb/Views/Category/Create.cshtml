@@ -7,6 +7,14 @@
 
 <h2><span class="badge badge-success">Create Category</span> </h2>
 <h1>Create<span class="badge badge-primary">New</span></h1>
+@if (ViewBag.Message != null)
+{
+    <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewBag.Message");
+            }
+    </script>
+}
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()

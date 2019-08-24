@@ -9,7 +9,7 @@ namespace NoticeWeb.Controllers
     public class LogController : Controller
     {
         // GET: Log
-        public ActionResult Index()
+        public ActionResult Logout()
         {
             return View();
         }
