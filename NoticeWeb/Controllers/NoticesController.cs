@@ -20,8 +20,16 @@ namespace NoticeWeb.Controllers
         //m
         public ActionResult Index()
         {
-            var notList = dt.GetNoticesData();
-            return View(notList);
+            if (Session["AdminID"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                var notList = dt.GetNoticesData();
+                return View(notList);
+            }
+            
         }
 
         //Create Notice

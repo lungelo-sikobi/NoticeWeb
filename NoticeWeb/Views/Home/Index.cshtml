@@ -103,127 +103,123 @@
 
     <div class="container body-content">
 
-        @foreach (var item in ViewBag.Data)
-        {
-            <span> @item.Title </span>
-        }
-
+        @Html.Raw(TempData["msg"])
         <table class="table">
             <tr>
 
-        
-            <div class="table-wrap">
-                <table class="table table-hover table-bordered">
-                    <tr>
 
-                <th>
-                   Title
-                </th>
-                <th>
-                 Description
-                </th>
-                <th>
-                 Category
-                </th>
-                <th>
-                  Date Posted
-                </th>
-               
-            </tr>
+                <div class="table-wrap">
+                    <table class="table table-hover table-bordered">
+                        <tr>
 
-            @foreach (var item in ViewBag.Data)
-            {
-            <tr>
-                <td>
-                    @item.Title
-                </td>
-                <td> @item.Description </td>
-                <td>
-                    @item.CatName
-                <td>
-                    @item.DateAndTime_p
-                </td>
-                
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.NoticeID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.NoticeID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.NoticeID })
-                </td>
-            </tr>
-            }
+                            <th>
+                                Title
+                            </th>
+                            <th>
+                                Description
+                            </th>
+                            <th>
+                                Category
+                            </th>
+                            <th>
+                                Date Posted
+                            </th>
 
-                </table>
-            </div>
+                        </tr>
 
-
-        
-        <div id="myModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header" style="background-color:maroon;color:white">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h5 class="modal-title text-center">Login</h5>
-                    </div>
-                    <div class="modal-body" style="background-image:url(../../images/new.jpg);background-size:contain;color:white;">
-                        @using (Html.BeginForm())
+                        @foreach (var item in ViewBag.Data)
                         {
-                            @Html.AntiForgeryToken()
-                            <div class="row">
-                                <div class="col-lg-3"></div>
-                                <div class="col-lg-9">
-                                    <div class="form-horizontal">
+                            <tr>
+                                <td>
+                                    @item.Title
+                                </td>
+                                <td> @item.Description </td>
+                                <td>
+                                    @item.CatName
+                                <td>
+                                    @item.DateAndTime_p
+                                </td>
 
-                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                        <br />
-                                        <br />
-                                        <div class="form-group">
-                                            <label class="col-md-10">Username:</label>
-                                            <div class="col-md-10">
-                                                @Html.EditorFor(model => model.AdminID, new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-                                        <br />
-
-                                        <div class="form-group">
-                                            <label class="col-md-10">Password:</label>
-                                            <div class="col-md-10">
-                                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <div class="col-md-10">
-
-                                            </div>
-
-                                        </div>
-                                        <br /><br />
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="modal-footer" style="background-color:maroon">
-                                <div class="row">
-                                    <div class="col-lg-2"> </div>
-                                    <input type="submit" value="Login" class="btn btn-primary col-lg-4" />
-                                    <button type="button" class="btn btn-primary col-lg-4" data-dismiss="modal">Close</button>
-                                    <div class="col-lg-2"> </div>
-                                </div>
-
-                            </div>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.NoticeID }) |
+                                    @Html.ActionLink("Details", "Details", new { id = item.NoticeID }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.NoticeID })
+                                </td>
+                            </tr>
                         }
 
-                    </div>
+                    </table>
+                </div>
 
-        </div>
-    </div>
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-</div>
+
+
+                <div id="myModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header" style="background-color:maroon;color:white">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h5 class="modal-title text-center">Login</h5>
+                            </div>
+                            <div class="modal-body" style="background-image:url(../../images/new.jpg);background-size:contain;color:white;">
+                                @using (Html.BeginForm())
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <div class="row">
+                                        <div class="col-lg-3"></div>
+                                        <div class="col-lg-9">
+                                            <div class="form-horizontal">
+
+                                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                                <br />
+                                                <br />
+                                                <div class="form-group">
+                                                    <label class="col-md-10">Username:</label>
+                                                    <div class="col-md-10">
+                                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                <br />
+
+                                                <div class="form-group">
+                                                    <label class="col-md-10">Password:</label>
+                                                    <div class="col-md-10">
+                                                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "Password" , Type = "password" } })
+                                                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <div class="col-md-10">
+
+                                                    </div>
+
+                                                </div>
+                                                <br /><br />
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="modal-footer" style="background-color:maroon">
+                                        <div class="row">
+                                            <div class="col-lg-2"> </div>
+                                            <input type="submit" value="Login" class="btn btn-primary col-lg-4" />
+                                            <button type="button" class="btn btn-primary col-lg-4" data-dismiss="modal">Close</button>
+                                            <div class="col-lg-2"> </div>
+                                        </div>
+
+                                    </div>
+                                }
+
+                            </div>
+
+                        </div>
+                    </div>
+                    @Scripts.Render("~/bundles/jquery")
+                    @Scripts.Render("~/bundles/bootstrap")
+                </div>
 </body>
 </html>
