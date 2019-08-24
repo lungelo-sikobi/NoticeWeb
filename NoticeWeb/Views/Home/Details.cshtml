@@ -1,0 +1,106 @@
+﻿@model Notice.Models.aNotice
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>aNotice</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NoticeID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NoticeID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateAndTime_p)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateAndTime_p)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateAndTime_Expire)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateAndTime_Expire)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateAndTime_Show)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateAndTime_Show)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoryID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategoryID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AdminID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AdminID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CatName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CatName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HasImage)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HasImage)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Picture)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Picture)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
