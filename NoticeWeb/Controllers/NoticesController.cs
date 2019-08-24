@@ -17,6 +17,7 @@ namespace NoticeWeb.Controllers
         DataAcess dt = new DataAcess();
 
         //Get Notice
+        //m
         public ActionResult Index()
         {
             if (Session["AdminID"] == null)
