@@ -17,14 +17,21 @@ namespace NoticeWeb.Controllers
             ViewBag.Data = notList;
             return View();
         }
+
         [HttpPost]
-        public ActionResult Index(Admin collection)
+        public ActionResult Index(Admin Z)
         {
             try
             {
-                // TODO: Add insert logic here
-                ViewBag.SuccessMessage =collection.Password;
-                return View();
+                var userLoggedIn = dt.GetAdmins().SingleOrDefault(x => x.Email == Z.Email && x.Password == Z.Password);
+
+                if (userLoggedIn != null)
+                {
+                    Session["AdminID"] = userLoggedIn.AdminID;
+                    return RedirectToAction("Index", "Notices");
+                }
+                TempData["msg"] = "<script>alert('Nice try!!! Only Admins are allowed to log in');</script>";
+                return RedirectToAction("Index");
             }
             catch
             {
@@ -41,18 +48,26 @@ namespace NoticeWeb.Controllers
         // GET: Home/Create
         public ActionResult Create()
         {
+         
             return View();
         }
 
         // POST: Home/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Admin Z)
         {
             try
             {
-                // TODO: Add insert logic here
+                var userLoggedIn = dt.GetAdmins().SingleOrDefault(x => x.Email == Z.Email && x.Password == Z.Password);
 
-                return RedirectToAction("Index");
+                if (userLoggedIn != null)
+                {
+                    return RedirectToAction("Index", "Notices");
+                }
+               
+
+                return RedirectToAction("Index","Notices");
+
             }
             catch
             {
