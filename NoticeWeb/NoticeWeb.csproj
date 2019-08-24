@@ -201,6 +201,7 @@
     <Content Include="Views\Admin\Details.cshtml" />
     <Content Include="Views\Notices\Edit.cshtml" />
     <Content Include="Views\Log\Create.cshtml" />
+    <Content Include="Views\Category\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -50,7 +50,13 @@ namespace NoticeWeb.Controllers
         // GET: Home/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var detail = dt.GetNoticesData().Single(data => data.NoticeID == id);
+            if (detail == null)
+            {
+                return HttpNotFound();
+            }
+            return View(detail);
+           
         }
 
         // GET: Home/Create

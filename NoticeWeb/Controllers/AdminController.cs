@@ -115,7 +115,12 @@ namespace NoticeWeb.Controllers
         // GET: Admin/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var detail = dt.GetAdmins().Single(data => data.AdminID == id);
+            if (detail == null)
+            {
+                return HttpNotFound();
+            }
+            return View(detail);
         }
 
         

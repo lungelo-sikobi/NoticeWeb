@@ -58,6 +58,16 @@ namespace NoticeWeb.Controllers
 
         }
 
+        // GET: Notices/Details/5
+        public ActionResult Details(int id)
+        {
+            var detail = dt.GetNoticesData().Single(data => data.NoticeID == id);
+            if (detail == null)
+            {
+                return HttpNotFound();
+            }
+            return View(detail);
+        }
         //Delete Notice
 
 
@@ -162,11 +172,7 @@ namespace NoticeWeb.Controllers
         //    return RedirectToAction("Index");
         //}
 
-        // GET: Notices/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+
 
         public ActionResult Create()
         {

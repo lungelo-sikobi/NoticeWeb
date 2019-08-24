@@ -53,6 +53,44 @@ namespace NoticeWeb.Controllers
         }
 
 
+
+        // GET: Category/Details/5
+        public ActionResult Details(int id)
+        {
+            var detail = dt.GetCategories().Single(data => data.ID == id);
+            if (detail == null)
+            {
+                return HttpNotFound();
+            }
+            return View(detail);
+        }
+
+
+        // GET: Category/Delete/5
+        public ActionResult Delete(int id)
+        {
+            return View();
+        }
+
+        // POST: Category/Delete/5
+        [HttpPost]
+        public ActionResult Delete(int id, FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add delete logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+
+        // GET: PersonalDetails/Delete/5
+        
         //private HttpClient client = new HttpClient();
 
         //string url = "http://localhost:8009/";
@@ -151,11 +189,6 @@ namespace NoticeWeb.Controllers
 
 
 
-        // GET: Category/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
 
         // GET: Category/Create
 
@@ -170,26 +203,6 @@ namespace NoticeWeb.Controllers
        
 
        
-        // GET: Category/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Category/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        
     }
 }
