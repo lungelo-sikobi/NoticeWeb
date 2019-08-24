@@ -92,7 +92,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                  
                 </ul>
                 <ul class="nav navbar-nav pull-right">
                     <li><a href="#" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
@@ -104,14 +104,12 @@
     <div class="container body-content">
 
         @Html.Raw(TempData["msg"])
-        <table class="table">
-            <tr>
 
-
-                <div class="table-wrap">
-                    <table class="table table-hover table-bordered">
-                        <tr>
-
+       
+                <div class="table-responsive" style="margin-top:7%;">
+                    <table class="table table-hover table-condensed">
+                        <tr style="background-color:maroon;color:white;">
+                            <th>#</th>
                             <th>
                                 Title
                             </th>
@@ -124,12 +122,15 @@
                             <th>
                                 Date Posted
                             </th>
-
+                            <th>
+                                #
+                            </th>
                         </tr>
 
                         @foreach (var item in ViewBag.Data)
                         {
                             <tr>
+                                <td></td>
                                 <td>
                                     @item.Title
                                 </td>
@@ -139,12 +140,10 @@
                                 <td>
                                     @item.DateAndTime_p
                                 </td>
-
                                 <td>
-                                    @Html.ActionLink("Edit", "Edit", new { id = item.NoticeID }) |
-                                    @Html.ActionLink("Details", "Details", new { id = item.NoticeID }) |
-                                    @Html.ActionLink("Delete", "Delete", new { id = item.NoticeID })
+                                    @Html.ActionLink("Details", "Details", new { id = item.NoticeID }, new { @class = "btn btn-primary btn-xs" }) 
                                 </td>
+                              
                             </tr>
                         }
 
@@ -221,5 +220,6 @@
                     @Scripts.Render("~/bundles/jquery")
                     @Scripts.Render("~/bundles/bootstrap")
                 </div>
+        </div>
 </body>
 </html>
