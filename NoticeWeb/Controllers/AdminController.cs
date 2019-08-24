@@ -15,6 +15,7 @@ namespace NoticeWeb.Controllers
     public class AdminController : Controller
     {
         // GET: Admin
+        //c
         DataAcess dt = new DataAcess();
         
         [HttpGet]
