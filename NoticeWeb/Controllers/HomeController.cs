@@ -13,9 +13,17 @@ namespace NoticeWeb.Controllers
         DataAcess dt = new DataAcess();
         public ActionResult Index()
         {
-            var notList = dt.GetNoticesData();
-            ViewBag.Data = notList;
-            return View();
+            if (Session["AdminID"]!= null)
+            {
+                return RedirectToAction("Index", "Notices",new { AdminID = Session["AdminID"].ToString()});
+            }
+            else
+            {
+                var notList = dt.GetNoticesData();
+                ViewBag.Data = notList;
+                return View();
+            }
+            
         }
 
         [HttpPost]
