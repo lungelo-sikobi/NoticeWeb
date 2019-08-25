@@ -14,30 +14,30 @@
         <th>
             @Html.DisplayNameFor(model => model.NoticeID)
         </th>
-        <th>
+        @*<th>
             <b>Date Posted</b>
-        </th>
-        <th>
+        </th>*@
+        @*<th>
             <b>Expire Date</b>
-        </th>
-        <th>
+        </th>*@
+        @*<th>
             <b>Show Notice on:</b>
-        </th>
+        </th>*@
         <th>
             <b>Notice Title</b>
         </th>
         <th>
             <b>Notice Description</b>
         </th>
-        <th>
+        @*<th>
             <b>Category ID</b>
-        </th>
-        <th>
+        </th>*@
+        @*<th>
             <b>Admin .</b>
         </th>
         <th>
             <b>Category Name</b>
-        </th>
+        </th>*@
         <th>
             <b>Available Attachment</b>
         </th>
@@ -50,30 +50,30 @@
             <td>
                 @Html.DisplayFor(modelItem => item.NoticeID)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.DateAndTime_p)
-            </td>
-            <td>
+            </td>*@
+            @*<td>
                 @Html.DisplayFor(modelItem => item.DateAndTime_Expire)
-            </td>
-            <td>
+            </td>*@
+            @*<td>
                 @Html.DisplayFor(modelItem => item.DateAndTime_Show)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.CategoryID)
-            </td>
-            <td>
+            </td>*@
+            @*<td>
                 @Html.DisplayFor(modelItem => item.AdminID)
-            </td>
-            <td>
+            </td>*@
+            @*<td>
                 @Html.DisplayFor(modelItem => item.CatName)
-            </td>
+            </td>*@
             @*<td>
                 @Html.DisplayFor(modelItem => item.HasImage)
             </td>*@
@@ -89,6 +89,7 @@
     }
 
 </table>
+
 
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

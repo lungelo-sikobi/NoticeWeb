@@ -23,17 +23,30 @@ namespace NoticeWeb.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var cat = dt.GetCategories();
-            return View(cat);
+            if (Session["AdminID"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                var cat = dt.GetCategories();
+                return View(cat);
+            }
         }
 
         [HttpPost]
         public ActionResult Create(Categories cat)
         {
             //Ask before you delete or change
-            dt.InsertCategory(cat);
-            
-            return RedirectToAction("Index");
+            if (Session["AdminID"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                dt.InsertCategory(cat);
+                return RedirectToAction("Index");
+            }
         }
         public ActionResult Create()
         {
@@ -44,18 +57,31 @@ namespace NoticeWeb.Controllers
         // GET: Category/Edit/5
         public ActionResult Edit(int id)
         {
-            var category = dt.GetCategories().Single(data => data.ID == id);
-            return View(category);
+            if (Session["AdminID"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                var category = dt.GetCategories().Single(data => data.ID == id);
+                return View(category);
+            }
         }
 
         // POST: Category/Edit/5
         [HttpPost]
         public ActionResult Edit(Categories catg)
         {
-                // TODO: Add update logic here
+            // TODO: Add update logic here
+            if (Session["AdminID"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
                 dt.UpdateCategory(catg);
                 return RedirectToAction("Index");
-          
+            }
         }
 
 
@@ -63,20 +89,34 @@ namespace NoticeWeb.Controllers
         // GET: Category/Details/5
         public ActionResult Details(int id)
         {
-            var detail = dt.GetCategories().Single(data => data.ID == id);
-            if (detail == null)
+            if (Session["AdminID"] == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            return View(detail);
+            else
+            {
+                var detail = dt.GetCategories().Single(data => data.ID == id);
+                if (detail == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(detail);
+            }
         }
 
 
         // GET: Category/Delete/5
         public ActionResult Delete(int id)
         {
-            var category = dt.GetCategories().Single(data => data.ID == id);
-            return View(category);
+            if (Session["AdminID"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                var category = dt.GetCategories().Single(data => data.ID == id);
+                return View(category);
+            }
         }
 
         // POST: Category/Delete/5
@@ -84,8 +124,15 @@ namespace NoticeWeb.Controllers
         public ActionResult Delete(Categories ct)
         {
             // TODO: Add update logic here
-            dt.DeleteCategory(ct);
-            return RedirectToAction("Index");
+            if (Session["AdminID"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                dt.DeleteCategory(ct);
+                return RedirectToAction("Index");
+            }
         }
 
 
