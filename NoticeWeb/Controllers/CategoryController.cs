@@ -31,13 +31,8 @@ namespace NoticeWeb.Controllers
         public ActionResult Create(Categories cat)
         {
             //Ask before you delete or change
-            int i=dt.InsertCategory(cat);
-            if (i == 1)
-            {
-                TempData["CreateCat"] = "<script>alert('New Category Inserted');</script>";
-                return RedirectToAction("Index");
-            }
-            ViewBag.Message = "Category Not Created";
+            dt.InsertCategory(cat);
+            
             return RedirectToAction("Index");
         }
         public ActionResult Create()
