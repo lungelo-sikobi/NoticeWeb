@@ -22,3 +22,11 @@ select,
 textarea {
     max-width: 280px;
 }
+.middle {
+    margin: auto;
+    width: 60%;
+    border: 3px solid #73AD21;
+    padding: 10px;
+    border-radius: 3px 4px;
+    background-color:maroon;
+}

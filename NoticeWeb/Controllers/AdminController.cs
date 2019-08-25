@@ -28,8 +28,11 @@ namespace NoticeWeb.Controllers
         [HttpPost]
         public ActionResult Create(Admin ad)
         {
-            dt.InsertAdmin(ad);
-            return View();
+           
+            string i = dt.InsertAdmin(ad);
+            TempData["CreateCat"] = "<script>alert('New Admin Created');</script>";
+            return RedirectToAction("Index");
+          
         }
 
         // GET: Notice/Edit/5
