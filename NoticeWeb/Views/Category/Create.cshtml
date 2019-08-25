@@ -9,50 +9,57 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>Categories</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<div class="form-horizontal">
+    <h4>Categories</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <div class="form-group">
-            <div class="row">
-                <div class="col-lg-4 col-sm-4 col-md-4"></div>
-                <div class="col-lg-4 col-sm-4 col-md-4">
-                    <label for="email">Category name:</label>
-                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @placeholder = "Please enter Category name" })
-                </div>
-                <div class="col-lg-4 col-sm-4 col-md-4"></div>
+
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-lg-4 col-sm-4 col-md-4"></div>
+            <div class="col-lg-4 col-sm-4 col-md-12">
+                <label for="name">Category Name</label>
+                @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @placeholder = "Please enter Category name" })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
-
+            <div class="col-lg-4 col-sm-4 col-md-4"></div>
         </div>
-        <br />
-        <div class="form-group">
-            <div class="row">
-                <div class="col-lg-4 col-sm-4 col-md-4"></div>
-                <div class="col-lg-4 col-sm-4 col-md-4">
-                    <label for="comment">Comment:</label>
+    </div>
 
-                    @Html.TextAreaFor(model => model.description, new { @class = "form-control", @placeholder = "Please add description here", @rows = 5 })
-                </div>
-                <div class="col-lg-4 col-sm-4 col-md-4"></div>
+
+
+  
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-lg-4 col-sm-4 col-md-4"></div>
+            <div class="col-lg-4 col-sm-4 col-md-12">
+                <label for="name">Description </label>
+                @Html.TextBoxFor(model => model.description, new { @class = "form-control", @placeholder = "Please enter Category Description", @rows = 3 })
+                @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
             </div>
-
+            <div class="col-lg-4 col-sm-4 col-md-4"></div>
         </div>
-        <div class="form-group">
-            <div class="row">
-                <div class="col-lg-4 col-sm-4 col-md-4"></div>
-                <div class="col-lg-4 col-sm-4 col-md-4">
-                    <input type="submit" value="Create" class="btn btn-default" />
-                </div>
-                <div class="col-lg-4 col-sm-4 col-md-4"></div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="row">
+            <div class="col-lg-4 col-sm-4 col-md-4"></div>
+            <div class="col-lg-4 col-sm-4 col-md-4">
+                <input type="submit" value="Create" class="btn btn-default" />
             </div>
-
+            <div class="col-lg-4 col-sm-4 col-md-4"></div>
         </div>
-
-
-
 
     </div>
+
+
+
+
+</div>
 
 
 

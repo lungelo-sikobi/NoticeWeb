@@ -22,7 +22,7 @@
                 width: 1360px;
                 height: 685px;
                 max-height: 685px !important;
-                /*background-image: url(/images/new.jpg);*/
+                background-image: url(/images/new.jpg);
                 background-repeat: no-repeat;
                 background-size:cover;
             }
@@ -37,13 +37,28 @@
                 color:black;
                
             }
+            .not-title{
+                color:white;
+                font-size:55px;
+                text-align:center;
+
+            }
+            .not-desc{
+                color:whitesmoke;
+                text-align:center;
+                font-size:30px;
+                font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            }
+            .whole-notice{
+                margin-top:10%;
+            }
         </style>
     </head>
     <body>
 
        <div>
-           <div id="myCarousel" align="center" class="carousel slide" data-ride="carousel" data-pause="hover">
-               <h4 class="modal-title" style="text-align: center" style="font-weight: bold">INFORMATION AND COMMUNICATION TECHNOLOGY</h4>
+           <div id="myCarousel" align="center" class="carousel slide" data-ride="carousel" data-pause="hover" data-interval="4000">
+               <h4 class="modal-title well" style="text-align: center;font-weight: bold">INFORMATION AND COMMUNICATION TECHNOLOGY</h4>
                <ol class="carousel-indicators">
                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                    <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -52,33 +67,27 @@
               
                
 
-                   <div class="carousel-inner" role="listbox">
+               <div class="carousel-inner" role="listbox">
 
-                                           @{
-                                               var i = 0;
-                                               foreach (var item in Model)
-                                               {
-                                                   var itemClass = i++ == 0 ? "item active" : "item";
-                                                   <div class="@itemClass" style="max-height:70px; overflow:hidden">
-                                                       <h4>@item.Title</h4>
-                                                       @item.Description
-                                                   </div>
-                                               }
-                                           }
-                                
-                       @*@{
-                var first = true;
-            }
-            @foreach (var notice in Model)
-            {
-                <div class="carousel-item @(first?Html.Raw("active"):Html.Raw(""))">
-
-                    <h2>@notice.Title</h2>
-                    <p>@notice.Description</p>
-                </div>
-                first = false;
-            }*@
+                  @{
+                      var i = 0;
+                      foreach (var item in Model)
+                      {
+                          var itemClass = i++ == 0 ? "item active" : "item";
+                   <div class="@itemClass" style="max-height:100%; overflow:hidden">
+                       <div class="whole-notice" style="align-content:center;">
+                           <div class="not-title">
+                               <p>@item.Title</p>
+                           </div>
+                           <p class="not-desc">@item.Description</p>
+                           <p style="color:aquamarine;">Visit www.enotice.com to see more</p>
+                       </div>
                    </div>
+                     }
+                  }
+                                
+                      
+               </div>
 
                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true">
@@ -114,7 +123,7 @@
                         $('.carousel-inner .item:first').addClass('active');
 
                         $('#myCarousel').carousel({
-                            interval: 6000
+                            interval: 1000 * 2
                         });
 
                         $('#myCarousel').carousel('cycle');

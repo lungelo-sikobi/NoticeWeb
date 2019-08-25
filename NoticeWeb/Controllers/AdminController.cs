@@ -21,25 +21,44 @@ namespace NoticeWeb.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var list = dt.GetAdmins();
-            return View(list);
+            if (Session["AdminID"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                var list = dt.GetAdmins();
+                return View(list);
+            }
         }
 
         [HttpPost]
         public ActionResult Create(Admin ad)
         {
-           
-            string i = dt.InsertAdmin(ad);
-            TempData["CreateCat"] = "<script>alert('New Admin Created');</script>";
-            return RedirectToAction("Index");
-          
+            if (Session["AdminID"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                string i = dt.InsertAdmin(ad);
+                TempData["CreateCat"] = "<script>alert('New Admin Created');</script>";
+                return RedirectToAction("Index");
+            }
         }
 
         // GET: Notice/Edit/5
         public ActionResult Edit(int id)
         {
-            var admin = dt.GetAdmins().Single(data => data.AdminID == id);
-            return View(admin);
+            if (Session["AdminID"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                var admin = dt.GetAdmins().Single(data => data.AdminID == id);
+                return View(admin);
+            }
         }
 
         // POST: Notice/Edit/5
@@ -47,28 +66,48 @@ namespace NoticeWeb.Controllers
         public ActionResult Edit(Admin add)
         {
             // TODO: Add update logic here
-            dt.UpdateAdmin(add);
-            return RedirectToAction("Index");
-
+            if (Session["AdminID"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                dt.UpdateAdmin(add);
+                return RedirectToAction("Index");
+            }
         }
 
         // GET: Admin/Details/5
         public ActionResult Details(int id)
         {
-            var detail = dt.GetAdmins().Single(data => data.AdminID == id);
-            if (detail == null)
+            if (Session["AdminID"] == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            return View(detail);
+            else
+            {
+                var detail = dt.GetAdmins().Single(data => data.AdminID == id);
+                if (detail == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(detail);
+            }
         }
 
 
         // GET: Category/Delete/5
         public ActionResult Delete(int id)
         {
-            var admin = dt.GetAdmins().Single(data => data.AdminID == id);
-            return View(admin);
+            if (Session["AdminID"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                var admin = dt.GetAdmins().Single(data => data.AdminID == id);
+                return View(admin);
+            }
         }
 
         // POST: Category/Delete/5
@@ -76,8 +115,15 @@ namespace NoticeWeb.Controllers
         public ActionResult Delete(Admin add)
         {
             // TODO: Add update logic here
-            dt.DeleteAdmin(add);
-            return RedirectToAction("Index");
+            if (Session["AdminID"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                dt.DeleteAdmin(add);
+                return RedirectToAction("Index");
+            }
         }
 
 

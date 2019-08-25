@@ -36,45 +36,80 @@ namespace NoticeWeb.Controllers
         [HttpPost]
         public ActionResult Create(aNotice not)
         {
-            dt.InsertNotice(not);
-            return View();
+            if (Session["AdminID"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                dt.InsertNotice(not);
+                return View();
+            }
         }
 
 
         // GET: Notice/Edit/5
         public ActionResult Edit(int id)
         {
-            var notice = dt.GetNoticesData().Single(data => data.NoticeID == id);
-            return View(notice);
+            if (Session["AdminID"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                var notice = dt.GetNoticesData().Single(data => data.NoticeID == id);
+                return View(notice);
+            }
         }
 
         // POST: Notice/Edit/5
         [HttpPost]
         public ActionResult Edit(aNotice not)
         {
-            // TODO: Add update logic here
-            dt.UpdateNotice(not);
-            return RedirectToAction("Index");
+            if (Session["AdminID"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                // TODO: Add update logic here
+                dt.UpdateNotice(not);
+                return RedirectToAction("Index");
+            }
 
         }
 
         // GET: Notices/Details/5
         public ActionResult Details(int id)
         {
-            var detail = dt.GetNoticesData().Single(data => data.NoticeID == id);
-            if (detail == null)
+            if (Session["AdminID"] == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Index", "Home");
             }
-            return View(detail);
+            else
+            {
+                var detail = dt.GetNoticesData().Single(data => data.NoticeID == id);
+                if (detail == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(detail);
+            }
         }
 
         //Delete Notice
         // GET: Category/Delete/5
         public ActionResult Delete(int id)
         {
-            var notice = dt.GetNoticesData().Single(data => data.NoticeID == id);
-            return View(notice);
+            if (Session["AdminID"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                var notice = dt.GetNoticesData().Single(data => data.NoticeID == id);
+                return View(notice);
+            }
         }
 
         // POST: Category/Delete/5
@@ -82,8 +117,15 @@ namespace NoticeWeb.Controllers
         public ActionResult Delete(aNotice not)
         {
             // TODO: Add update logic here
-            dt.DeleteNotice(not);
-            return RedirectToAction("Index");
+            if (Session["AdminID"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                dt.DeleteNotice(not);
+                return RedirectToAction("Index");
+            }
         }
 
 
