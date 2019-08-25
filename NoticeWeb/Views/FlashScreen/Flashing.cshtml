@@ -50,26 +50,23 @@
                    <li data-target="#myCarousel" data-slide-to="2"></li>
                </ol>
               
-              
-                   @for (int i = 0;  i <= Model.Count(); i++)<!-- this works well, paging -->
-                   {
-                       <div class="item @if(i==0){<text>active</text>}">
-                           @foreach (var notice in Model)
-                           {
-                           <div class="span4">
-                               <!-- some html here -->
-                               <h2>@notice.Title</h2>
-                               <p>@notice.Description</p>
-                           </div>
-                           }
-                       </div>
-                   }
                
 
-               @*<div class="carousel-inner" role="listbox">
+                   <div class="carousel-inner" role="listbox">
 
-
-            @{
+                                           @{
+                                               var i = 0;
+                                               foreach (var item in Model)
+                                               {
+                                                   var itemClass = i++ == 0 ? "item active" : "item";
+                                                   <div class="@itemClass" style="max-height:70px; overflow:hidden">
+                                                       <h4>@item.Title</h4>
+                                                       @item.Description
+                                                   </div>
+                                               }
+                                           }
+                                
+                       @*@{
                 var first = true;
             }
             @foreach (var notice in Model)
@@ -80,8 +77,9 @@
                     <p>@notice.Description</p>
                 </div>
                 first = false;
-            }
-        </div>*@
+            }*@
+                   </div>
+
                <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true">
                    </span><span class="sr-only">
@@ -103,19 +101,27 @@
             <div>
 
                 <script type="text/javascript">
+                    //$(document).ready(function () {
+                    //    $('.carousel').carousel({
+                    //        interval: 1000
+                    //    });
+
+                    //    $('.item')[0].className = "item active";
+                    //});
+
+                    //New javascript
                     $(document).ready(function () {
-                        $('.carousel').carousel({
-                            interval: 1000
+                        $('.carousel-inner .item:first').addClass('active');
+
+                        $('#myCarousel').carousel({
+                            interval: 6000
                         });
 
-                        $('.item')[0].className = "item active";
-                    });
+                        $('#myCarousel').carousel('cycle');
+                    }
                 </script>
             </div>
        </div>
-
-
-
 
 
 
