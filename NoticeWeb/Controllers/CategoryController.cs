@@ -34,10 +34,11 @@ namespace NoticeWeb.Controllers
             int i=dt.InsertCategory(cat);
             if (i == 1)
             {
-                ViewBag.Message = "New Category Inserted";
+                TempData["CreateCat"] = "<script>alert('New Category Inserted');</script>";
                 return RedirectToAction("Index");
             }
-            return View();
+            ViewBag.Message = "Category Not Created";
+            return RedirectToAction("Index");
         }
         public ActionResult Create()
         {

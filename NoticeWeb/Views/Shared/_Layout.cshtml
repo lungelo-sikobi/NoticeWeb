@@ -8,7 +8,7 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:#470606;color:white;">
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:#470606;color:white; ">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -28,35 +28,30 @@
                 </ul>
                 <ul class="nav navbar-nav pull-right">
                     <li class="dropdown">
-                        <a href="#" data-toggle="dropdown" class="dropdown-toggle"> Hello,@Session["user"] <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">HTML</a></li>
-                            <li><a href="#">CSS</a></li>
-                            <li><a href="#">JavaScript</a></li>
-                        </ul>
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle"> Hello,@Session["user"] </a>
+
                     </li>
-                    <li>
-                        Logout
-                    </li>
+
 
                 </ul>
             </div>
         </div>
     </div>
-    @*<nav class="navbar navbar-inverse">
-          <div class="container-fluid">
+    <nav style="width:50%;" class="navbar navbar-inverse container body-content center-block">
+        <div class="container-fluid">
             <div class="navbar-header">
-              <a class="navbar-brand" href="#">WebSiteName</a>
+                <a class="navbar-brand" href="#">Administratiion Panel</a>
             </div>
             <ul class="nav navbar-nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#">Page 1</a></li>
-              <li><a href="#">Page 2</a></li>
-              <li><a href="#">Page 3</a></li>
-            </ul>
-          </div>
-        </nav>*@
+                <li>@Html.ActionLink("Notices", "Index", "Notices")</li>
+                <li>@Html.ActionLink("Category", "Index", "Category")</li>
+                <li>@Html.ActionLink("Admins", "Index", "Admin")</li>
 
+            </ul>
+            
+        </div>
+    </nav>
+   
 
     <div class="container body-content">
         @RenderBody()

@@ -3,10 +3,8 @@
 @{
     ViewBag.Title = "Create";
 }
+@Html.Raw(TempData["CreateCat"])
 
-
-<h2><span class="badge badge-success">Create Category</span> </h2>
-<h1>Create<span class="badge badge-primary">New</span></h1>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()

@@ -6,10 +6,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace NoticeWeb.Controllers
 {
     public class HomeController : Controller
     {
+       
         DataAcess dt = new DataAcess();
         public ActionResult Index()
         {
@@ -31,6 +33,7 @@ namespace NoticeWeb.Controllers
         {
             try
             {
+
                 var userLoggedIn = dt.GetAdmins().SingleOrDefault(x => x.Email == Z.Email && x.Password == Z.Password);
 
                 if (userLoggedIn != null)
@@ -73,16 +76,7 @@ namespace NoticeWeb.Controllers
         {
             try
             {
-                var userLoggedIn = dt.GetAdmins().SingleOrDefault(x => x.Email == Z.Email && x.Password == Z.Password);
-
-                if (userLoggedIn != null)
-                {
-                    return RedirectToAction("Index", "Notices");
-                }
-               
-
-                return RedirectToAction("Index","Notices");
-
+                return View();
             }
             catch
             {
