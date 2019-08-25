@@ -174,7 +174,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -226,16 +228,6 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\ENoticeAPICode\Notice.DAL\Notice.DAL.csproj">
-      <Project>{28205b8a-4c35-4566-8ef6-edde7e68f42d}</Project>
-      <Name>Notice.DAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\ENoticeAPICode\Notice.Models\Notice.Models.csproj">
-      <Project>{f9254f83-193e-412d-bffe-9982dfdeecde}</Project>
-      <Name>Notice.Models</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
