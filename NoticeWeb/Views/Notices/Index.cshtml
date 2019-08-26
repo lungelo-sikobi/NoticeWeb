@@ -9,8 +9,8 @@
 <p>
     @Html.ActionLink("Add Notice", "Create")
 </p>
-<table class="table table-hover table-bordered table-striped">
-    <tr>
+<table class="table table-hover table-condensed">
+    <tr  style="background-color:maroon;color:white;">
         <th>
             @Html.DisplayNameFor(model => model.NoticeID)
         </th>
@@ -81,9 +81,11 @@
                 @Html.DisplayFor(modelItem => item.Picture)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.NoticeID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.NoticeID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.NoticeID })
+                
+                    @Html.ActionLink("Edit", "Edit", new { id = item.NoticeID }, new { @class = "btn btn-primary btn-xs" })|
+                    @Html.ActionLink("Details", "Details", new { id = item.NoticeID }, new { @class = "btn btn-primary btn-xs" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.NoticeID }, new { @class = "btn btn-primary btn-xs" })
+                
             </td>
         </tr>
     }

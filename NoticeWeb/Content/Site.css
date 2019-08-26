@@ -30,3 +30,9 @@ textarea {
     border-radius: 3px 4px;
     background-color:maroon;
 }
+.maroon {
+    color: maroon !important;
+}
+.btn-xs{
+    background-color:maroon;
+}
