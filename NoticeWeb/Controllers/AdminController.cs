@@ -194,7 +194,9 @@ namespace NoticeWeb.Controllers
         
         public ActionResult Create()
         {
-          return View();
+            var exemploList = new SelectList(new[] { "IT"});
+            ViewBag.Dep = exemploList;
+            return View();
         }
 
 

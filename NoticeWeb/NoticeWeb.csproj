@@ -143,6 +143,7 @@
     <Compile Include="Controllers\LogController.cs" />
     <Compile Include="Controllers\NoticesController.cs" />
     <Compile Include="Controllers\PasswordController.cs" />
+    <Compile Include="Controllers\ScreenController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -215,6 +216,7 @@
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Password\" />
+    <Folder Include="Views\Screen\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
