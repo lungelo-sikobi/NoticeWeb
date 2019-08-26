@@ -32,6 +32,10 @@ namespace NoticeWeb.Controllers
             
         }
 
+        public ActionResult Create()
+        {
+            return View();
+        }
         //Create Notice
         [HttpPost]
         public ActionResult Create(aNotice not)
@@ -232,27 +236,7 @@ namespace NoticeWeb.Controllers
 
 
 
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-
-        // POST: Notices/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        
 
         // GET: Notices/Edit/5
         //public ActionResult Edit(int id)
