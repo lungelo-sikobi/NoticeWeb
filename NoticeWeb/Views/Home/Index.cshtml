@@ -127,30 +127,34 @@
                                 #
                             </th>
                         </tr>
+                        @{
 
-                        @foreach (var item in ViewBag.Data)
-                        {
-                            <tr>
-                                <td>
-                                    @item.NoticeID
-                                </td>
-                                <td>
-                                    @item.Title
-                                </td>
-                                <td> @item.Description </td>
-                                <td>
-                                    @item.CatName
-                                <td>
-                                    @item.DateAndTime_p
-                                </td>
-                                <td>
-                                    @Html.ActionLink("Details", "Details", new { id = item.NoticeID }, new { @class = "btn btn-primary btn-xs" }) 
-                                </td>
-                              
-                            </tr>
-                        }
+                            int i = 1;
 
-                    </table>
+                            foreach (var item in ViewBag.Data)
+                            {
+                                <tr>
+                                    <td>
+                                        @i
+                                    </td>
+                                    <td>
+                                        @item.Title
+                                    </td>
+                                    <td> @item.Description </td>
+                                    <td>
+                                        @item.CatName
+                                    <td>
+                                        @item.DateAndTime_p
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Details", "Details", new { id = item.NoticeID }, new { @class = "btn btn-primary btn-xs" })
+                                    </td>
+
+                                </tr>
+                                i=i+1;
+                              }
+                            }
+                        </table>
                 </div>
 
 
