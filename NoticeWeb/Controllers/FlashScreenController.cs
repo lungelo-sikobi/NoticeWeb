@@ -18,8 +18,15 @@ namespace NoticeWeb.Controllers
         DataAcess dt = new DataAcess();
         public ActionResult Flashing()
         {
-            var flash = dt.GetNoticeTitle();
-            return View(flash);
+            if (Session["AdminID"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                var flash = dt.GetNoticeTitle();
+                return View(flash);
+            }
         }
 
 
