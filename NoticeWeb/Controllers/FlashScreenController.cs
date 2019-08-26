@@ -24,6 +24,9 @@ namespace NoticeWeb.Controllers
             }
             else
             {
+                Session.Clear();
+                Session.RemoveAll();
+                Session.Abandon();
                 var flash = dt.GetNoticeTitle();
                 return View(flash);
             }

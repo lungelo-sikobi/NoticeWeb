@@ -6,6 +6,11 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <script type="text/javascript">
+    $(function () { // will trigger when the document is ready
+       $('.datepicker').datepicker(); //Initialise any date pickers
+    });
+    </script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:#470606;color:white; ">
@@ -24,35 +29,36 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Screen", "Flashing", "FlashScreen")</li>
+                    <li>@Html.ActionLink("My Account", "index", "User")</li>
                 </ul>
                 <ul class="nav navbar-nav pull-right">
-                    <li class="dropdown">
-                        <a href="#" data-toggle="dropdown" class="dropdown-toggle"> Hello,@Session["user"] </a>
-
-                    </li>
+                    
+                    <li class="" style="margin-right:0px;">@Html.ActionLink("Logout", "Index", "Log")</li>
+                   
+                    
 
 
                 </ul>
             </div>
         </div>
     </div>
+
     <nav style="width:50%;" class="navbar navbar-inverse container body-content center-block">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">Administratiion Panel</a>
+                <a class="navbar-brand" href="#">Administration Panel</a>
             </div>
             <ul class="nav navbar-nav">
                 <li>@Html.ActionLink("Notices", "Index", "Notices")</li>
                 <li>@Html.ActionLink("Category", "Index", "Category")</li>
                 <li>@Html.ActionLink("Admins", "Index", "Admin")</li>
-
+                <li><a href="#" data-toggle="dropdown" class="dropdown-toggle"> Hello,@Session["user"] </a></li>
             </ul>
-            
+
         </div>
     </nav>
-   
-
+    
     <div class="container body-content">
         @RenderBody()
         <hr />

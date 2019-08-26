@@ -9,9 +9,13 @@ namespace NoticeWeb.Controllers
     public class LogController : Controller
     {
         // GET: Log
-        public ActionResult Logout()
+        public ActionResult Index()
         {
-            return View();
+            Session.Clear();
+            Session.RemoveAll();
+            Session.Abandon();
+            return RedirectToAction("index", "home");
+           
         }
 
         // GET: Log/Details/5
