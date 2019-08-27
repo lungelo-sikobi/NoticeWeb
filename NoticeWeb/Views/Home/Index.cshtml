@@ -75,7 +75,24 @@
     </style>
 
     <script>
-        
+        $(document).ready(function () {
+            function Contains(text_one, text_two) {
+                if (text_one.indexOf(text_two) != -1)
+                    return true;
+            }
+            $("#Search").keyup(function () {
+                var searchText = $("#Search").val().toLowerCase();
+                $(".Search").each(function () {
+                    if (!Contains($(this).text().toLowerCase, searchText)) {
+                        $(this).hide();
+                    }
+                    else {
+                        $(this).show();
+                    }
+                });
+            });
+        });
+
     </script>
 </head>
 <body>
@@ -110,7 +127,11 @@
         @Html.Raw(TempData["msg"])
 
         <h4 class="well text-center" style="background:#861010;color:whitesmoke;"><b>MUT eNotice Board</b></h4>
-
+        <div class="form-group">
+            <div >
+                <input type="text" id="Search" placeholder="Search" class="form-control"/>
+            </div>
+        </div>
                 <div class="table-responsive" style="margin-top:7%;">
                     <table class="table table-hover table-condensed">
                         <tr style="background-color:maroon;color:white;">
@@ -137,7 +158,7 @@
 
                             foreach (var item in ViewBag.Data)
                             {
-                                <tr>
+                                <tr class="Search">
                                     <td>
                                         @i
                                     </td>
