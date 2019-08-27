@@ -14,7 +14,7 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table table-bordered table-hover table-striped">
-    <tr>
+    <tr style="background-color:maroon;color:white;">
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
@@ -58,14 +58,14 @@
                 @Html.DisplayFor(modelItem => item.Cellphone)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.AdminID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.AdminID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.AdminID })
+                @Html.ActionLink("Edit", "Edit", new { id = item.AdminID }, new { @class = "btn btn-primary btn-xs" }) |
+                @Html.ActionLink("Details", "Details", new { id = item.AdminID }, new { @class = "btn btn-primary btn-xs" }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.AdminID }, new { @class = "btn btn-primary btn-xs" })
             </td>
         </tr>
     }
 
 </table>
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+@*<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>*@

@@ -63,6 +63,40 @@ namespace NoticeWeb.Controllers
            
         }
 
+
+        //Forgot password
+
+        //public ActionResult ForgotPassword()
+        //{
+        //    return View();
+        //}
+
+        //[HttpPost]
+        //public ActionResult ForgotPassword(string Email)
+        //{
+        //    //Verify email entered
+        //    //Generate reset password link
+        //    //send email
+        //    string message = "";
+        //    bool status = false;
+
+            
+        //   var account = dt.GetAdmins().Single(data => data.Email == Email);
+           
+        //   if(account != null)
+        //    {
+        //        //send link to reset password
+        //        string resetCode = Guid.NewGuid().ToString();
+
+        //    }
+        //    else
+        //    {
+        //        message = "Account not found";
+        //    }
+        //        return View();
+        //}
+
+
         // GET: Home/Create
         public ActionResult Create()
         {

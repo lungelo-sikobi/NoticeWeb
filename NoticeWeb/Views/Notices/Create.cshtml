@@ -74,24 +74,16 @@
                         <label for="comment">Category :</label>
 
                         @Html.DropDownListFor(x => x.CategoryID, new SelectListItem[]{
-                        new SelectListItem() {Text = "Department of IT", Value="101"},
-                        new SelectListItem() {Text = "Exam", Value="102"},
-                        new SelectListItem() {Text = "Event", Value="103"},
-                        new SelectListItem() {Text = "General", Value="104"},
-                        new SelectListItem() {Text = "SRC", Value="105"}
-
-
+                        new SelectListItem() {Text = "Department of IT", Value="4020"},
+                        new SelectListItem() {Text = "Exam", Value="4021"},
+                        new SelectListItem() {Text = "Event", Value="4022"},
+                        new SelectListItem() {Text = "General", Value="4023"},
+                        new SelectListItem() {Text = "SRC", Value="4024"}
 
                         } ,new { @class = "form-control", @placeholder = "Please enter select departmrnt ID" })
                         @Html.ValidationMessageFor(model => model.CategoryID, "", new { @class = "text-danger" })
                     </div>
                 </div>
-
-
-
-
-
-
 
                 <div class="form-group">
                     <div class="col-md-10">
@@ -101,7 +93,7 @@
                     </div>
                 </div>
 
-              s
+              
                 <div class="form-group">
                     <div class="col-lg-8 col-md-10">
                         <input type="submit" value="Create" class="btn btn-default" />

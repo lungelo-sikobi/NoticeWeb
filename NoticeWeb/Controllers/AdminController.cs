@@ -47,6 +47,22 @@ namespace NoticeWeb.Controllers
             }
         }
 
+
+        public ActionResult Create()
+        {
+            if (Session["AdminID"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                var exemploList = new SelectList(new[] { "IT" });
+                ViewBag.Dep = exemploList;
+                return View();
+            }
+        }
+
+
         // GET: Notice/Edit/5
         public ActionResult Edit(int id)
         {
@@ -191,13 +207,7 @@ namespace NoticeWeb.Controllers
 
 
         
-        
-        public ActionResult Create()
-        {
-            var exemploList = new SelectList(new[] { "IT"});
-            ViewBag.Dep = exemploList;
-            return View();
-        }
+      
 
 
 

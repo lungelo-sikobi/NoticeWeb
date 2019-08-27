@@ -105,128 +105,135 @@
 
         @Html.Raw(TempData["msg"])
 
-        <h4 class="well text-center" style="background:#861010;color:whitesmoke;"><b>MUT eNotice Board</b></h4>
+        @*<h4 class="well text-center" style="background:#861010;color:whitesmoke;"><b>MUT eNotice Board</b></h4>*@
+        <h2 class="text-center"><b>MUT Notice Board</b></h2>
+        <div style="width:100%;height:1px;background-color:maroon;">
 
-                <div class="table-responsive" style="margin-top:7%;">
-                    <table class="table table-hover table-condensed">
-                        <tr style="background-color:maroon;color:white;">
-                            <th>#</th>
-                            <th>
-                                Title
-                            </th>
-                            <th>
-                                Description
-                            </th>
-                            <th>
-                                Category
-                            </th>
-                            <th>
-                                Date Posted
-                            </th>
-                            <th>
-                                #
-                            </th>
+        </div>
+        <br />
+
+        <div class="table-responsive" style="margin-top:7%;">
+            <table class="table table-hover table-condensed">
+                <tr style="background-color:maroon;color:white;">
+                    <th>#</th>
+                    <th>
+                        Title
+                    </th>
+                    <th>
+                        Description
+                    </th>
+                    <th>
+                        Category
+                    </th>
+                    <th>
+                        Date Posted
+                    </th>
+                    <th>
+                        #
+                    </th>
+                </tr>
+                @{
+
+                    int i = 1;
+
+                    foreach (var item in ViewBag.Data)
+                    {
+                        <tr>
+                            <td>
+                                @i
+                            </td>
+                            <td>
+                                @item.Title
+                            </td>
+                            <td> @item.Description </td>
+                            <td>
+                                @item.CatName
+                            <td>
+                                @item.DateAndTime_p
+                            </td>
+                            <td>
+                                @Html.ActionLink("Details", "Details", new { id = item.NoticeID }, new { @class = "btn btn-primary btn-xs" })
+                            </td>
+
                         </tr>
-                        @{
-
-                            int i = 1;
-
-                            foreach (var item in ViewBag.Data)
-                            {
-                                <tr>
-                                    <td>
-                                        @i
-                                    </td>
-                                    <td>
-                                        @item.Title
-                                    </td>
-                                    <td> @item.Description </td>
-                                    <td>
-                                        @item.CatName
-                                    <td>
-                                        @item.DateAndTime_p
-                                    </td>
-                                    <td>
-                                        @Html.ActionLink("Details", "Details", new { id = item.NoticeID }, new { @class = "btn btn-primary btn-xs" })
-                                    </td>
-
-                                </tr>
-                                i=i+1;
-                              }
-                            }
-                        </table>
-                </div>
+                        i = i + 1;
+                    }
+                }
+            </table>
+        </div>
 
 
 
-                <div id="myModal" class="modal fade" role="dialog">
-                    <div class="modal-dialog">
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
 
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header" style="background-color:maroon;color:white">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h5 class="modal-title text-center">Login</h5>
-                            </div>
-                            <div class="modal-body" style="background-image:url(../../images/new.jpg);background-size:contain;color:white;">
-                                @using (Html.BeginForm())
-                                {
-                                    @Html.AntiForgeryToken()
-                                    <div class="row">
-                                        <div class="col-lg-3"></div>
-                                        <div class="col-lg-9">
-                                            <div class="form-horizontal">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color:maroon;color:white">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h5 class="modal-title text-center">Login</h5>
+                    </div>
+                    <div class="modal-body" style="background-image:url(../../images/new.jpg);background-size:contain;color:white;">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="row">
+                                <div class="col-lg-3"></div>
+                                <div class="col-lg-9">
+                                    <div class="form-horizontal">
 
-                                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                                <br />
-                                                <br />
-                                                <div class="form-group">
-                                                    <label class="col-md-10">Username:</label>
-                                                    <div class="col-md-10">
-                                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Username or Email", Type = "email" } })
-                                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-                                                    </div>
-                                                </div>
-                                                <br />
-
-                                                <div class="form-group">
-                                                    <label class="col-md-10">Password:</label>
-                                                    <div class="col-md-10">
-                                                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "Password" , Type = "password" } })
-                                                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <div class="col-md-10">
-
-                                                    </div>
-
-                                                </div>
-                                                <br /><br />
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        <br />
+                                        <br />
+                                        <div class="form-group">
+                                            <label class="col-md-10">Username:</label>
+                                            <div class="col-md-10">
+                                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Username or Email", Type = "email" } })
+                                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                                             </div>
                                         </div>
-                                    </div>
+                                        <br />
 
-
-                                    <div class="modal-footer" style="background-color:maroon">
-                                        <div class="row">
-                                            <div class="col-lg-2"> </div>
-                                            <input type="submit" value="Login" class="btn btn-primary col-lg-4" />
-                                            <button type="button" class="btn btn-primary col-lg-4" data-dismiss="modal">Close</button>
-                                            <div class="col-lg-2"> </div>
+                                        <div class="form-group">
+                                            <label class="col-md-10">Password:</label>
+                                            <div class="col-md-10">
+                                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "Password", Type = "password" } })
+                                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                            </div>
                                         </div>
 
-                                    </div>
-                                }
+                                        <div class="form-group">
+                                            <div class="col-md-10">
+                                                <div>
+                                                    @Html.ActionLink("Forgot Password", "Home", "Index", new { @class = "btn btn-primary btn-xs" })
+                                                </div>
+                                            </div>
 
+                                        </div>
+                                        <br /><br />
+                                    </div>
+                                </div>
                             </div>
 
-                        </div>
+
+                            <div class="modal-footer" style="background-color:maroon">
+                                <div class="row">
+                                    <div class="col-lg-2"> </div>
+                                    <input type="submit" value="Login" class="btn btn-primary col-lg-4" />
+                                    <button type="button" class="btn btn-primary col-lg-4" data-dismiss="modal">Close</button>
+                                    <div class="col-lg-2"> </div>
+                                </div>
+
+                            </div>
+                        }
+
                     </div>
-                    @Scripts.Render("~/bundles/jquery")
-                    @Scripts.Render("~/bundles/bootstrap")
+
                 </div>
+            </div>
+            @Scripts.Render("~/bundles/jquery")
+            @Scripts.Render("~/bundles/bootstrap")
         </div>
+    </div>
 </body>
 </html>
