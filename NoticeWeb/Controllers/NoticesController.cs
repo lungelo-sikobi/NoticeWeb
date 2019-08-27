@@ -34,7 +34,16 @@ namespace NoticeWeb.Controllers
 
         public ActionResult Create()
         {
-            return View();
+
+            if (Session["AdminID"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                
+                return View();
+            }
         }
         //Create Notice
         [HttpPost]
