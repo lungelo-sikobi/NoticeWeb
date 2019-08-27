@@ -4,59 +4,62 @@
     ViewBag.Title = "Create";
 }
 
-<h4 class="well text-center" style="background:#861010;color:whitesmoke;"><b>Add Category</b></h4>
-@*@Html.Raw(TempData["CreateCat"])*@
+<h2 class="text-center"><b>Create Category</b></h2>
+<div style="width:100%;height:1px;background-color:maroon;">
+
+</div>
+<br />
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-        <div class="form-horizontal">
-         
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-horizontal">
 
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-lg-4 col-sm-4 col-md-4"></div>
-                        <div class="col-lg-4 col-sm-4 col-md-4">
-                            <label for="email">Category name:</label>
-                            @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @placeholder = "Please enter Category name" })
-                        </div>
-                        <div class="col-lg-4 col-sm-4 col-md-4"></div>
-                    </div>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
+        <div class="form-group">
+            <div class="row">
+                <div class="col-lg-4 col-sm-4 col-md-4"></div>
+                <div class="col-lg-4 col-sm-4 col-md-4">
+                    <label for="email">Category name:</label>
+                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @placeholder = "Please enter Category name" })
                 </div>
-                <br />
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-lg-4 col-sm-4 col-md-4"></div>
-                        <div class="col-lg-4 col-sm-4 col-md-4">
-                            <label for="comment">Comment:</label>
-
-                            @Html.TextAreaFor(model => model.description, new { @class = "form-control", @placeholder = "Please add description here", @rows = 5 })
-                        </div>
-                        <div class="col-lg-4 col-sm-4 col-md-4"></div>
-                    </div>
-
-
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-lg-4 col-sm-4 col-md-4"></div>
-                            <div class="col-lg-4 col-sm-4 col-md-4">
-                                <input type="submit" value="Create" class="btn btn-default" />
-                            </div>
-                            <div class="col-lg-4 col-sm-4 col-md-4"></div>
-                        </div>
-
-                    </div>
-
-
-
-
-                </div>
+                <div class="col-lg-4 col-sm-4 col-md-4"></div>
+            </div>
 
         </div>
+        <br />
+        <div class="form-group">
+            <div class="row">
+                <div class="col-lg-4 col-sm-4 col-md-4"></div>
+                <div class="col-lg-4 col-sm-4 col-md-4">
+                    <label for="comment">Comment:</label>
+
+                    @Html.TextAreaFor(model => model.description, new { @class = "form-control", @placeholder = "Please add description here", @rows = 5 })
+                </div>
+                <div class="col-lg-4 col-sm-4 col-md-4"></div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-4 col-sm-4 col-md-4"></div>
+                    <div class="col-lg-4 col-sm-4 col-md-4">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                    <div class="col-lg-4 col-sm-4 col-md-4"></div>
+                </div>
+
+            </div>
+
+
+
+
+        </div>
+
+    </div>
 
 }
 

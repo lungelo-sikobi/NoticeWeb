@@ -4,25 +4,29 @@
     ViewBag.Title = "Index";
 }
 
-<h4 class="well text-center" style="background:#861010;color:whitesmoke;"><b>All Notices</b></h4>
+<h2 class="text-center"><b>All Notice</b></h2>
+<div style="width:100%;height:1px;background-color:maroon;">
+
+</div>
+<br />
 
 <p>
     @Html.ActionLink("Add Notice", "Create")
 </p>
 <table class="table table-hover table-condensed">
-    <tr  style="background-color:maroon;color:white;">
+    <tr style="background-color:maroon;color:white;">
         <th>
             @Html.DisplayNameFor(model => model.NoticeID)
         </th>
         @*<th>
-            <b>Date Posted</b>
-        </th>*@
+                <b>Date Posted</b>
+            </th>*@
         @*<th>
-            <b>Expire Date</b>
-        </th>*@
+                <b>Expire Date</b>
+            </th>*@
         @*<th>
-            <b>Show Notice on:</b>
-        </th>*@
+                <b>Show Notice on:</b>
+            </th>*@
         <th>
             <b>Notice Title</b>
         </th>
@@ -30,22 +34,22 @@
             <b>Notice Description</b>
         </th>
         @*<th>
-            <b>Category ID</b>
-        </th>*@
+                <b>Category ID</b>
+            </th>*@
         @*<th>
-            <b>Admin .</b>
-        </th>
-        <th>
-            <b>Category Name</b>
-        </th>*@
+                <b>Admin .</b>
+            </th>
+            <th>
+                <b>Category Name</b>
+            </th>*@
         <th>
             <b>Available Attachment</b>
         </th>
         <th></th>
     </tr>
- 
-       @foreach (var item in Model)
-        {
+
+    @foreach (var item in Model)
+    {
 
 
         <tr>
@@ -53,14 +57,14 @@
                 @Html.DisplayFor(modelItem => item.NoticeID)
             </td>
             @*<td>
-                @Html.DisplayFor(modelItem => item.DateAndTime_p)
-            </td>*@
+                    @Html.DisplayFor(modelItem => item.DateAndTime_p)
+                </td>*@
             @*<td>
-                @Html.DisplayFor(modelItem => item.DateAndTime_Expire)
-            </td>*@
+                    @Html.DisplayFor(modelItem => item.DateAndTime_Expire)
+                </td>*@
             @*<td>
-                @Html.DisplayFor(modelItem => item.DateAndTime_Show)
-            </td>*@
+                    @Html.DisplayFor(modelItem => item.DateAndTime_Show)
+                </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
@@ -68,26 +72,26 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             @*<td>
-                @Html.DisplayFor(modelItem => item.CategoryID)
-            </td>*@
+                    @Html.DisplayFor(modelItem => item.CategoryID)
+                </td>*@
             @*<td>
-                @Html.DisplayFor(modelItem => item.AdminID)
-            </td>*@
+                    @Html.DisplayFor(modelItem => item.AdminID)
+                </td>*@
             @*<td>
-                @Html.DisplayFor(modelItem => item.CatName)
-            </td>*@
+                    @Html.DisplayFor(modelItem => item.CatName)
+                </td>*@
             @*<td>
-                @Html.DisplayFor(modelItem => item.HasImage)
-            </td>*@
+                    @Html.DisplayFor(modelItem => item.HasImage)
+                </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.Picture)
             </td>
             <td>
-                
-                    @Html.ActionLink("Edit", "Edit", new { id = item.NoticeID }, new { @class = "btn btn-primary btn-xs" })
-                    @Html.ActionLink("Details", "Details", new { id = item.NoticeID }, new { @class = "btn btn-primary btn-xs" }) 
-                    @Html.ActionLink("Delete", "Delete", new { id = item.NoticeID }, new { @class = "btn btn-primary btn-xs" })
-                
+
+                @Html.ActionLink("Edit", "Edit", new { id = item.NoticeID }, new { @class = "btn btn-primary btn-xs" })
+                @Html.ActionLink("Details", "Details", new { id = item.NoticeID }, new { @class = "btn btn-primary btn-xs" })
+                @Html.ActionLink("Delete", "Delete", new { id = item.NoticeID }, new { @class = "btn btn-primary btn-xs" })
+
             </td>
         </tr>
     }
@@ -96,5 +100,5 @@
 
 
 @*<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>*@
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>*@
