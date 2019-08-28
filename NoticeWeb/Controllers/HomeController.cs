@@ -21,11 +21,30 @@ namespace NoticeWeb.Controllers
             }
             else
             {
-                var notList = dt.GetNoticesData();
-                ViewBag.Data = notList;
+               
+                var list = dt.GetNoticesData();
+                ViewBag.Data = list;
                 return View();
             }
             
+        }
+        public ActionResult Filter(String Search)
+        {
+            if (Session["AdminID"] != null)
+            {
+                return RedirectToAction("Index", "Notices", new { AdminID = Session["AdminID"].ToString() });
+            }
+            else
+            {
+                var list = dt.GetNoticesData();
+                if (!String.IsNullOrEmpty(Search))
+                {
+                   // list = list.Where(x => x.Title.Contains(Search));
+                }
+                ViewBag.Data = list;
+                return View();
+            }
+
         }
 
         [HttpPost]
@@ -34,13 +53,19 @@ namespace NoticeWeb.Controllers
             try
             {
 
-                var userLoggedIn = dt.GetAdmins().SingleOrDefault(x => x.Email == Z.Email && x.Password == Z.Password);
+                var user = dt.GetAdmins().SingleOrDefault(x => x.Email == Z.Email && x.Password == Z.Password);
 
-                if (userLoggedIn != null)
+                if (user != null)
                 {
-                    Session["AdminID"] = userLoggedIn.AdminID;
-                    Session["user"] = userLoggedIn.Name + " " + userLoggedIn.Surname;
-                    return RedirectToAction("Index", "Notices");
+                    Session["AdminID"] = user.AdminID;
+                    Session["user"] = user.Name + " " + user.Surname;
+                    if (user.LoggedOnce==false)
+                    {
+                        return RedirectToAction("ChangePassword", "Log", new { id = Session["AdminID"] });
+                    }
+                    else { 
+                        return RedirectToAction("Index", "Notices");
+                    }
                 }
                 TempData["msg"] = "<script>alert('Nice try!!! Only Admins are allowed to log in');</script>";
                 return RedirectToAction("Index");

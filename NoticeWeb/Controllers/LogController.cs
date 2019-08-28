@@ -1,4 +1,5 @@
 ﻿using Notice.DAL;
+using Notice.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +39,48 @@ namespace NoticeWeb.Controllers
                 return View(detail);
             }
         }
-
+        public ActionResult ChangePassword(int id)
+        {
+            if (Session["AdminID"] != null)
+            {
+                    var detail = dt.ChangePasswordFor().Single(data => data.AdminID == id);
+                    var name= dt.GetAdmins().Single(data => data.AdminID == (int)Session["AdminID"]);
+                    ViewBag.name = name.Name + " " + name.Surname;
+                if (detail == null)
+                    {
+                        return HttpNotFound();
+                    }
+                    return View(detail);
+                
+            }
+            else
+            {
+                Response.Write(@"<script language='javascript'>alert('Message: \n" + "Log in first" + " .');</script>");
+                return RedirectToAction("Index", "Home");
+            }
+        }
+        [HttpPost]
+        public ActionResult ChangePassword(ChangePassword add)
+        {
+            // TODO: Add update logic here
+            if (Session["AdminID"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                if(dt.UpdateAdminPassword(add)==1)
+                {
+                    Response.Write(@"<script language='javascript'>alert('Message: \n" + "Your Password has been Successfully Updated Please Log in Again using it!" + " .');</script>");
+                    Session.Clear();
+                    Session.RemoveAll();
+                    Session.Abandon();
+                    return RedirectToAction("index", "home");
+                }
+                Response.Write(@"<script language='javascript'>alert('Message: \n" + "Your Password has not been Successfully Updated!" + " .');</script>");
+                return RedirectToAction("Index","Home");
+            }
+        }
 
         // POST: Log/Create
         [HttpPost]
@@ -59,24 +101,33 @@ namespace NoticeWeb.Controllers
         // GET: Log/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            if (Session["AdminID"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                var admin = dt.GetAdmins().Single(data => data.AdminID == id);
+                return View(admin);
+            }
         }
 
-        // POST: Log/Edit/5
+        // POST: Notice/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(Admin add)
         {
-            try
+            // TODO: Add update logic here
+            if (Session["AdminID"] == null)
             {
-                // TODO: Add update logic here
-
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                dt.UpdateAdmin(add);
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
         }
+
 
         // GET: Log/Delete/5
         public ActionResult Delete(int id)

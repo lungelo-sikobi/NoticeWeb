@@ -10,9 +10,16 @@
 </div>
 <br />
 
-<p>
-    @Html.ActionLink("Add Notice", "Create")
-</p>
+<div class="row">
+    <div class="col-lg-5">
+
+    </div>
+    <div class="col-lg-4">
+        @Html.ActionLink("Add Notice", "Create", null,new { @class = "btn btn-primary" })
+    </div>
+</div>
+ 
+<br />
 <table class="table table-hover table-condensed">
     <tr style="background-color:maroon;color:white;">
         <th>
@@ -69,11 +76,11 @@
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Description)
+                @Html.DisplayFor(modelItem => item.Description).ToString().Substring(0,15).......
             </td>
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.CategoryID)
-                </td>*@
+            <td>
+                 
+            </td>
             @*<td>
                     @Html.DisplayFor(modelItem => item.AdminID)
                 </td>*@
@@ -83,9 +90,7 @@
             @*<td>
                     @Html.DisplayFor(modelItem => item.HasImage)
                 </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.Picture)
-            </td>
+            
             <td>
 
                 @Html.ActionLink("Edit", "Edit", new { id = item.NoticeID }, new { @class = "btn btn-primary btn-xs" })

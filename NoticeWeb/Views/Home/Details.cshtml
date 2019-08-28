@@ -1,181 +1,310 @@
 ﻿@model Notice.Models.aNotice
 
 @{
-    ViewBag.Title = "Details";
+    Layout = null;
 }
+<!DOCTYPE html>
 
-<h4 class="well text-center" style="background:#861010;color:whitesmoke;"><b>Notice Details</b></h4>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>MUT Notices</title>
+    <link rel="shortcut icon" type="image/x-icon" href="~/images/mut.jpg">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
 
-<div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.js"></script>
+    <style>
 
-    <hr />
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
+        .table-scroll {
+            position: relative;
+            max-width: 1024px;
+            margin: auto;
+            overflow: hidden;
+        }
 
-        <div class="row">
-            <div class="col-lg-4"></div>
-            <div class="form-horizontal col-lg-8">
+        .table-wrap {
+            width: 100%;
+            overflow: auto;
+        }
 
+        .table-scroll table {
+            width: 100%;
+            margin: auto;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
 
-                <div class="form-horizontal container container-fluid">
+        .table-scroll th, .table-scroll td {
+            padding: 5px 10px;
+            background: #fff;
+            white-space: nowrap;
+            vertical-align: top;
+        }
 
+        .table-scroll thead, .table-scroll tfoot {
+            background: #f9f9f9;
+        }
 
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        .clone {
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
 
-                    <div class="form-group">
-                        <div class="col-md-10">
-                            <label for="comment">Notice Title:</label>
-                            @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+            .clone th, .clone td {
+                visibility: hidden
+            }
 
-                    <div class="form-group">
-                        <div class="col-lg-10 col-sm-10 col-md-10">
-                            <label for="comment">Notice Description:</label>
-                            @Html.TextAreaFor(model => model.Description, new { @class = "form-control", @rows = 5, @placeholder = "Please add description here" })
-                            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+            .clone td, .clone th {
+                border-color: transparent
+            }
 
-                    <div class="form-group">
-                        <div class="col-md-10">
-                            <label for="comment">Date of Notice Show:</label>
-                            @Html.EditorFor(model => model.DateAndTime_Show, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.DateAndTime_Show, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+            .clone tbody td:first-child {
+                visibility: visible;
+                color: black;
+            }
 
+            .clone .fixed-side {
+                visibility: visible;
+            }
 
+            .clone thead, .clone tfoot {
+                background: transparent;
+            }
+    </style>
 
+    <script>
+        $(document).ready(function () {
+            function Contains(text_one, text_two) {
+                if (text_one.indexOf(text_two) != -1)
+                    return true;
+            }
+            $("#Search").keyup(function () {
+                var searchText = $("#Search").val().toLowerCase();
+                $(".Search").each(function () {
+                    if (!Contains($(this).text().toLowerCase, searchText)) {
+                        $(this).hide();
+                    }
+                    else {
+                        $(this).show();
+                    }
+                });
+            });
+        });
 
-                    <div class="form-group">
+    </script>
+</head>
+<body>
 
-                        <div class="col-md-10">
-                            <label for="comment">Date of Notice Expire:</label>
-                            @Html.EditorFor(model => model.DateAndTime_Expire, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.DateAndTime_Expire, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:#470606;color:white;">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <span>
+                    <img src="~/images/mut.jpg" style="height:40px;width:40px;vertical-align:middle;" class="pull-left">
+                    @Html.ActionLink("MUT ENotice", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </span>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
 
-
-
-
-
-                    <div class="form-group">
-                        <div class="col-md-10">
-                            <label for="comment">Category :</label>
-
-                            @Html.DropDownListFor(x => x.CategoryID, new SelectListItem[]{
-                            new SelectListItem() {Text = "Department of IT", Value="4020"},
-                            new SelectListItem() {Text = "Exam", Value="4021"},
-                            new SelectListItem() {Text = "Event", Value="4022"},
-                            new SelectListItem() {Text = "General", Value="4023"},
-                            new SelectListItem() {Text = "SRC", Value="4024"}
-
-                            }, new { @class = "form-control", @placeholder = "Please enter select departmrnt ID" })
-                            @Html.ValidationMessageFor(model => model.CategoryID, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-
-
-                </div>
+                </ul>
+                
             </div>
         </div>
-    }
-    @*<dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.NoticeID)
-        </dt>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.NoticeID)
-        </dd>
+    <div class="container body-content">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DateAndTime_p)
-        </dt>
+        @Html.Raw(TempData["msg"])
 
-        <dd>
-            @Html.DisplayFor(model => model.DateAndTime_p)
-        </dd>
+        <h2 class="text-center"><b>All Notice</b></h2>
+        <div style="width:100%;height:1px;background-color:maroon;">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DateAndTime_Expire)
-        </dt>
+        </div>
+        <br />
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-        <dd>
-            @Html.DisplayFor(model => model.DateAndTime_Expire)
-        </dd>
+            <div class="row">
+                <div class="col-lg-4"></div>
+                <div class="form-horizontal col-lg-8">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DateAndTime_Show)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.DateAndTime_Show)
-        </dd>
+                    <div class="form-horizontal container container-fluid">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Title)
-        </dd>
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <label for="comment">Notice Title:</label>
+                                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+                        <div class="form-group">
+                            <div class="col-lg-10 col-sm-10 col-md-10">
+                                <label for="comment">Notice Description:</label>
+                                @Html.TextAreaFor(model => model.Description, new { @class = "form-control", @rows = 5, @placeholder = "Please add description here" })
+                                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CategoryID)
-        </dt>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <label for="comment">Date of Notice Show:</label>
+                                @Html.EditorFor(model => model.DateAndTime_Show, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.DateAndTime_Show, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.CategoryID)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.AdminID)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.AdminID)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CatName)
-        </dt>
+                        <div class="form-group">
 
-        <dd>
-            @Html.DisplayFor(model => model.CatName)
-        </dd>
+                            <div class="col-md-10">
+                                <label for="comment">Date of Notice Expire:</label>
+                                @Html.EditorFor(model => model.DateAndTime_Expire, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.DateAndTime_Expire, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.HasImage)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.HasImage)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Picture)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Picture)
-        </dd>*@
 
-    @*</dl>*@
-</div>
-<p>
-    @Html.ActionLink("Back to List", "Index")
-</p>
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <label for="comment">Category :</label>
+
+                                @Html.DropDownListFor(x => x.CategoryID, new SelectListItem[]{
+                                new SelectListItem() {Text = "Department of IT", Value="4020"},
+                                new SelectListItem() {Text = "Exam", Value="4021"},
+                                new SelectListItem() {Text = "Event", Value="4022"},
+                                new SelectListItem() {Text = "General", Value="4023"},
+                                new SelectListItem() {Text = "SRC", Value="4024"}
+
+                                }, new { @class = "form-control", @placeholder = "Please enter select departmrnt ID" })
+                                @Html.ValidationMessageFor(model => model.CategoryID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+         
+
+        }
+        <p class="center">
+            @Html.ActionLink("Back to List", "Index", new { @class = "btn btn-primary btn-xs" })
+        </p>
+        @*<dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.NoticeID)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NoticeID)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DateAndTime_p)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DateAndTime_p)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DateAndTime_Expire)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DateAndTime_Expire)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DateAndTime_Show)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DateAndTime_Show)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CategoryID)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CategoryID)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.AdminID)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.AdminID)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.CatName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.CatName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.HasImage)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.HasImage)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Picture)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Picture)
+            </dd>*@
+
+        @*</dl>*@
+    </div>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
+</html>

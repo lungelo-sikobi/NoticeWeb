@@ -205,7 +205,6 @@
     <Content Include="Views\FlashScreen\Flashing.cshtml" />
     <Content Include="Views\Admin\Details.cshtml" />
     <Content Include="Views\Notices\Edit.cshtml" />
-    <Content Include="Views\Log\Create.cshtml" />
     <Content Include="Views\Category\Details.cshtml" />
     <Content Include="Views\Category\Delete.cshtml" />
     <Content Include="Views\Admin\Delete.cshtml" />
@@ -213,6 +212,7 @@
     <Content Include="Views\Home\Details.cshtml" />
     <Content Include="Views\Log\Details.cshtml" />
     <Content Include="Views\Log\Edit.cshtml" />
+    <Content Include="Views\Log\ChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

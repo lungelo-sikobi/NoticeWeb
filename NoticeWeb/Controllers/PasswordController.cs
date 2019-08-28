@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Notice.DAL;
+using Notice.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,6 +11,7 @@ namespace NoticeWeb.Controllers
     public class PasswordController : Controller
     {
         // GET: Password
+        DataAcess dt = new DataAcess();
         public ActionResult Index()
         {
             return View();
@@ -28,13 +31,20 @@ namespace NoticeWeb.Controllers
 
         // POST: Password/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(ChangePassword collection)
         {
             try
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                if (Session["AdminID"] == null)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    collection.AdminID = (int)Session["AdminID"];
+                    dt.UpdateAdminPassword(collection);
+                    return RedirectToAction("Index");
+                }
             }
             catch
             {
