@@ -46,6 +46,7 @@ namespace NoticeWeb.Controllers
             }
             else
             {
+                not.AdminID = (int)Session["AdminID"];
                 dt.InsertNotice(not);
                 return View();
             }
