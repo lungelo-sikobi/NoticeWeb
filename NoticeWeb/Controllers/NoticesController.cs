@@ -49,6 +49,7 @@ namespace NoticeWeb.Controllers
             else
             {
                 dt.InsertNotice(not);
+                var path = uploadFile(imgfile);
                 return View();
             }
         }
@@ -66,9 +67,9 @@ namespace NoticeWeb.Controllers
                 {
                     try
                     {
-                        path = Path.Combine(Server.MapPath("~/192.168.137.1,1433/Notices"), random + Path.GetFileName(file.FileName));
+                        path = Path.Combine(Server.MapPath("~/192.168.137.1,1433/Notices/Attachment"), random + Path.GetFileName(file.FileName));
                         file.SaveAs(path);
-                        path = "~/192.168.137.1,1433/Notices" + random + Path.GetFileName(file.FileName);
+                        path = "~/192.168.137.1,1433/Notices/Attachment" + random + Path.GetFileName(file.FileName);
 
                     }
                     catch (Exception ex)
