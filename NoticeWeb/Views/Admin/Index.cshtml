@@ -28,9 +28,7 @@
         <th>
             @Html.DisplayNameFor(model => model.DepartID)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cellphone)
-        </th>
+      
         <th></th>
     </tr>
 
@@ -50,9 +48,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.DepartID)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cellphone)
-            </td>
+           
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.AdminID }, new { @class = "btn btn-primary btn-xs" }) |
                 @Html.ActionLink("Details", "Details", new { id = item.AdminID }, new { @class = "btn btn-primary btn-xs" }) |
