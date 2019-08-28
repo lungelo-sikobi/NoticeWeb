@@ -50,46 +50,46 @@ namespace NoticeWeb.Controllers
             {
                 not.AdminID = (int)Session["AdminID"];
                 dt.InsertNotice(not);
-                var path = uploadFile(imgfile);
+               
                 return View();
             }
         }
 
-        public string uploadFile(HttpPostedFileBase file)
-        {
-            Random r = new Random();
-            string path = "-1";
-            int random = r.Next();
+        //public string uploadFile(HttpPostedFileBase file)
+        //{
+        //    Random r = new Random();
+        //    string path = "-1";
+        //    int random = r.Next();
 
-            if(file != null && file.ContentLength > 0)
-            {
-                string extension = Path.GetExtension(file.FileName);
-                if(extension.ToLower().Equals(".jpg") || extension.ToLower().Equals(".jpeg") || extension.ToLower().Equals(".docx") || extension.ToLower().Equals(".pdf") || extension.ToLower().Equals(".png"))
-                {
-                    try
-                    {
-                        path = Path.Combine(Server.MapPath("~/192.168.137.1,1433/Notices/Attachment"), random + Path.GetFileName(file.FileName));
-                        file.SaveAs(path);
-                        path = "~/192.168.137.1,1433/Notices/Attachment" + random + Path.GetFileName(file.FileName);
+        //    if(file != null && file.ContentLength > 0)
+        //    {
+        //        string extension = Path.GetExtension(file.FileName);
+        //        if(extension.ToLower().Equals(".jpg") || extension.ToLower().Equals(".jpeg") || extension.ToLower().Equals(".docx") || extension.ToLower().Equals(".pdf") || extension.ToLower().Equals(".png"))
+        //        {
+        //            try
+        //            {
+        //                path = Path.Combine(Server.MapPath("~/192.168.137.1,1433/Notices/Attachment"), random + Path.GetFileName(file.FileName));
+        //                file.SaveAs(path);
+        //                path = "~/192.168.137.1,1433/Notices/Attachment" + random + Path.GetFileName(file.FileName);
 
-                    }
-                    catch (Exception ex)
-                    {
-                        path = "-1";
-                    }
-                }
-                else
-                {
-                    Response.Write("<script>alert('Only jpg,jpeg,docx,pdf or png formats are acceptable');</script>");
-                }
-            }
-            else
-            {
-                Response.Write("<script>alert('Please select a file');</script>");
-            }
+        //            }
+        //            catch (Exception ex)
+        //            {
+        //                path = "-1";
+        //            }
+        //        }
+        //        else
+        //        {
+        //            Response.Write("<script>alert('Only jpg,jpeg,docx,pdf or png formats are acceptable');</script>");
+        //        }
+        //    }
+        //    else
+        //    {
+        //        Response.Write("<script>alert('Please select a file');</script>");
+        //    }
 
-            return path;
-        }
+        //    return path;
+        //}
 
         // GET: Notice/Edit/5
         public ActionResult Edit(int id)
