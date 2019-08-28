@@ -4,11 +4,7 @@
     ViewBag.Title = "Adding New Notice";
 }
 <head>
-    <script type="text/javascript">
-        $(function () { // will trigger when the document is ready
-            $('.datepicker').datepicker({ dateFormart: 'dd-mm-yy' }); 
-        });
-    </script>
+   
 </head>
 <h2 class="text-center"><b>Create Notice</b></h2>
 <div style="width:100%;height:1px;background-color:maroon;">
@@ -50,7 +46,7 @@
                 <div class="form-group">
                     <div class="col-md-10">
                         <label for="comment">Date of Notice Show:</label>
-                        @Html.EditorFor(model => model.DateAndTime_Show, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.DateAndTime_Show, "{0:MM/dd/yyyy}", new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.DateAndTime_Show, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -61,8 +57,8 @@
                 <div class="form-group">
 
                     <div class="col-md-10">
-                        <label for="comment">Date of Notice Expire:</label>
-                        @Html.EditorFor(model => model.DateAndTime_Expire, new { htmlAttributes = new { @class = "form-control" } })
+                        <label for="comment">Date of Notice Expire:</label> 
+                        @Html.EditorFor(model => model.DateAndTime_Expire, "{0:MM/dd/yyyy}" ,new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.DateAndTime_Expire, "", new { @class = "text-danger" })
                     </div>
                 </div>

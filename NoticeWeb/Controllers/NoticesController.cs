@@ -48,6 +48,7 @@ namespace NoticeWeb.Controllers
             }
             else
             {
+                not.AdminID = (int)Session["AdminID"];
                 dt.InsertNotice(not);
                 var path = uploadFile(imgfile);
                 return View();
