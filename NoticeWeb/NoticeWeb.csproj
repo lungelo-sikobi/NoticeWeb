@@ -158,6 +158,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\back1.jpg" />
+    <Content Include="images\Glacier.jpg" />
     <Content Include="images\mut.jpg" />
     <Content Include="images\new.jpg" />
     <Content Include="images\TLDC.jpg" />
