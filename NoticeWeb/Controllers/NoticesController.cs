@@ -36,7 +36,14 @@ namespace NoticeWeb.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            return View();
+            if (Session["AdminID"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+              return View();
+            }
         }
         //Create Notice
         [HttpPost]
@@ -50,7 +57,7 @@ namespace NoticeWeb.Controllers
             {
                 not.AdminID = (int)Session["AdminID"];
                 dt.InsertNotice(not);
-                var path = uploadFile(imgfile);
+             
                 return View();
             }
         }

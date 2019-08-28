@@ -19,20 +19,16 @@ namespace NoticeWeb.Controllers
         }
 
         // GET: Log/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
+       
         // GET: Log/Create
-        public ActionResult Create()
+        public ActionResult Details()
         {
             return View();
         }
 
         // POST: Log/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Details(FormCollection collection)
         {
             try
             {
