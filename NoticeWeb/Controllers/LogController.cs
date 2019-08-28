@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Notice.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,7 +9,7 @@ namespace NoticeWeb.Controllers
 {
     public class LogController : Controller
     {
-        // GET: Log
+        DataAcess dt = new DataAcess();
         public ActionResult Index()
         {
             Session.Clear();
@@ -19,12 +20,25 @@ namespace NoticeWeb.Controllers
         }
 
         // GET: Log/Details/5
-       
+
         // GET: Log/Create
-        public ActionResult Details()
+        public ActionResult Details(int id)
         {
-            return View();
+            if (Session["AdminID"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                var detail = dt.GetAdmins().Single(data => data.AdminID == id);
+                if (detail == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(detail);
+            }
         }
+
 
         // POST: Log/Create
         [HttpPost]
