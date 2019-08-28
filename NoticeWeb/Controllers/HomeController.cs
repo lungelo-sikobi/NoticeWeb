@@ -28,28 +28,29 @@ namespace NoticeWeb.Controllers
             }
             
         }
-        public ActionResult Filter(String Search)
-        {
-            if (Session["AdminID"] != null)
-            {
-                return RedirectToAction("Index", "Notices", new { AdminID = Session["AdminID"].ToString() });
-            }
-            else
-            {
-                var list = dt.GetNoticesData();
-                if (!String.IsNullOrEmpty(Search))
-                {
-                   // list = list.Where(x => x.Title.Contains(Search));
-                }
-                ViewBag.Data = list;
-                return View();
-            }
+        //public ActionResult Filter(String Search)
+        //{
+        //    if (Session["AdminID"] != null)
+        //    {
+        //        return RedirectToAction("Index", "Notices", new { AdminID = Session["AdminID"].ToString() });
+        //    }
+        //    else
+        //    {
+        //        var list = dt.GetNoticesData();
+        //        if (!String.IsNullOrEmpty(Search))
+        //        {
+        //           // list = list.Where(x => x.Title.Contains(Search));
+        //        }
+        //        ViewBag.Data = list;
+        //        return View();
+        //    }
 
-        }
+        //}
 
         [HttpPost]
         public ActionResult Index(Admin Z)
         {
+
             try
             {
 
@@ -57,25 +58,32 @@ namespace NoticeWeb.Controllers
 
                 if (user != null)
                 {
-                    Session["AdminID"] = user.AdminID;
-                    Session["user"] = user.Name + " " + user.Surname;
+                    
+                  
                     if (user.LoggedOnce==false)
                     {
+                        Session["AdminID"] = user.AdminID;
+                        Session["user"] = user.Name + " " + user.Surname;
                         return RedirectToAction("ChangePassword", "Log", new { id = Session["AdminID"] });
                     }
-                    else { 
+
+                    else {
+                        Session["AdminID"] = user.AdminID;
+                        Session["user"] = user.Name + " " + user.Surname;
                         return RedirectToAction("Index", "Notices");
                     }
                 }
                 TempData["msg"] = "<script>alert('Nice try!!! Only Admins are allowed to log in');</script>";
-                return RedirectToAction("Index");
-            }
+                return RedirectToAction("Index","Home");
+        }
             catch
             {
-                return View();
-            }
-        }
-       
+                var list = dt.GetNoticesData();
+        ViewBag.Data = list;
+                return View("Index");
+    }
+}
+
         // GET: Home/Details/5
         public ActionResult Details(int id)
         {
