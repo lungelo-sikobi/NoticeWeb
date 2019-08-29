@@ -13,9 +13,7 @@ namespace NoticeWeb.Controllers
         DataAcess dt = new DataAcess();
         public ActionResult Index()
         {
-            Session.Clear();
-            Session.RemoveAll();
-            Session.Abandon();
+            
             return RedirectToAction("index", "home");
            
         }
@@ -80,25 +78,13 @@ namespace NoticeWeb.Controllers
                     return RedirectToAction("Index", "Notices");
                 }
                 Response.Write(@"<script language='javascript'>alert('Message: \n" + "Your Password has not been Successfully Updated!" + " .');</script>");
-                return RedirectToAction("Index","Home");
+                return View();
             }
         }
 
         // POST: Log/Create
-        [HttpPost]
-        public ActionResult Details(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+        
+       
 
         // GET: Log/Edit/5
         public ActionResult Edit(int id)
@@ -126,7 +112,8 @@ namespace NoticeWeb.Controllers
             else
             {
                 dt.UpdateAdmin(add);
-                return RedirectToAction("Index");
+                ViewBag.DataExists = true;
+                return RedirectToAction("index","Notices");
             }
         }
 
