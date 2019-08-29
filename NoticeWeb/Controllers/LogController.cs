@@ -70,13 +70,15 @@ namespace NoticeWeb.Controllers
             }
             else
             {
+                add.AdminID = (int)Session["AdminID"];
                 if(dt.UpdateAdminPassword(add)==1)
                 {
+                    
                     Response.Write(@"<script language='javascript'>alert('Message: \n" + "Your Password has been Successfully Updated Please Log in Again using it!" + " .');</script>");
                     Session.Clear();
                     Session.RemoveAll();
                     Session.Abandon();
-                    return RedirectToAction("index", "home");
+                    return RedirectToAction("Index", "Notices");
                 }
                 Response.Write(@"<script language='javascript'>alert('Message: \n" + "Your Password has not been Successfully Updated!" + " .');</script>");
                 return RedirectToAction("Index","Home");
