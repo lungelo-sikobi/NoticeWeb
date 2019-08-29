@@ -43,22 +43,26 @@
                     </div>
                 </div>
 
+                @*, "{0:MM/dd/yyyy}", new { htmlAttributes = new { @class = "form-control" } }*@
                 <div class="form-group">
                     <div class="col-md-10">
                         <label for="comment">Date of Notice Show:</label>
-                        @Html.EditorFor(model => model.DateAndTime_Show, "{0:dd/MM/yyyy}", new { htmlAttributes = new { @class = "form-control" } })
+                        @*@Html.EditorFor(model => model.DateAndTime_Show)*@
+                        @Html.EditorFor(m => m.DateAndTime_Show, "{0:yyyy/MM/dd HH:mm}", new { @id = "datepicker" })
                         @Html.ValidationMessageFor(model => model.DateAndTime_Show, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
 
-
+                @*, "{0:dd/dd/yyyy}" ,new { htmlAttributes = new { @class = "form-control" } }*@
 
                 <div class="form-group">
 
+
                     <div class="col-md-10">
-                        <label for="comment">Date of Notice Expire:</label> 
-                        @Html.EditorFor(model => model.DateAndTime_Expire, "{0:dd/MM/yyyy}" ,new { htmlAttributes = new { @class = "form-control" } })
+                        <label for="comment">Date of Notice Expire:</label>
+                        @*@Html.EditorFor(model => model.DateAndTime_Expire)*@
+                        @Html.EditorFor(m => m.DateAndTime_Expire, "{0:yyyy/MM/dd HH:mm}", new { @id = "datepicker" })
                         @Html.ValidationMessageFor(model => model.DateAndTime_Expire, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -83,9 +87,9 @@
                     </div>
                 </div>
 
-               
 
-              
+
+
                 <div class="form-group">
                     <div class="col-lg-8 col-md-10">
                         <input type="submit" value="Create" class="btn btn-default" />

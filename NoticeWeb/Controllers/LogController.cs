@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
+using ChangePassword = Notice.Models.ChangePassword;
 
 namespace NoticeWeb.Controllers
 {
