@@ -27,11 +27,12 @@ namespace NoticeWeb.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            else
+            else if((bool)Session["Super"] == true)
             {
                 var cat = dt.GetCategories();
                 return View(cat);
             }
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]
@@ -42,22 +43,25 @@ namespace NoticeWeb.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            else
+            else if((bool)Session["Super"] == true)
             {
                 dt.InsertCategory(cat);
                 return RedirectToAction("Index");
             }
+            return RedirectToAction("Index", "Home");
         }
+
         public ActionResult Create()
         {
             if (Session["AdminID"] == null)
             {
                 return RedirectToAction("Index", "Home");
             }
-            else
+            else if((bool)Session["Super"] == true)
             {
                 return View();
             }
+            return RedirectToAction("Index", "Home");
         }
 
 
@@ -68,11 +72,12 @@ namespace NoticeWeb.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            else
+            else if((bool)Session["Super"] == true)
             {
                 var category = dt.GetCategories().Single(data => data.ID == id);
                 return View(category);
             }
+            return RedirectToAction("Index", "Home");
         }
 
         // POST: Category/Edit/5
@@ -84,11 +89,12 @@ namespace NoticeWeb.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            else
+            else if((bool)Session["Super"] == true)
             {
                 dt.UpdateCategory(catg);
                 return RedirectToAction("Index");
             }
+            return RedirectToAction("Index", "Home");
         }
 
 
@@ -100,7 +106,7 @@ namespace NoticeWeb.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            else
+            else if((bool)Session["Super"] == true)
             {
                 var detail = dt.GetCategories().Single(data => data.ID == id);
                 if (detail == null)
@@ -109,6 +115,7 @@ namespace NoticeWeb.Controllers
                 }
                 return View(detail);
             }
+            return RedirectToAction("Index", "Home");
         }
 
 
@@ -119,11 +126,12 @@ namespace NoticeWeb.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            else
+            else if((bool)Session["Super"] == true)
             {
                 var category = dt.GetCategories().Single(data => data.ID == id);
                 return View(category);
             }
+            return RedirectToAction("Index", "Home");
         }
 
         // POST: Category/Delete/5

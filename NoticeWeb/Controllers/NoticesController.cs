@@ -25,11 +25,12 @@ namespace NoticeWeb.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            else
+            else if((bool)Session["Super"] == true)
             {
                 var notList = dt.GetNoticesData();
                 return View(notList);
             }
+            return RedirectToAction("Index", "Home");
             
         }
         
@@ -40,10 +41,11 @@ namespace NoticeWeb.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            else
+            else if((bool)Session["Super"] == true)
             {
               return View();
             }
+            return RedirectToAction("Index", "Home");
         }
         //Create Notice
         [HttpPost]
@@ -53,13 +55,14 @@ namespace NoticeWeb.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            else
+            else if((bool)Session["Super"] == true)
             {
                 not.AdminID = (int)Session["AdminID"];
                 dt.InsertNotice(not);
              
                 return View();
             }
+            return RedirectToAction("Index", "Home");
         }
 
         
@@ -70,11 +73,12 @@ namespace NoticeWeb.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            else
+            else if((bool)Session["Super"] == true)
             {
                 var notice = dt.GetNoticesData().Single(data => data.NoticeID == id);
                 return View(notice);
             }
+            return RedirectToAction("Index", "Home");
         }
 
         // POST: Notice/Edit/5
@@ -85,12 +89,13 @@ namespace NoticeWeb.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            else
+            else if((bool)Session["Super"] == true)
             {
                 // TODO: Add update logic here
                 dt.UpdateNotice(not);
                 return RedirectToAction("Index");
             }
+            return RedirectToAction("Index", "Home");
 
         }
 
@@ -101,7 +106,7 @@ namespace NoticeWeb.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            else
+            else if((bool)Session["Super"] == true)
             {
                 var detail = dt.GetNoticesData().Single(data => data.NoticeID == id);
                 if (detail == null)
@@ -110,6 +115,7 @@ namespace NoticeWeb.Controllers
                 }
                 return View(detail);
             }
+            return RedirectToAction("Index", "Home");
         }
 
         //Delete Notice
@@ -120,11 +126,12 @@ namespace NoticeWeb.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            else
+            else if((bool)Session["Super"] == true)
             {
                 var notice = dt.GetNoticesData().Single(data => data.NoticeID == id);
                 return View(notice);
             }
+            return RedirectToAction("Index", "Home");
         }
 
         // POST: Category/Delete/5
@@ -136,11 +143,12 @@ namespace NoticeWeb.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            else
+            else if((bool)Session["Super"] == true)
             {
                 dt.DeleteNotice(not);
                 return RedirectToAction("Index");
             }
+            return RedirectToAction("Index", "Home");
         }
 
 

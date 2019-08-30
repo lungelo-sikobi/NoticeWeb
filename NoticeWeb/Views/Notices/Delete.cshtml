@@ -4,20 +4,14 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<h2 class="text-center"><b>Delete Notice</b></h2>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>aNotice</h4>
+<h3 class="text-center">Are you sure you want to delete this?</h3>
+<div class="text-center">
+   
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.NoticeID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NoticeID)
-        </dd>
+    <dl class="dl-horizontal text-center">
+        
 
         <dt>
             @Html.DisplayNameFor(model => model.DateAndTime_p)
@@ -75,29 +69,7 @@
             @Html.DisplayFor(model => model.AdminID)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CatName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CatName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.HasImage)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.HasImage)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Picture)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Picture)
-        </dd>
+     
 
     </dl>
 
