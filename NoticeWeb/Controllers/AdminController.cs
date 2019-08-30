@@ -127,7 +127,7 @@ namespace NoticeWeb.Controllers
             }
         }
 
-        // POST: Category/Delete/5
+        // POST: Admin/Delete/5
         [HttpPost]
         public ActionResult Delete(Admin add)
         {
