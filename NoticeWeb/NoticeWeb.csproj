@@ -160,6 +160,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="images\back1.jpg" />
+    <Content Include="images\Board.jpg" />
     <Content Include="images\Glacier.jpg" />
     <Content Include="images\mut.jpg" />
     <Content Include="images\new.jpg" />
@@ -215,13 +216,14 @@
     <Content Include="Views\Log\Details.cshtml" />
     <Content Include="Views\Log\Edit.cshtml" />
     <Content Include="Views\Log\ChangePassword.cshtml" />
+    <Content Include="Views\Shared\CategoryAdmin.cshtml" />
+    <Content Include="Views\CategoryAdmin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Content\upload\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\CategoryAdmin\" />
     <Folder Include="Views\Password\" />
     <Folder Include="Views\Screen\" />
   </ItemGroup>

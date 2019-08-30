@@ -5,16 +5,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.UI.WebControls;
+
 
 namespace NoticeWeb.Controllers
 {
     public class LogController : Controller
     {
         DataAcess dt = new DataAcess();
-        public ActionResult Index()
+        public ActionResult Logout()
         {
-            
+            Session.Clear();
+            Session.RemoveAll();
+            Session.Abandon();
             return RedirectToAction("index", "home");
            
         }
