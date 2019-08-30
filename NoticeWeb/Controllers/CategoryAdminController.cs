@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Notice.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,13 @@ namespace NoticeWeb.Controllers
 {
     public class CategoryAdminController : Controller
     {
-        // GET: CategoryAdmin
+        DataAcess dt = new DataAcess();
         public ActionResult Index()
         {
-            return View();
+
+            var notList = dt.GetNoticesData();
+            return View(notList);
+           
         }
 
         // GET: CategoryAdmin/Details/5

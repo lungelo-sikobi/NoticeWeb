@@ -80,23 +80,19 @@ namespace NoticeWeb.Controllers
             catch
             {
                 var list = dt.GetNoticesData();
-        ViewBag.Data = list;
+                 ViewBag.Data = list;
                 return View("Index");
-    }
+            }
 }
     
 
 
         // GET: Home/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int key)
         {
-            var detail = dt.GetNoticesData().Single(data => data.NoticeID == id);
-            if (detail == null)
-            {
-                return HttpNotFound();
-            }
-            return View(detail);
-           
+
+            return RedirectToAction("Details", "Notices", new { id = key });
+
         }
 
 
