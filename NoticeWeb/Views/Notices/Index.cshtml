@@ -79,19 +79,19 @@
                 @Html.DisplayFor(modelItem => item.Description).ToString().Substring(0,1).......
             </td>
             <td>
-                 
-            </td>
+                @Html.ActionLink("See Notice Attachement", "Attachement", new { id = item.NoticeID })
+          </td>
             @*<td>
-                    @Html.DisplayFor(modelItem => item.AdminID)
-                </td>*@
+        @Html.DisplayFor(modelItem => item.AdminID)
+    </td>*@
             @*<td>
-                    @Html.DisplayFor(modelItem => item.CatName)
-                </td>*@
+        @Html.DisplayFor(modelItem => item.CatName)
+    </td>*@
             @*<td>
-                    @Html.DisplayFor(modelItem => item.HasImage)
-                </td>*@
-            
-            <td>
+        @Html.DisplayFor(modelItem => item.HasImage)
+    </td>*@
+
+<td>
 
                 @Html.ActionLink("Edit", "Edit", new { id = item.NoticeID }, new { @class = "btn btn-primary btn-xs" })
                 @Html.ActionLink("Details", "Details", new { id = item.NoticeID }, new { @class = "btn btn-primary btn-xs" })

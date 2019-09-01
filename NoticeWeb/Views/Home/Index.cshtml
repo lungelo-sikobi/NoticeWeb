@@ -1,5 +1,6 @@
 ﻿@model Notice.Models.Admin
 
+
 @{
     Layout = null;
 }
@@ -13,7 +14,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="~/images/mut.jpg">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-   
+
     <style>
 
         .table-scroll {
@@ -75,26 +76,7 @@
             }
     </style>
 
-    <script>
-        $(document).ready(function () {
-            function Contains(text_one, text_two) {
-                if (text_one.indexOf(text_two) != -1)
-                    return true;
-            }
-            $("#Search").keyup(function () {
-                var searchText = $("#Search").val().toLowerCase();
-                $(".Search").each(function () {
-                    if (!Contains($(this).text().toLowerCase, searchText)) {
-                        $(this).hide();
-                    }
-                    else {
-                        $(this).show();
-                    }
-                });
-            });
-        });
 
-    </script>
 </head>
 <body>
 
@@ -114,7 +96,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                  
+
                 </ul>
                 <ul class="nav navbar-nav pull-right">
                     <li><a href="#" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
@@ -132,7 +114,7 @@
 
         </div>
         <br />
-       <div class="form-group">
+        <div class="form-group">
             <div>
                 <input type="text" id="Search" placeholder="Search" class="form-control" />
             </div>
@@ -186,7 +168,26 @@
                 }
             </table>
         </div>
+        <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+        <script>
+            $("#Search").on("keyup", function () {
+                var searchText = $(this).val().toLowerCase();
+                $("table tr").each(function (results) {
+                    if (results !== 0) {
+                        var id = $(this).find("td:nth-child(2)").text();
+                        if (id.indexOf(searchText) !== 0 && id.toLocaleLowerCase().indexOf(searchText.toLocaleLowerCase()) < 0) {
+                            $(this).hide();
+                        }
+                        else {
+                            $(this).show();
+                        }
+                    }
 
+
+                });
+            });
+
+        </script>
 
 
         <div id="myModal" class="modal fade" role="dialog">
@@ -258,5 +259,26 @@
             @Scripts.Render("~/bundles/bootstrap")
         </div>
     </div>
+    @section Scripts {
+        <script>
+            $("#Search").on("keyup", function () {
+                var searchText = $(this).val().toLowerCase();
+                $("table tr").each(function (results) {
+                    if (results !== 0) {
+                        var id = $(this).find("td:nth-child(2)").text();
+                        if (id.indexOf(searchText) !== 0 && id.toLocaleLowerCase().indexOf(searchText.toLocaleLowerCase()) < 0) {
+                            $(this).hide();
+                        }
+                        else {
+                            $(this).show();
+                        }
+                    }
+
+
+                });
+            });
+
+        </script>
+    }
 </body>
 </html>

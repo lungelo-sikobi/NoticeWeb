@@ -24,37 +24,41 @@
         <th>
             @Html.DisplayNameFor(model => model.Email)
         </th>
-        
+
         <th>
             @Html.DisplayNameFor(model => model.DepartID)
         </th>
-      
+        <th>
+            <b>Responsible For</b>
+        </th>
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Surname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-           
-            <td>
-                @Html.DisplayFor(modelItem => item.DepartID)
-            </td>
-           
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.AdminID }, new { @class = "btn btn-primary btn-xs" }) |
-                @Html.ActionLink("Details", "Details", new { id = item.AdminID }, new { @class = "btn btn-primary btn-xs" }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.AdminID }, new { @class = "btn btn-primary btn-xs" })
-            </td>
-        </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Surname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.DepartID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CategoryID)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.AdminID }, new { @class = "btn btn-primary btn-xs" }) |
+            @Html.ActionLink("Details", "Details", new { id = item.AdminID }, new { @class = "btn btn-primary btn-xs" }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.AdminID }, new { @class = "btn btn-primary btn-xs" })
+        </td>
+    </tr>
     }
 
 </table>

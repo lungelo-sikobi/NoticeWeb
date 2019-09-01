@@ -46,7 +46,14 @@ namespace NoticeWeb.Controllers
         //    }
 
         //}
-
+        public string Limit(string input, int max)
+        {
+            if (!String.IsNullOrEmpty(input) && input.Length > max)
+            {
+                return input.Substring(0, max);
+            }
+            return input;
+        }
         [HttpPost]
         public ActionResult Index(Admin Z)
         {

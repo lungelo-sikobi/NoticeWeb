@@ -43,12 +43,29 @@ namespace NoticeWeb.Controllers
             else if((bool)Session["Super"]==true)
             {
                 string i = dt.InsertAdmin(ad);
-                TempData["CreateCat"] = "<script>alert('New Admin Created');</script>";
+                //TempData["CreateCat"] = "<script>alert('New Admin Created');</script>";
+                TempData["msg"] = "<script>alert("+i+");</script>";
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Index", "Home");
         }
+        [NonAction]
+        public SelectList ToSelectList()
+        {
 
+            List<SelectListItem> list = new List<SelectListItem>();
+
+            foreach (Categories row in dt.GetCategories())
+            {
+                list.Add(new SelectListItem()
+                {
+                    Text = row.Name.ToString(),
+                    Value = row.ID.ToString()
+                });
+            }
+
+            return new SelectList(list, "Value", "Text");
+        }
 
         public ActionResult Create()
         {
@@ -58,8 +75,8 @@ namespace NoticeWeb.Controllers
             }
             else if((bool)Session["Super"] == true)
             {
-                var exemploList = new SelectList(new[] { "IT" });
-                ViewBag.Dep = exemploList;
+               
+                ViewBag.CategoryID = ToSelectList();
                 return View();
             }
             return RedirectToAction("Index", "Home");
@@ -118,7 +135,7 @@ namespace NoticeWeb.Controllers
         }
 
 
-        // GET: Category/Delete/5
+        // GET: Admin/Delete/5
         public ActionResult Delete(int id)
         {
             if (Session["AdminID"] == null)

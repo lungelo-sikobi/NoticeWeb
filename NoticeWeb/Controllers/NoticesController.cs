@@ -49,8 +49,10 @@ namespace NoticeWeb.Controllers
             }
             else if((bool)Session["Super"] == true)
             {
+                ViewBag.CategoryID = ToSelectList();
                 return View();
             }
+         
             return RedirectToAction("Index", "Home");
         }
         //Create Notice
@@ -66,33 +68,56 @@ namespace NoticeWeb.Controllers
                 not.AdminID = (int)Session["AdminID"];
                 if (dt.InsertNotice(not) == 1)
                 {
-
-                    byte[] bytes;
-                    using (BinaryReader br = new BinaryReader(postedFile.InputStream))
-                    {
-                        bytes = br.ReadBytes(postedFile.ContentLength);
-                    }
-                    string constr = ConfigurationManager.ConnectionStrings["Connection"].ConnectionString;
-                    using (SqlConnection con = new SqlConnection(constr))
-                    {
-                        string query = "INSERT INTO Files(Name,ContentType,Data,NoticeID) VALUES(@Name, @ContentType, @Data,(Select max(NoticeID)from Notices))";
-                        using (SqlCommand cmd = new SqlCommand(query))
+                  try { 
+                        byte[] bytes;
+                        using (BinaryReader br = new BinaryReader(postedFile.InputStream))
                         {
-                            cmd.Connection = con;
-                            cmd.Parameters.AddWithValue("@Name", Path.GetFileName(postedFile.FileName));
-                            cmd.Parameters.AddWithValue("@ContentType", postedFile.ContentType);
-                            cmd.Parameters.AddWithValue("@Data", bytes);
-                            con.Open();
-                            cmd.ExecuteNonQuery();
-                            con.Close();
-                            return RedirectToAction("Index");
+                            bytes = br.ReadBytes(postedFile.ContentLength);
                         }
+                        string constr = ConfigurationManager.ConnectionStrings["Connection"].ConnectionString;
+                        using (SqlConnection con = new SqlConnection(constr))
+                        {
+                            string query = "INSERT INTO Files(Name,ContentType,Data,NoticeID) VALUES(@Name, @ContentType, @Data,(Select max(NoticeID)from Notices))";
+                            using (SqlCommand cmd = new SqlCommand(query))
+                            {
+                                cmd.Connection = con;
+                                cmd.Parameters.AddWithValue("@Name", Path.GetFileName(postedFile.FileName));
+                                cmd.Parameters.AddWithValue("@ContentType", postedFile.ContentType);
+                                cmd.Parameters.AddWithValue("@Data", bytes);
+                                con.Open();
+                                cmd.ExecuteNonQuery();
+                                con.Close();
+                                return RedirectToAction("Index");
+                            }
+
+                        }
+                    }
+                    catch
+                    {
 
                     }
 
                 }
             }
             return RedirectToAction("Index");
+        }
+
+        [NonAction]
+        public SelectList ToSelectList()
+        {
+           
+            List<SelectListItem> list = new List<SelectListItem>();
+
+            foreach (Categories row in dt.GetCategories())
+            {
+                list.Add(new SelectListItem()
+                {
+                    Text = row.Name.ToString(),
+                    Value = row.ID.ToString()
+                });
+            }
+
+            return new SelectList(list, "Value","Text");
         }
         [HttpPost]
         public ActionResult MultipleFiles(HttpPostedFileBase postedFile)
@@ -169,6 +194,20 @@ namespace NoticeWeb.Controllers
                 ViewBag.Data = detail;
                 return View(GetFiles(id));
            
+
+        }
+        public ActionResult Attachement(int id)
+        {
+
+
+            var detail = dt.GetNoticesData().Single(data => data.NoticeID == id);
+            if (detail == null)
+            {
+                return HttpNotFound();
+            }
+           // ViewBag.Data = detail;
+            return View(GetFiles(id));
+
 
         }
         private static List<FileModel> GetFiles()

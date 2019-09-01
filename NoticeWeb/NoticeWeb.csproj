@@ -161,6 +161,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="images\back1.jpg" />
     <Content Include="images\Board.jpg" />
+    <Content Include="images\download %281%29.jpg" />
     <Content Include="images\Glacier.jpg" />
     <Content Include="images\mut.jpg" />
     <Content Include="images\new.jpg" />
@@ -170,6 +171,7 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Views\Notices\Attachement.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
