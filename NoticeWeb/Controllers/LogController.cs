@@ -59,7 +59,7 @@ namespace NoticeWeb.Controllers
             }
         }
         [HttpPost]
-        public ActionResult ChangePassword(ChangePassword add)
+        public ActionResult ChangePassword(Notice.Models.ChangePassword add)
         {
             // TODO: Add update logic here
             if (Session["AdminID"] == null)

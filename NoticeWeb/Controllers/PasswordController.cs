@@ -32,7 +32,7 @@ namespace NoticeWeb.Controllers
 
         // POST: Password/Create
         [HttpPost]
-        public ActionResult Create(ChangePassword collection)
+        public ActionResult Create(Notice.Models.ChangePassword collection)
         {
             try
             {
