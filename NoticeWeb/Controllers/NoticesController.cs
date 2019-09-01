@@ -10,12 +10,18 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Configuration;
+using System.Data.SqlClient;
+
+
+
 
 namespace NoticeWeb.Controllers
 {
     public class NoticesController : Controller
     {
         DataAcess dt = new DataAcess();
+        string connectionString = ConfigurationManager.ConnectionStrings["Connection"].ConnectionString;
 
         //Get Notice
         //m
@@ -25,14 +31,15 @@ namespace NoticeWeb.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            else
+            else if((bool)Session["Super"] == true)
             {
                 var notList = dt.GetNoticesData();
                 return View(notList);
             }
+            return RedirectToAction("Index", "Home");
             
         }
-        
+
         [HttpGet]
         public ActionResult Create()
         {
@@ -40,29 +47,81 @@ namespace NoticeWeb.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            else
+            else if((bool)Session["Super"] == true)
             {
-              return View();
+                return View();
             }
+            return RedirectToAction("Index", "Home");
         }
         //Create Notice
         [HttpPost]
-        public ActionResult Create(aNotice not,HttpPostedFileBase imgfile)
+        public ActionResult Create(aNotice not, HttpPostedFileBase postedFile)
         {
             if (Session["AdminID"] == null)
             {
                 return RedirectToAction("Index", "Home");
             }
-            else
+            else if((bool)Session["Super"] == true)
             {
                 not.AdminID = (int)Session["AdminID"];
-                dt.InsertNotice(not);
-             
-                return View();
+                if (dt.InsertNotice(not) == 1)
+                {
+
+                    byte[] bytes;
+                    using (BinaryReader br = new BinaryReader(postedFile.InputStream))
+                    {
+                        bytes = br.ReadBytes(postedFile.ContentLength);
+                    }
+                    string constr = ConfigurationManager.ConnectionStrings["Connection"].ConnectionString;
+                    using (SqlConnection con = new SqlConnection(constr))
+                    {
+                        string query = "INSERT INTO Files(Name,ContentType,Data,NoticeID) VALUES(@Name, @ContentType, @Data,(Select max(NoticeID)from Notices))";
+                        using (SqlCommand cmd = new SqlCommand(query))
+                        {
+                            cmd.Connection = con;
+                            cmd.Parameters.AddWithValue("@Name", Path.GetFileName(postedFile.FileName));
+                            cmd.Parameters.AddWithValue("@ContentType", postedFile.ContentType);
+                            cmd.Parameters.AddWithValue("@Data", bytes);
+                            con.Open();
+                            cmd.ExecuteNonQuery();
+                            con.Close();
+                            return RedirectToAction("Index");
+                        }
+
+                    }
+
+                }
             }
+            return RedirectToAction("Index");
+        }
+        [HttpPost]
+        public ActionResult MultipleFiles(HttpPostedFileBase postedFile)
+        {
+            byte[] bytes;
+            using (BinaryReader br = new BinaryReader(postedFile.InputStream))
+            {
+                bytes = br.ReadBytes(postedFile.ContentLength);
+            }
+            string constr = ConfigurationManager.ConnectionStrings["Connection"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                string query = "INSERT INTO Files(Name,ContentType,Data) VALUES(@Name, @ContentType, @Data)";
+                using (SqlCommand cmd = new SqlCommand(query))
+                {
+                    cmd.Connection = con;
+                    cmd.Parameters.AddWithValue("@Name", Path.GetFileName(postedFile.FileName));
+                    cmd.Parameters.AddWithValue("@ContentType", postedFile.ContentType);
+                    cmd.Parameters.AddWithValue("@Data", bytes);
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+            }
+            return View(GetFiles());
+
         }
 
-        
+
         // GET: Notice/Edit/5
         public ActionResult Edit(int id)
         {
@@ -70,11 +129,12 @@ namespace NoticeWeb.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            else
+            else if((bool)Session["Super"] == true)
             {
                 var notice = dt.GetNoticesData().Single(data => data.NoticeID == id);
                 return View(notice);
             }
+            return RedirectToAction("Index", "Home");
         }
 
         // POST: Notice/Edit/5
@@ -85,31 +145,111 @@ namespace NoticeWeb.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            else
+            else if((bool)Session["Super"] == true)
             {
                 // TODO: Add update logic here
                 dt.UpdateNotice(not);
                 return RedirectToAction("Index");
             }
+            return RedirectToAction("Index", "Home");
 
         }
+
 
         // GET: Notices/Details/5
         public ActionResult Details(int id)
         {
-            if (Session["AdminID"] == null)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            else
-            {
+           
+            
                 var detail = dt.GetNoticesData().Single(data => data.NoticeID == id);
                 if (detail == null)
                 {
                     return HttpNotFound();
                 }
-                return View(detail);
+                ViewBag.Data = detail;
+                return View(GetFiles(id));
+           
+
+        }
+        private static List<FileModel> GetFiles()
+        {
+            List<FileModel> files = new List<FileModel>();
+            string constr = ConfigurationManager.ConnectionStrings["Connection"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                using (SqlCommand cmd = new SqlCommand("SELECT Id, Name FROM Files where NoticeID is null"))
+                {
+                    cmd.Connection = con;
+                    con.Open();
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            files.Add(new FileModel
+                            {
+                                Id = Convert.ToInt32(sdr["Id"]),
+                                Name = sdr["Name"].ToString()
+                            });
+                        }
+                    }
+                    con.Close();
+                }
             }
+            return files;
+        }
+        private static List<FileModel> GetFiles(int id)
+        {
+            List<FileModel> files = new List<FileModel>();
+            string constr = ConfigurationManager.ConnectionStrings["Connection"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                using (SqlCommand cmd = new SqlCommand("SELECT Id, Name FROM Files where NoticeID=" + id))
+                {
+                    cmd.Connection = con;
+                    con.Open();
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        while (sdr.Read())
+                        {
+                            files.Add(new FileModel
+                            {
+                                Id = Convert.ToInt32(sdr["Id"]),
+                                Name = sdr["Name"].ToString()
+                            });
+                        }
+                    }
+                    con.Close();
+                }
+            }
+            return files;
+        }
+
+        [HttpPost]
+        public FileResult DownloadFile(int? fileId)
+        {
+            byte[] bytes;
+            string fileName, contentType;
+            string constr = ConfigurationManager.ConnectionStrings["Connection"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandText = "SELECT Name, Data, ContentType FROM Files WHERE Id=@Id";
+                    cmd.Parameters.AddWithValue("@Id", fileId);
+                    cmd.Connection = con;
+                    con.Open();
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                        sdr.Read();
+                        bytes = (byte[])sdr["Data"];
+                        contentType = sdr["ContentType"].ToString();
+                        fileName = sdr["Name"].ToString();
+                    }
+                    con.Close();
+                }
+            }
+
+            return File(bytes, contentType, fileName);
         }
 
         //Delete Notice
@@ -120,11 +260,12 @@ namespace NoticeWeb.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            else
+            else if((bool)Session["Super"] == true)
             {
                 var notice = dt.GetNoticesData().Single(data => data.NoticeID == id);
                 return View(notice);
             }
+            return RedirectToAction("Index", "Home");
         }
 
         // POST: Category/Delete/5
@@ -136,142 +277,17 @@ namespace NoticeWeb.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            else
+            else if((bool)Session["Super"] == true)
             {
                 dt.DeleteNotice(not);
                 return RedirectToAction("Index");
             }
+            return RedirectToAction("Index", "Home");
         }
 
 
-        //private HttpClient client = new HttpClient();
-        //string url = "http://localhost:8009/";
-        //// GET: Notices
-        //public async Task<ActionResult> Index()
-        //{
-        //    List<aNotice> NoticeInfo = new List<aNotice>();
 
-        //    using (var client = new HttpClient())
-        //    {
-        //        client.BaseAddress = new Uri(url);
-        //        client.DefaultRequestHeaders.Clear();
-        //        //Define request data format
-        //        HttpResponseMessage Res = await client.GetAsync("api/Values/GetNoticeData");
-
-        //        //Checking the responce if is successful
-        //        if (Res.IsSuccessStatusCode)
-        //        {
-        //            var NoticeResponce = Res.Content.ReadAsStringAsync().Result;
-
-        //            //Deserilizing the responce
-        //            NoticeInfo = JsonConvert.DeserializeObject<List<aNotice>>(NoticeResponce);
-
-        //        }
-        //    }
-        //    return View(NoticeInfo);
-        //}
-
-        //Insert Notice
-        //[HttpPost]
-        //[ActionName("Create")]
-        //public async Task<ActionResult> Create(aNotice NotObj)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        using (var client = new HttpClient())
-        //        {
-        //            // Assuming the API is in the same web application. 
-        //            client.BaseAddress = new Uri(url);
-        //            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-        //            client.DefaultRequestHeaders.Accept.Clear();
-        //            //= new aNotice();
-        //            UpdateModel(NotObj);
-        //            HttpResponseMessage response = await client.PostAsJsonAsync("api/Values/InsertNotice", NotObj);
-
-        //            if (response.IsSuccessStatusCode == true)
-        //            {
-        //                return RedirectToAction("Index");
-        //            }
-        //        }
-        //    }
-        //    return View();
-
-        //}
-
-        //Update Notice
-        //[HttpPost]
-        //[ActionName("Edit")]
-        //public async Task<ActionResult> Edit()
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        using (var client = new HttpClient())
-        //        {
-
-        //            client.BaseAddress = new Uri(url);
-        //            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-        //            client.DefaultRequestHeaders.Accept.Clear();
-        //            aNotice NoticesObj = new aNotice();
-        //            UpdateModel(NoticesObj);
-        //            HttpResponseMessage response = await client.PutAsJsonAsync("api/Values/UpdateNotice", NoticesObj);
-
-        //            if (response.IsSuccessStatusCode == true)
-        //            {
-        //                return RedirectToAction("Index");
-        //            }
-        //        }
-        //    }
-        //    return View();
-
-        //}
-
-        //Delete Notice
-        //[HttpPost]
-        //public async Task<ActionResult> Delete(int id)
-        //{
-        //    using (var client = new HttpClient())
-        //    {
-        //        // Assuming the API is in the same web application. 
-        //        client.BaseAddress = new Uri(url);
-        //        client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-        //        client.DefaultRequestHeaders.Accept.Clear();
-        //        HttpResponseMessage response = await client.PostAsJsonAsync("api/Values/DeleteNotice", id);
-
-        //        if (response.IsSuccessStatusCode == true)
-        //        {
-        //            return RedirectToAction("Index");
-        //        }
-        //    }
-        //    return RedirectToAction("Index");
-        //}
-
-
-
-        
-
-        // GET: Notices/Edit/5
-        //public ActionResult Edit(int id)
-        //{
-        //    return View();
-        //}
-
-        //// POST: Notices/Edit/5
-        //[HttpPost]
-        //public ActionResult Edit(int id, FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add update logic here
-
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
-
-        
 
     }
 }
+

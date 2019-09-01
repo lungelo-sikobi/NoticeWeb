@@ -51,49 +51,48 @@ namespace NoticeWeb.Controllers
         public ActionResult Index(Admin Z)
         {
 
-            try
-            {
-
+            try { 
                 var user = dt.GetAdmins().SingleOrDefault(x => x.Email == Z.Email && x.Password == Z.Password);
 
                 if (user != null)
                 {
-                    
-                  
-                    if (user.LoggedOnce==false)
+
+
+                    if (user.LoggedOnce == false)
                     {
                         Session["AdminID"] = user.AdminID;
                         Session["user"] = user.Name + " " + user.Surname;
+                      
                         return RedirectToAction("ChangePassword", "Log", new { id = Session["AdminID"] });
                     }
 
-                    else {
+                    else
+                    {
                         Session["AdminID"] = user.AdminID;
                         Session["user"] = user.Name + " " + user.Surname;
+                        Session["Super"] = user.SuperAdmin;
                         return RedirectToAction("Index", "Notices");
                     }
                 }
                 TempData["msg"] = "<script>alert('Nice try!!! Only Admins are allowed to log in');</script>";
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("Index", "Home");
         }
             catch
             {
                 var list = dt.GetNoticesData();
-        ViewBag.Data = list;
+                 ViewBag.Data = list;
                 return View("Index");
-    }
+            }
 }
+    
+
 
         // GET: Home/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int key)
         {
-            var detail = dt.GetNoticesData().Single(data => data.NoticeID == id);
-            if (detail == null)
-            {
-                return HttpNotFound();
-            }
-            return View(detail);
-           
+
+            return RedirectToAction("Details", "Notices", new { id = key });
+
         }
 
 

@@ -4,7 +4,7 @@
     ViewBag.Title = "Adding New Notice";
 }
 <head>
-   
+
 </head>
 <h2 class="text-center"><b>Create Notice</b></h2>
 <div style="width:100%;height:1px;background-color:maroon;">
@@ -12,90 +12,94 @@
 </div>
 <br />
 
-
-@using (Html.BeginForm()) //Lo create notice ngath usunokungjwayela phakathi
+@using (Html.BeginForm("Create", "Notices", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    @Html.AntiForgeryToken()
+   
 
-    <div class="row">
-        <div class="col-lg-4"></div>
-        <div class="form-horizontal col-lg-8">
+ @Html.AntiForgeryToken()
+
+<div class="row">
+
+    <div class="form-horizontal col-lg-4">
+
+        <div class="form-horizontal container container-fluid">
 
 
-            <div class="form-horizontal container container-fluid">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-                <div class="form-group">
-                    <div class="col-md-10">
-                        <label for="comment">Notice Title:</label>
-                        @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
-                    </div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    <label for="comment">Notice Title:</label>
+                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
                 </div>
+            </div>
 
-                <div class="form-group">
-                    <div class="col-lg-10 col-sm-10 col-md-10">
-                        <label for="comment">Notice Description:</label>
-                        @Html.TextAreaFor(model => model.Description, new { @class = "form-control", @rows = 5, @placeholder = "Please add description here" })
-                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-                    </div>
+            <div class="form-group">
+                <div class="col-lg-10 col-sm-10 col-md-10">
+                    <label for="comment">Notice Description:</label>
+                    @Html.TextAreaFor(model => model.Description, new { @class = "form-control", @rows = 5, @placeholder = "Please add description here", @Style = "border-top:0px;border-left:0px;border-right:0px;border-bottom:solid;" })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
                 </div>
+            </div>
 
-                <div class="form-group">
-                    <div class="col-md-10">
-                        <label for="comment">Date of Notice Show:</label>
-                        @Html.EditorFor(model => model.DateAndTime_Show, "{0:MM/dd/yyyy}", new { htmlAttributes = new { @class = "form-control date" } })
-                        @Html.ValidationMessageFor(model => model.DateAndTime_Show, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <div class="col-md-10">
+                    <label for="comment">Date of Notice Show:</label>
+                    @Html.EditorFor(model => model.DateAndTime_Show, "{0:MM/dd/yyyy}", new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DateAndTime_Show, "", new { @class = "text-danger" })
 
-                    </div>
                 </div>
+            </div>
 
 
 
 
-                <div class="form-group">
+            <div class="form-group" style="">
 
-                    <div class="col-md-10">
-                        <label for="comment">Date of Notice Expire:</label> 
-                        @Html.EditorFor(model => model.DateAndTime_Expire, "{0:MM/dd/yyyy}" ,new { htmlAttributes = new { @class = "form-control date " } })
-                        @Html.ValidationMessageFor(model => model.DateAndTime_Expire, "", new { @class = "text-danger" })
-                    </div>
+                <div class="col-md-10">
+                    <label for="comment">Date of Notice Expire:</label>
+                    @Html.EditorFor(model => model.DateAndTime_Expire, "{0:MM/dd/yyyy}", new { htmlAttributes = new { @class = "form-control date " } })
+                    @Html.ValidationMessageFor(model => model.DateAndTime_Expire, "", new { @class = "text-danger" })
                 </div>
+            </div>
 
 
 
 
 
-                <div class="form-group">
-                    <div class="col-md-10">
-                        <label for="comment">Category :</label>
+            <div class="form-group">
+                <div class="col-md-10">
+                    <label for="comment">Category :</label>
 
-                        @Html.DropDownListFor(x => x.CategoryID, new SelectListItem[]{
-                        new SelectListItem() {Text = "Department of IT", Value="4020"},
-                        new SelectListItem() {Text = "Exam", Value="4021"},
-                        new SelectListItem() {Text = "Event", Value="4022"},
-                        new SelectListItem() {Text = "General", Value="4023"},
-                        new SelectListItem() {Text = "SRC", Value="4024"}
+                    @Html.DropDownListFor(x => x.CategoryID, new SelectListItem[]{
+                    new SelectListItem() {Text = "Department of IT", Value="4020"},
+                    new SelectListItem() {Text = "Exam", Value="4021"},
+                    new SelectListItem() {Text = "Event", Value="4022"},
+                    new SelectListItem() {Text = "General", Value="4023"},
+                    new SelectListItem() {Text = "SRC", Value="4024"}
 
-                        } ,new { @class = "form-control", @placeholder = "Please enter select departmrnt ID" })
-                        @Html.ValidationMessageFor(model => model.CategoryID, "", new { @class = "text-danger" })
-                    </div>
+                    } ,new { @class = "form-control", @placeholder = "Please enter select departmrnt ID" })
+                    @Html.ValidationMessageFor(model => model.CategoryID, "", new { @class = "text-danger" })
                 </div>
+            </div>
 
-               
+            <input type="file" class="form-control" name="postedFile" />
 
-              
-                <div class="form-group">
-                    <div class="col-lg-8 col-md-10">
-                        <input type="submit" value="Create" class="btn btn-default" />
-                    </div>
+
+
+            <div class="form-group">
+                <div class="col-lg-8 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" style="overflow:auto;"/>
                 </div>
             </div>
         </div>
     </div>
+    <div class="col-lg-4"><img src="~/images/Board.jpg" style="height:500px;"></div>
+    <div class="col-lg-4"></div>
+</div>
 }
+
 
 <div>
     @Html.ActionLink("Back to List", "Index")
