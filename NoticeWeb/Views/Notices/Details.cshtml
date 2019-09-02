@@ -14,7 +14,15 @@
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+                var div = $("div");
+            $("#title").animate({ left: '100px' }, "slow");
+            $("#title").animate({ fontSize: '3em' }, "slow");
+          
+        });
+    </script>
     <script>
         $(document).ready(function () {
             $("#title").animate({ left: '50%' });
@@ -41,7 +49,7 @@
 
         </div>
         <div style="display:inline-flex;">
-            <div>
+            <div id="title">
                 <h1>@ViewBag.Data.Title</h1>
             </div>
         </div>
