@@ -114,7 +114,7 @@ namespace NoticeWeb.Controllers
             }
             else
             {
-                dt.UpdateAdmin(add);
+                dt.UpdateAdminAccount(add);
                 ViewBag.DataExists = true;
                 return RedirectToAction("index","Notices");
             }

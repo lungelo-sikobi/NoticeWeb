@@ -59,7 +59,7 @@ namespace NoticeWeb.Controllers
         {
 
             try { 
-                var user = dt.GetAdmins().SingleOrDefault(x => x.Email == Z.Email && x.Password == Z.Password);
+                var user = dt.GetAdmins().SingleOrDefault(x => x.Email == Z.Email && x.Password.ToString().Equals(Z.Password.GetHashCode().ToString()));
 
                 if (user != null)
                 {
@@ -75,10 +75,22 @@ namespace NoticeWeb.Controllers
 
                     else
                     {
-                        Session["AdminID"] = user.AdminID;
-                        Session["user"] = user.Name + " " + user.Surname;
-                        Session["Super"] = user.SuperAdmin;
-                        return RedirectToAction("Index", "Notices");
+                        if (user.SuperAdmin==true)
+                        {
+                            Session["AdminID"] = user.AdminID;
+                            Session["user"] = user.Name + " " + user.Surname;
+                            Session["Super"] = user.SuperAdmin;
+                            return RedirectToAction("Index", "Notices");
+                        }
+                        else 
+                        {
+                            Session["AdminID"] = user.AdminID;
+                            Session["user"] = user.Name + " " + user.Surname;
+                            Session["Super"] = user.SuperAdmin;
+                            Session["DepartID"] = user.DepartID;
+                            return RedirectToAction("Index", "CategoryAdmin");
+                        }
+                       
                     }
                 }
                 TempData["msg"] = "<script>alert('Nice try!!! Only Admins are allowed to log in');</script>";
