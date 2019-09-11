@@ -29,6 +29,26 @@ namespace NoticeWeb.Controllers
         {
             return View();
         }
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        // POST: Password/Edit/5
+        [HttpPost]
+        public ActionResult ForgotPassword(ChangePassword obj)
+        {
+            try
+            {
+                // TODO: Add update logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
 
         // POST: Password/Create
         [HttpPost]

@@ -82,15 +82,25 @@ namespace NoticeWeb.Controllers
                             Session["Super"] = user.SuperAdmin;
                             return RedirectToAction("Index", "Notices");
                         }
-                        else 
+                        if (user.DepartID != null)
                         {
                             Session["AdminID"] = user.AdminID;
                             Session["user"] = user.Name + " " + user.Surname;
                             Session["Super"] = user.SuperAdmin;
                             Session["DepartID"] = user.DepartID;
+                            return RedirectToAction("Index", "DepartmentAdmin");
+
+                           
+                        }
+                        else
+                        {
+                            Session["AdminID"] = user.AdminID;
+                            Session["user"] = user.Name + " " + user.Surname;
+                            Session["Super"] = user.SuperAdmin;
+                            Session["CategoryID"] = user.CategoryID;
                             return RedirectToAction("Index", "CategoryAdmin");
                         }
-                       
+
                     }
                 }
                 TempData["msg"] = "<script>alert('Nice try!!! Only Admins are allowed to log in');</script>";

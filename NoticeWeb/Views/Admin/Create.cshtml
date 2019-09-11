@@ -70,8 +70,8 @@
                 <div class="row">
                     <div class="col-lg-4 col-sm-4 col-md-12">
                         <label for="comment">Department:</label>
-                        @Html.DropDownListFor(item => Model.DepartID, ViewBag.CategoryID as SelectList, "-- Select --", new { @class = "form-control" } )
-                        @Html.ValidationMessageFor(model => model.CategoryID, "", new { @class = "text-danger", @id = "myDropdown" })
+                        @Html.DropDownListFor(item => Model.DepartID, ViewBag.DepartID as SelectList, "-- Select --", new { @class = "form-control" } )
+                        @Html.ValidationMessageFor(model => model.DepartID, "", new { @class = "text-danger", @id = "myDropdown" })
 
                     </div>
                 </div>

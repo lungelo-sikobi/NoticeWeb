@@ -36,7 +36,7 @@ namespace NoticeWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Categories cat)
+        public ActionResult Create(Department cat)
         {
             //Ask before you delete or change
             if (Session["AdminID"] == null)
@@ -82,7 +82,7 @@ namespace NoticeWeb.Controllers
 
         // POST: Category/Edit/5
         [HttpPost]
-        public ActionResult Edit(Categories catg)
+        public ActionResult Edit(Department catg)
         {
             // TODO: Add update logic here
             if (Session["AdminID"] == null)
@@ -136,7 +136,7 @@ namespace NoticeWeb.Controllers
 
         // POST: Category/Delete/5
         [HttpPost]
-        public ActionResult Delete(Categories ct)
+        public ActionResult Delete(Department ct)
         {
             // TODO: Add update logic here
             if (Session["AdminID"] == null)

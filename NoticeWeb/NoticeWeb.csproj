@@ -139,6 +139,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CategoryAdminController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\DepartmentAdminController.cs" />
     <Compile Include="Controllers\FlashScreenController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LogController.cs" />
@@ -172,6 +173,12 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\Notices\Attachement.cshtml" />
+    <Content Include="Views\Notices\Delete.cshtml" />
+    <Content Include="Views\Category\Delete.cshtml" />
+    <Content Include="Views\Password\ForgotPassword.cshtml" />
+    <Content Include="Views\Shared\DepartmentAdmin.cshtml" />
+    <Content Include="Views\FlashScreen\FlashingDepartment.cshtml" />
+    <Content Include="Views\DepartmentAdmin\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -211,9 +218,7 @@
     <Content Include="Views\Admin\Details.cshtml" />
     <Content Include="Views\Notices\Edit.cshtml" />
     <Content Include="Views\Category\Details.cshtml" />
-    <Content Include="Views\Category\Delete.cshtml" />
     <Content Include="Views\Admin\Delete.cshtml" />
-    <Content Include="Views\Notices\Delete.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
     <Content Include="Views\Log\Details.cshtml" />
     <Content Include="Views\Log\Edit.cshtml" />
@@ -226,7 +231,6 @@
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Content\upload\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Password\" />
     <Folder Include="Views\Screen\" />
   </ItemGroup>
   <ItemGroup>

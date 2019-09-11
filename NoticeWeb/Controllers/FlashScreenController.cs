@@ -31,7 +31,36 @@ namespace NoticeWeb.Controllers
                 return View(flash);
             }
         }
-
+        public ActionResult FlashingDepartment()
+        {
+            if (Session["AdminID"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                Session.Clear();
+                Session.RemoveAll();
+                Session.Abandon();
+                var flash = dt.GetNoticeTitle((int)Session["DepartID"]);
+                return View(flash);
+            }
+        }
+        public ActionResult FlashingCategory()
+        {
+            if (Session["AdminID"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                Session.Clear();
+                Session.RemoveAll();
+                Session.Abandon();
+                var flash = dt.GetNoticeTitle();
+                return View(flash);
+            }
+        }
 
         //private HttpClient client = new HttpClient();
 

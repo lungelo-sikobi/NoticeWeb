@@ -11,10 +11,11 @@ namespace NoticeWeb.Controllers
         // GET: Admin
         //c
         DataAcess dt = new DataAcess();
-        
+     
         [HttpGet]
         public ActionResult Index()
         {
+            
             if (Session["AdminID"] == null)
             {
                 return RedirectToAction("Index", "Home");
@@ -37,7 +38,6 @@ namespace NoticeWeb.Controllers
             else if((bool)Session["Super"]==true)
             {
                 string i = dt.InsertAdmin(ad);
-                //TempData["CreateCat"] = "<script>alert('New Admin Created');</script>";
                 TempData["msg"] = "<script>alert("+i+");</script>";
                 return RedirectToAction("Index");
             }
@@ -49,7 +49,24 @@ namespace NoticeWeb.Controllers
 
             List<SelectListItem> list = new List<SelectListItem>();
 
-            foreach (Categories row in dt.GetCategories())
+            foreach (Department row in dt.GetCategories())
+            {
+                list.Add(new SelectListItem()
+                {
+                    Text = row.Name.ToString(),
+                    Value = row.ID.ToString()
+                });
+            }
+
+            return new SelectList(list, "Value", "Text");
+        }
+        [NonAction]
+        public SelectList DepList()
+        {
+
+            List<SelectListItem> list = new List<SelectListItem>();
+
+            foreach (Departments row in dt.GetDepartment())
             {
                 list.Add(new SelectListItem()
                 {
@@ -71,6 +88,7 @@ namespace NoticeWeb.Controllers
             {
                
                 ViewBag.CategoryID = ToSelectList();
+                ViewBag.DepartID = DepList();
                 return View();
             }
             return RedirectToAction("Index", "Home");
@@ -139,6 +157,7 @@ namespace NoticeWeb.Controllers
             else if((bool)Session["Super"] == true)
             {
                 var admin = dt.GetAdmins().Single(data => data.AdminID == id);
+              
                 return View(admin);
                 
             }
@@ -156,6 +175,7 @@ namespace NoticeWeb.Controllers
             }
             else if((bool)Session["Super"] == true)
             {
+               
                 dt.DeleteAdmin(add);
                 return RedirectToAction("Index");
             }

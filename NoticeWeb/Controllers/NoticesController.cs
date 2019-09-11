@@ -108,7 +108,7 @@ namespace NoticeWeb.Controllers
            
             List<SelectListItem> list = new List<SelectListItem>();
 
-            foreach (Categories row in dt.GetCategories())
+            foreach (Department row in dt.GetCategories())
             {
                 list.Add(new SelectListItem()
                 {
@@ -174,6 +174,37 @@ namespace NoticeWeb.Controllers
             {
                 // TODO: Add update logic here
                 dt.UpdateNotice(not);
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index", "Home");
+
+        }
+        public ActionResult Delete(int id)
+        {
+            if (Session["AdminID"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else if ((bool)Session["Super"] == true)
+            {
+                var notice = dt.GetNoticesData().Single(data => data.NoticeID == id);
+                return View(notice);
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        // POST: Notice/Edit/5
+        [HttpPost]
+        public ActionResult Delete(aNotice not)
+        {
+            if (Session["AdminID"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else if ((bool)Session["Super"] == true)
+            {
+                // TODO: Add update logic here
+                dt.DeleteNotice(not);
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Index", "Home");
@@ -293,37 +324,7 @@ namespace NoticeWeb.Controllers
 
         //Delete Notice
         // GET: Category/Delete/5
-        public ActionResult Delete(int id)
-        {
-            if (Session["AdminID"] == null)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            else if((bool)Session["Super"] == true)
-            {
-                var notice = dt.GetNoticesData().Single(data => data.NoticeID == id);
-                return View(notice);
-            }
-            return RedirectToAction("Index", "Home");
-        }
-
-        // POST: Category/Delete/5
-        [HttpPost]
-        public ActionResult Delete(aNotice not)
-        {
-            // TODO: Add update logic here
-            if (Session["AdminID"] == null)
-            {
-                return RedirectToAction("Index", "Home");
-            }
-            else if((bool)Session["Super"] == true)
-            {
-                dt.DeleteNotice(not);
-                return RedirectToAction("Index");
-            }
-            return RedirectToAction("Index", "Home");
-        }
-
+        
 
 
 
