@@ -39,10 +39,12 @@ namespace NoticeWeb.Controllers
             }
             else
             {
+               
+               
+                var flash = dt.GetNoticeTitleDep((int)Session["DepartID"]);
+                Session.Abandon();
                 Session.Clear();
                 Session.RemoveAll();
-                Session.Abandon();
-                var flash = dt.GetNoticeTitle((int)Session["DepartID"]);
                 return View(flash);
             }
         }
@@ -54,10 +56,12 @@ namespace NoticeWeb.Controllers
             }
             else
             {
+                
+                
+                var flash = dt.GetNoticeTitleCat((int)Session["CategoryID"]);
                 Session.Clear();
                 Session.RemoveAll();
                 Session.Abandon();
-                var flash = dt.GetNoticeTitle();
                 return View(flash);
             }
         }

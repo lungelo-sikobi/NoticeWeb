@@ -36,7 +36,7 @@ namespace NoticeWeb.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Department cat)
+        public ActionResult Create(Categories cat)
         {
             //Ask before you delete or change
             if (Session["AdminID"] == null)
@@ -82,7 +82,7 @@ namespace NoticeWeb.Controllers
 
         // POST: Category/Edit/5
         [HttpPost]
-        public ActionResult Edit(Department catg)
+        public ActionResult Edit(Categories catg)
         {
             // TODO: Add update logic here
             if (Session["AdminID"] == null)
@@ -106,7 +106,7 @@ namespace NoticeWeb.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            else if((bool)Session["Super"] == true)
+            else 
             {
                 var detail = dt.GetCategories().Single(data => data.ID == id);
                 if (detail == null)
@@ -115,7 +115,7 @@ namespace NoticeWeb.Controllers
                 }
                 return View(detail);
             }
-            return RedirectToAction("Index", "Home");
+           
         }
 
 
@@ -126,17 +126,17 @@ namespace NoticeWeb.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            else if((bool)Session["Super"] == true)
+            else 
             {
                 var category = dt.GetCategories().Single(data => data.ID == id);
                 return View(category);
             }
-            return RedirectToAction("Index", "Home");
+          
         }
 
         // POST: Category/Delete/5
         [HttpPost]
-        public ActionResult Delete(Department ct)
+        public ActionResult Delete(Categories ct)
         {
             // TODO: Add update logic here
             if (Session["AdminID"] == null)

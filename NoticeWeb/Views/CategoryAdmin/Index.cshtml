@@ -95,7 +95,7 @@
             <td>
 
                 @Html.ActionLink("Edit", "Edit", new { id = item.NoticeID }, new { @class = "btn btn-primary btn-xs" })
-                @Html.ActionLink("Details", "Details", new { id = item.NoticeID }, new { @class = "btn btn-primary btn-xs" })
+                @Html.ActionLink("See notice Details", "Details", "Notices", new { id = @item.NoticeID }, new { @class = "btn btn-primary btn-xs" })
                 @Html.ActionLink("Delete", "Delete", new { id = item.NoticeID }, new { @class = "btn btn-primary btn-xs" })
 
             </td>

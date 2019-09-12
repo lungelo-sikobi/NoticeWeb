@@ -108,7 +108,7 @@ namespace NoticeWeb.Controllers
            
             List<SelectListItem> list = new List<SelectListItem>();
 
-            foreach (Department row in dt.GetCategories())
+            foreach (Categories row in dt.GetCategories())
             {
                 list.Add(new SelectListItem()
                 {

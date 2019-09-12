@@ -17,16 +17,36 @@ namespace NoticeWeb.Controllers
         {
             if (Session["AdminID"]!= null)
             {
-                return RedirectToAction("Index", "Notices",new { AdminID = Session["AdminID"].ToString()});
+                var user = dt.GetAdmins().SingleOrDefault(x => x.AdminID == (int)Session["AdminID"]);
+               
+                if (user.SuperAdmin == true)
+                {
+                    var list = dt.GetNoticesData();
+                    ViewBag.Data = list;
+                    return RedirectToAction("Index", "Notices");
+                }
+                if (user.DepartID != null)
+                {
+                    return RedirectToAction("Index", "DepartmentAdmin");
+                }
+                else
+                {
+                    Session["AdminID"] = user.AdminID;
+                    Session["user"] = user.Name + " " + user.Surname;
+                    Session["Super"] = user.SuperAdmin;
+                    Session["CategoryID"] = user.CategoryID;
+                    return RedirectToAction("Index", "CategoryAdmin");
+                }
             }
             else
             {
-               
                 var list = dt.GetNoticesData();
                 ViewBag.Data = list;
                 return View();
             }
             
+           
+
         }
         //public ActionResult Filter(String Search)
         //{

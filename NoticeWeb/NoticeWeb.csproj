@@ -179,6 +179,13 @@
     <Content Include="Views\Shared\DepartmentAdmin.cshtml" />
     <Content Include="Views\FlashScreen\FlashingDepartment.cshtml" />
     <Content Include="Views\DepartmentAdmin\Index.cshtml" />
+    <Content Include="Views\CategoryAdmin\AdminAccount.cshtml" />
+    <Content Include="Views\CategoryAdmin\EditAdminAccount.cshtml" />
+    <Content Include="Views\FlashScreen\FlashingCategory.cshtml" />
+    <Content Include="Views\DepartmentAdmin\Create.cshtml" />
+    <Content Include="Views\CategoryAdmin\Create.cshtml" />
+    <Content Include="Views\CategoryAdmin\Edit.cshtml" />
+    <Content Include="Views\CategoryAdmin\Delete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

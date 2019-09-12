@@ -32,7 +32,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Screen", "Flashing", "FlashScreen")</li>
+                    <li>@Html.ActionLink("Screen", "FlashingCategory", "FlashScreen")</li>
                     <li>@Html.ActionLink("My Account", "Details", "Log", new { id = Session["AdminID"] }, null)</li>
                 </ul>
                 <ul class="nav navbar-nav pull-right">
@@ -44,6 +44,7 @@
     </div>
 
     <div class="container body-content">
+       
         @RenderBody()
         <hr />
         <footer>

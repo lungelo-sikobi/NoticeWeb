@@ -22,83 +22,80 @@
 <br />
 <table class="table table-hover table-condensed">
     <tr style="background-color:maroon;color:white;">
-        <th>
-            @Html.DisplayNameFor(model => model.NoticeID)
-        </th>
+
         @*<th>
-                <b>Date Posted</b>
-            </th>*@
+            <b>Date Posted</b>
+        </th>*@
         @*<th>
-                <b>Expire Date</b>
-            </th>*@
+            <b>Expire Date</b>
+        </th>*@
         @*<th>
-                <b>Show Notice on:</b>
-            </th>*@
+            <b>Show Notice on:</b>
+        </th>*@
         <th>
             <b>Notice Title</b>
         </th>
         <th>
-            <b>Notice Description</b>
+            <b>Notice Date</b>
         </th>
         @*<th>
-                <b>Category ID</b>
-            </th>*@
+            <b>Category ID</b>
+        </th>*@
         @*<th>
-                <b>Admin .</b>
-            </th>
-            <th>
-                <b>Category Name</b>
-            </th>*@
+            <b>Admin .</b>
+        </th>
+        <th>
+            <b>Category Name</b>
+        </th>*@
         <th>
             <b>Available Attachment</b>
         </th>
-        <th></th>
+       
     </tr>
 
     @foreach (var item in Model)
     {
 
 
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.NoticeID)
-            </td>
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.DateAndTime_p)
-                </td>*@
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.DateAndTime_Expire)
-                </td>*@
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.DateAndTime_Show)
-                </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description).ToString().Substring(0,1).......
-            </td>
-            <td>
-                @Html.ActionLink("See Notice Attachement", "Attachement", new { id = item.NoticeID })
-          </td>
-            @*<td>
-        @Html.DisplayFor(modelItem => item.AdminID)
-    </td>*@
-            @*<td>
-        @Html.DisplayFor(modelItem => item.CatName)
-    </td>*@
-            @*<td>
-        @Html.DisplayFor(modelItem => item.HasImage)
-    </td>*@
+    <tr>
 
-<td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.DateAndTime_p)
+        </td>*@
+        @*<td>
+            @Html.DisplayFor(modelItem => item.DateAndTime_Expire)
+        </td>*@
+        @*<td>
+            @Html.DisplayFor(modelItem => item.DateAndTime_Show)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateAndTime_p)
+        </td>
+        <td>
+            @Html.ActionLink("See Notice Attachement", "Attachement", new { id = item.NoticeID })
+        </td>
+       
+        @*<td>
+            @Html.DisplayFor(modelItem => item.AdminID)
+        </td>*@
+        @*<td>
+            @Html.DisplayFor(modelItem => item.CatName)
+        </td>*@
+        @*<td>
+            @Html.DisplayFor(modelItem => item.HasImage)
+        </td>*@
 
-                @Html.ActionLink("Edit", "Edit", new { id = item.NoticeID }, new { @class = "btn btn-primary btn-xs" })
-                @Html.ActionLink("Details", "Details", new { id = item.NoticeID }, new { @class = "btn btn-primary btn-xs" })
-                @Html.ActionLink("Delete", "Delete", new { id = item.NoticeID }, new { @class = "btn btn-primary btn-xs" })
+        <td>
 
-            </td>
-        </tr>
+            @Html.ActionLink("Edit", "Edit", new { id = item.NoticeID }, new { @class = "btn btn-primary btn-xs" })
+            @Html.ActionLink("Details", "Details", new { id = item.NoticeID }, new { @class = "btn btn-primary btn-xs" })
+            @Html.ActionLink("Delete", "Delete", new { id = item.NoticeID }, new { @class = "btn btn-primary btn-xs" })
+
+        </td>
+    </tr>
     }
 
 </table>

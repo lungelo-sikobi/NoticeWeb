@@ -40,8 +40,8 @@ namespace NoticeWeb.Controllers
         {
             try
             {
-                // TODO: Add update logic here
 
+                dt.ForgotPassword(obj);
                 return RedirectToAction("Index");
             }
             catch

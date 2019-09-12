@@ -33,7 +33,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("My Account", "Details", "Log", new { id = Session["AdminID"] }, null)</li>
+                    <li>@Html.ActionLink("My Account", "AdminAccount", "CategoryAdmin", new { id = Session["AdminID"] }, null)</li>
                 </ul>
                 <ul class="nav navbar-nav pull-right">
 
@@ -49,7 +49,6 @@
             </div>
             <ul class="nav navbar-nav">
                 <li>@Html.ActionLink("Screen", "FlashingDepartment", "FlashScreen")</li>
-                <li>@Html.ActionLink("Admins", "Index", "Admin")</li>
                 <li><a href="#" data-toggle="dropdown" class="dropdown-toggle"> Hello,@Session["user"] </a></li>
             </ul>
 
